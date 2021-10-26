@@ -1,10 +1,19 @@
 import React from "react";
 import { Text, View, SafeAreaView, StyleSheet } from "react-native";
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  box: {
+    height: 100,
+  },
+});
+
 export default function BagScreen(props) {
   return (
     <SafeAreaView>
-      <View>
+      <View style={styles.container}>
         <Text>Your Bag</Text>
         <View style={[styles.box, { backgroundColor: "powderblue" }]} />
         <View style={[styles.box, { backgroundColor: "dodgerblue" }]} />
@@ -16,14 +25,3 @@ export default function BagScreen(props) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-evenly",
-  },
-  box: {
-    height: 40,
-    width: 100,
-  },
-});
