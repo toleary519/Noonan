@@ -1,5 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+import BagScreen from "./app/screens/BagScreen";
+import ShootScreen from "./app/screens/ShootScreen";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import {
   StyleSheet,
   Text,
@@ -10,29 +17,22 @@ import {
   SafeAreaView,
 } from "react-native"; //components
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function MyStack() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>noonan!</Text>
-      <View style={styles.options}>
-        <Text style={styles.options}>Bag!</Text>
-        <Text style={styles.options}>Shoot!</Text>
-      </View>
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <Stack.Navigator>
+      <Stack.Screen name="noonan" component={WelcomeScreen} />
+      <Stack.Screen name="Bag" component={BagScreen} />
+      <Stack.Screen name="Shoot" component={ShootScreen} />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "flex-start",
-  },
-  options: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  );
+}
