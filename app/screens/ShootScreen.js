@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "dodgerblue",
   },
+  clearButton: {
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundColor: "dodgerblue",
+  },
   windEle: {
     flexDirection: "column",
     backgroundColor: "dodgerblue",
@@ -49,11 +54,41 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "gold",
   },
+  digit: {
+    textAlign: "center",
+    padding: 10,
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+  labelText: {
+    textAlign: "center",
+    padding: 10,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  displayText: {
+    textAlign: "center",
+    padding: 10,
+    fontSize: 40,
+    fontWeight: "bold",
+  },
+  clearText: {
+    textAlign: "center",
+    padding: 10,
+    fontSize: 25,
+    fontWeight: "bold",
+  },
+  functionalText: {
+    textAlign: "center",
+    padding: 10,
+    fontSize: 25,
+    fontWeight: "bold",
+  },
   zeroShot: {
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingBottom: 35,
     backgroundColor: "green",
+    marginBottom: 40,
   },
 });
 
@@ -62,46 +97,48 @@ export default function ShootScreen(props) {
     <View style={styles.container}>
       <View style={styles.top}>
         <View style={styles.labels}>
-          <Text>Distance</Text>
-          <Text>Elevation</Text>
-          <Text>Wind</Text>
+          <Text style={styles.labelText}>Distance</Text>
+          <Text style={styles.labelText}>Elevation</Text>
+          <Text style={styles.labelText}>Wind</Text>
         </View>
         <View style={styles.displays}>
-          <Text>Dis Display</Text>
-          <Text>Ele Display</Text>
-          <Text>Win Display</Text>
+          <Text style={styles.displayText}>0</Text>
+          <Text style={styles.displayText}>0</Text>
+          <Text style={styles.displayText}>0</Text>
         </View>
         <View style={styles.functionals}>
-          <Text>Clear</Text>
-          <View style={styles.windEle}>
-            <Text>Up</Text>
-            <Text>Dwn</Text>
+          <View style={styles.clearButton}>
+            <Text style={styles.clearText}>Clear</Text>
           </View>
           <View style={styles.windEle}>
-            <Text>Up</Text>
-            <Text>Dwn</Text>
+            <Text style={styles.functionalText}>Up</Text>
+            <Text style={styles.functionalText}>Dwn</Text>
+          </View>
+          <View style={styles.windEle}>
+            <Text style={styles.functionalText}>Up</Text>
+            <Text style={styles.functionalText}>Dwn</Text>
           </View>
         </View>
       </View>
       <View style={styles.bottom}>
         <View style={styles.numbersOne}>
-          <Text>7</Text>
-          <Text>8</Text>
-          <Text>9</Text>
+          <Text style={styles.digit}>7</Text>
+          <Text style={styles.digit}>8</Text>
+          <Text style={styles.digit}>9</Text>
         </View>
         <View style={styles.numbersTwo}>
-          <Text>4</Text>
-          <Text>5</Text>
-          <Text>6</Text>
+          <Text style={styles.digit}>4</Text>
+          <Text style={styles.digit}>5</Text>
+          <Text style={styles.digit}>6</Text>
         </View>
         <View style={styles.numbersThree}>
-          <Text>1</Text>
-          <Text>2</Text>
-          <Text>3</Text>
+          <Text style={styles.digit}>1</Text>
+          <Text style={styles.digit}>2</Text>
+          <Text style={styles.digit}>3</Text>
         </View>
         <View style={styles.zeroShot}>
-          <Text>0</Text>
-          <Text>Get Shot</Text>
+          <Text style={styles.digit}>0</Text>
+          <Text style={styles.digit}>Get Shot</Text>
         </View>
       </View>
     </View>
