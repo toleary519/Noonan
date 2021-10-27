@@ -6,6 +6,7 @@ import { FuncButton, ClearButton } from "../helpers/components/FuncButtons";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#FDF8EE",
   },
   top: {
     flex: 1,
@@ -25,21 +26,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: "powderblue",
   },
   functionals: {
     flexDirection: "row",
     justifyContent: "space-around",
-    backgroundColor: "dodgerblue",
   },
   clearButton: {
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: "dodgerblue",
   },
   windEle: {
     flexDirection: "column",
-    backgroundColor: "dodgerblue",
   },
   numbers: {
     flexDirection: "row",
@@ -50,12 +47,14 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     fontWeight: "bold",
+    color: "#1C0F13",
   },
   displayText: {
     textAlign: "center",
     padding: 10,
     fontSize: 40,
     fontWeight: "bold",
+    color: "#1C0F13",
   },
   zeroShot: {
     flexDirection: "row",
@@ -102,36 +101,38 @@ export default function ShootScreen(props) {
         </View>
         <View style={styles.functionals}>
           <View style={styles.clearButton}>
-            <ClearButton onPress={handleClear} text="Clear" />
+            <ClearButton onPress={handleClear} title="Clear" />
           </View>
           <View style={styles.windEle}>
-            <FuncButton onPress={handleEleUP} text="Up" />
-            <FuncButton onPress={handleEleDWN} text="Dwn" />
+            <FuncButton onPress={handleEleUP} title="Up" />
+            <FuncButton onPress={handleEleDWN} title="Dwn" />
           </View>
           <View style={styles.windEle}>
-            <FuncButton onPress={handleWindUP} text="Up" />
-            <FuncButton onPress={handleWindDWN} text="Dwn" />
+            <FuncButton onPress={handleWindUP} title="Up" />
+            <FuncButton onPress={handleWindDWN} title="Dwn" />
           </View>
         </View>
       </View>
       <View style={styles.bottom}>
         <View style={styles.numbers}>
-          <CalcButton text="7" />
-          <CalcButton text="8" />
           <CalcButton text="9" />
+          <CalcButton text="8" />
+          <CalcButton text="7" />
+          <CalcButton text="S" />
         </View>
         <View style={styles.numbers}>
-          <CalcButton text="4" />
-          <CalcButton text="5" />
           <CalcButton text="6" />
+          <CalcButton text="5" />
+          <CalcButton text="4" />
+          <CalcButton text="R" />
         </View>
         <View style={styles.numbers}>
-          <CalcButton text="1" />
-          <CalcButton text="2" />
           <CalcButton text="3" />
+          <CalcButton text="2" />
+          <CalcButton text="1" />
+          <CalcButton text="0" />
         </View>
         <View style={styles.zeroShot}>
-          <CalcButton text="0" />
           <CalcButton text="Get Shot" />
         </View>
       </View>

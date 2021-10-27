@@ -1,9 +1,13 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, Button } from "react-native";
 
-const FuncButton = ({ text }) => <Text style={styles.funcText}>{text}</Text>;
+const FuncButton = ({ title }) => (
+  <Button style={styles.funcText} title={title} />
+);
 
-const ClearButton = ({ text }) => <Text style={styles.funcText}>{text}</Text>;
+const ClearButton = ({ title }) => (
+  <Button style={styles.funcText} title={title} />
+);
 
 const styles = StyleSheet.create({
   funcText: {
@@ -11,12 +15,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 25,
     fontWeight: "bold",
-  },
-  clearText: {
-    textAlign: "center",
-    padding: 10,
-    fontSize: 25,
-    fontWeight: "bold",
+    color: "#1C0F13",
   },
 });
 
