@@ -101,38 +101,39 @@ export default function ShootScreen(props) {
         </View>
         <View style={styles.functionals}>
           <View style={styles.clearButton}>
-            <ClearButton onPress={handleClear} title="Clear" />
+            <ClearButton onPress={handleClear} text="Clear" />
           </View>
           <View style={styles.windEle}>
-            <FuncButton onPress={handleEleUP} title="Up" />
-            <FuncButton onPress={handleEleDWN} title="Dwn" />
+            <FuncButton onPress={handleEleUP} text="Up" />
+            <FuncButton onPress={handleEleDWN} text="Dwn" />
           </View>
           <View style={styles.windEle}>
-            <FuncButton onPress={handleWindUP} title="Up" />
-            <FuncButton onPress={handleWindDWN} title="Dwn" />
+            <FuncButton onPress={handleWindUP} text="Up" />
+            <FuncButton onPress={handleWindDWN} text="Dwn" />
           </View>
         </View>
       </View>
       <View style={styles.bottom}>
         <View style={styles.numbers}>
-          <CalcButton text="9" />
-          <CalcButton text="8" />
           <CalcButton text="7" />
+          <CalcButton text="8" />
+          <CalcButton text="9" />
           <CalcButton text="S" />
         </View>
         <View style={styles.numbers}>
-          <CalcButton text="6" />
-          <CalcButton text="5" />
           <CalcButton text="4" />
+          <CalcButton text="5" />
+          <CalcButton text="6" />
           <CalcButton text="R" />
         </View>
-        <View style={styles.numbers}>
-          <CalcButton text="3" />
-          <CalcButton text="2" />
+        <View style={[styles.numbers, { marginLeft: 4 }]}>
           <CalcButton text="1" />
-          <CalcButton text="0" />
+          <CalcButton text="2" />
+          <CalcButton text="3" />
+          <CalcButton text="X" />
         </View>
         <View style={styles.zeroShot}>
+          <CalcButton text="0" />
           <CalcButton text="Get Shot" />
         </View>
       </View>

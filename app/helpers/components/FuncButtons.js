@@ -1,12 +1,16 @@
 import React from "react";
-import { Text, StyleSheet, Button } from "react-native";
+import { Text, StyleSheet, Pressable } from "react-native";
 
-const FuncButton = ({ title }) => (
-  <Button style={styles.funcText} title={title} />
+const FuncButton = ({ text }) => (
+  <Pressable>
+    <Text style={styles.funcText}>{text}</Text>
+  </Pressable>
 );
 
-const ClearButton = ({ title }) => (
-  <Button style={styles.funcText} title={title} />
+const ClearButton = ({ text }) => (
+  <Pressable>
+    <Text style={styles.funcText}>{text}</Text>
+  </Pressable>
 );
 
 const styles = StyleSheet.create({
