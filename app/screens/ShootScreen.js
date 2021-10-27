@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import CalcButton from "../helpers/components/CalcButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -54,12 +55,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "gold",
   },
-  digit: {
-    textAlign: "center",
-    padding: 10,
-    fontSize: 30,
-    fontWeight: "bold",
-  },
   labelText: {
     textAlign: "center",
     padding: 10,
@@ -97,9 +92,6 @@ export default function ShootScreen(props) {
   const [elevation, setElevation] = useState(0);
   const [wind, setWind] = useState(0);
 
-  const handleDistance = (dig) => {
-    setDistance(distance + dig);
-  };
   const handleEleUP = () => {
     setElevation(elevation + 1);
   };
@@ -157,41 +149,23 @@ export default function ShootScreen(props) {
       </View>
       <View style={styles.bottom}>
         <View style={styles.numbersOne}>
-          <Text onPress={() => handleDistance("7")} style={styles.digit}>
-            7
-          </Text>
-          <Text onPress={() => handleDistance("8")} style={styles.digit}>
-            8
-          </Text>
-          <Text onPress={() => handleDistance("9")} style={styles.digit}>
-            9
-          </Text>
+          <CalcButton text="7" />
+          <CalcButton text="8" />
+          <CalcButton text="9" />
         </View>
         <View style={styles.numbersTwo}>
-          <Text onPress={() => handleDistance("4")} style={styles.digit}>
-            4
-          </Text>
-          <Text onPress={() => handleDistance("5")} style={styles.digit}>
-            5
-          </Text>
-          <Text onPress={() => handleDistance("6")} style={styles.digit}>
-            6
-          </Text>
+          <CalcButton text="4" />
+          <CalcButton text="5" />
+          <CalcButton text="6" />
         </View>
         <View style={styles.numbersThree}>
-          <Text onPress={() => handleDistance("1")} style={styles.digit}>
-            1
-          </Text>
-          <Text onPress={() => handleDistance("2")} style={styles.digit}>
-            2
-          </Text>
-          <Text onPress={() => handleDistance("3")} style={styles.digit}>
-            3
-          </Text>
+          <CalcButton text="1" />
+          <CalcButton text="2" />
+          <CalcButton text="3" />
         </View>
         <View style={styles.zeroShot}>
-          <Text style={styles.digit}>0</Text>
-          <Text style={styles.digit}>Get Shot</Text>
+          <CalcButton text="0" />
+          <CalcButton text="Get Shot" />
         </View>
       </View>
     </View>
