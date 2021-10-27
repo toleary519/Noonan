@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 
 const styles = StyleSheet.create({
@@ -93,6 +93,31 @@ const styles = StyleSheet.create({
 });
 
 export default function ShootScreen(props) {
+  const [distance, setDistance] = useState("");
+  const [elevation, setElevation] = useState(0);
+  const [wind, setWind] = useState(0);
+
+  const handleDistance = (dig) => {
+    setDistance(distance + dig);
+  };
+  const handleEleUP = () => {
+    setElevation(elevation + 1);
+  };
+  const handleEleDWN = () => {
+    setElevation(elevation - 1);
+  };
+  const handleWindUP = () => {
+    setWind(wind + 1);
+  };
+  const handleWindDWN = () => {
+    setWind(wind - 1);
+  };
+  const handleClear = () => {
+    setDistance("");
+    setElevation(0);
+    setWind(0);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -102,39 +127,67 @@ export default function ShootScreen(props) {
           <Text style={styles.labelText}>Wind</Text>
         </View>
         <View style={styles.displays}>
-          <Text style={styles.displayText}>0</Text>
-          <Text style={styles.displayText}>0</Text>
-          <Text style={styles.displayText}>0</Text>
+          <Text style={styles.displayText}>{distance}</Text>
+          <Text style={styles.displayText}>{elevation}</Text>
+          <Text style={styles.displayText}>{wind}</Text>
         </View>
         <View style={styles.functionals}>
           <View style={styles.clearButton}>
-            <Text style={styles.clearText}>Clear</Text>
+            <Text onPress={handleClear} style={styles.clearText}>
+              Clear
+            </Text>
           </View>
           <View style={styles.windEle}>
-            <Text style={styles.functionalText}>Up</Text>
-            <Text style={styles.functionalText}>Dwn</Text>
+            <Text onPress={handleEleUP} style={styles.functionalText}>
+              Up
+            </Text>
+            <Text onPress={handleEleDWN} style={styles.functionalText}>
+              Dwn
+            </Text>
           </View>
           <View style={styles.windEle}>
-            <Text style={styles.functionalText}>Up</Text>
-            <Text style={styles.functionalText}>Dwn</Text>
+            <Text onPress={handleWindUP} style={styles.functionalText}>
+              Up
+            </Text>
+            <Text onPress={handleWindDWN} style={styles.functionalText}>
+              Dwn
+            </Text>
           </View>
         </View>
       </View>
       <View style={styles.bottom}>
         <View style={styles.numbersOne}>
-          <Text style={styles.digit}>7</Text>
-          <Text style={styles.digit}>8</Text>
-          <Text style={styles.digit}>9</Text>
+          <Text onPress={() => handleDistance("7")} style={styles.digit}>
+            7
+          </Text>
+          <Text onPress={() => handleDistance("8")} style={styles.digit}>
+            8
+          </Text>
+          <Text onPress={() => handleDistance("9")} style={styles.digit}>
+            9
+          </Text>
         </View>
         <View style={styles.numbersTwo}>
-          <Text style={styles.digit}>4</Text>
-          <Text style={styles.digit}>5</Text>
-          <Text style={styles.digit}>6</Text>
+          <Text onPress={() => handleDistance("4")} style={styles.digit}>
+            4
+          </Text>
+          <Text onPress={() => handleDistance("5")} style={styles.digit}>
+            5
+          </Text>
+          <Text onPress={() => handleDistance("6")} style={styles.digit}>
+            6
+          </Text>
         </View>
         <View style={styles.numbersThree}>
-          <Text style={styles.digit}>1</Text>
-          <Text style={styles.digit}>2</Text>
-          <Text style={styles.digit}>3</Text>
+          <Text onPress={() => handleDistance("1")} style={styles.digit}>
+            1
+          </Text>
+          <Text onPress={() => handleDistance("2")} style={styles.digit}>
+            2
+          </Text>
+          <Text onPress={() => handleDistance("3")} style={styles.digit}>
+            3
+          </Text>
         </View>
         <View style={styles.zeroShot}>
           <Text style={styles.digit}>0</Text>
