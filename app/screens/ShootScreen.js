@@ -41,20 +41,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "dodgerblue",
   },
-  numbersOne: {
+  numbers: {
     flexDirection: "row",
     justifyContent: "space-around",
-    backgroundColor: "steelblue",
-  },
-  numbersTwo: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    backgroundColor: "tomato",
-  },
-  numbersThree: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    backgroundColor: "gold",
   },
   labelText: {
     textAlign: "center",
@@ -71,7 +60,6 @@ const styles = StyleSheet.create({
   zeroShot: {
     flexDirection: "row",
     justifyContent: "space-around",
-    backgroundColor: "green",
     marginBottom: 40,
   },
 });
@@ -127,17 +115,17 @@ export default function ShootScreen(props) {
         </View>
       </View>
       <View style={styles.bottom}>
-        <View style={styles.numbersOne}>
+        <View style={styles.numbers}>
           <CalcButton text="7" />
           <CalcButton text="8" />
           <CalcButton text="9" />
         </View>
-        <View style={styles.numbersTwo}>
+        <View style={styles.numbers}>
           <CalcButton text="4" />
           <CalcButton text="5" />
           <CalcButton text="6" />
         </View>
-        <View style={styles.numbersThree}>
+        <View style={styles.numbers}>
           <CalcButton text="1" />
           <CalcButton text="2" />
           <CalcButton text="3" />
