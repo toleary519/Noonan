@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import CalcButton from "../helpers/components/CalcButton";
+import { FuncButton, ClearButton } from "../helpers/components/FuncButtons";
 
 const styles = StyleSheet.create({
   container: {
@@ -67,18 +68,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
   },
-  clearText: {
-    textAlign: "center",
-    padding: 10,
-    fontSize: 25,
-    fontWeight: "bold",
-  },
-  functionalText: {
-    textAlign: "center",
-    padding: 10,
-    fontSize: 25,
-    fontWeight: "bold",
-  },
   zeroShot: {
     flexDirection: "row",
     justifyContent: "space-around",
@@ -88,7 +77,7 @@ const styles = StyleSheet.create({
 });
 
 export default function ShootScreen(props) {
-  const [distance, setDistance] = useState("");
+  const [distance, setDistance] = useState("0");
   const [elevation, setElevation] = useState(0);
   const [wind, setWind] = useState(0);
 
@@ -105,7 +94,7 @@ export default function ShootScreen(props) {
     setWind(wind - 1);
   };
   const handleClear = () => {
-    setDistance("");
+    setDistance("0");
     setElevation(0);
     setWind(0);
   };
@@ -125,25 +114,15 @@ export default function ShootScreen(props) {
         </View>
         <View style={styles.functionals}>
           <View style={styles.clearButton}>
-            <Text onPress={handleClear} style={styles.clearText}>
-              Clear
-            </Text>
+            <ClearButton onPress={handleClear} text="Clear" />
           </View>
           <View style={styles.windEle}>
-            <Text onPress={handleEleUP} style={styles.functionalText}>
-              Up
-            </Text>
-            <Text onPress={handleEleDWN} style={styles.functionalText}>
-              Dwn
-            </Text>
+            <FuncButton onPress={handleEleUP} text="Up" />
+            <FuncButton onPress={handleEleDWN} text="Dwn" />
           </View>
           <View style={styles.windEle}>
-            <Text onPress={handleWindUP} style={styles.functionalText}>
-              Up
-            </Text>
-            <Text onPress={handleWindDWN} style={styles.functionalText}>
-              Dwn
-            </Text>
+            <FuncButton onPress={handleWindUP} text="Up" />
+            <FuncButton onPress={handleWindDWN} text="Dwn" />
           </View>
         </View>
       </View>
