@@ -1,16 +1,16 @@
 import React from "react";
-import { Text, StyleSheet, Pressable } from "react-native";
+import { Text, StyleSheet, Pressable, TouchableOpacity } from "react-native";
 
 const FuncButton = ({ text }) => (
-  <Pressable>
+  <TouchableOpacity>
     <Text style={styles.funcText}>{text}</Text>
-  </Pressable>
+  </TouchableOpacity>
 );
 
 const ClearButton = ({ text }) => (
-  <Pressable>
+  <TouchableOpacity>
     <Text style={styles.funcText}>{text}</Text>
-  </Pressable>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({

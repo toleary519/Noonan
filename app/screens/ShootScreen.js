@@ -64,10 +64,13 @@ const styles = StyleSheet.create({
 });
 
 export default function ShootScreen(props) {
-  const [distance, setDistance] = useState("0");
+  const [distance, setDistance] = useState(distance ? distance : "0");
   const [elevation, setElevation] = useState(0);
   const [wind, setWind] = useState(0);
 
+  const handleDistance = (dig) => {
+    setDistance(distance + dig);
+  };
   const handleEleUP = () => {
     setElevation(elevation + 1);
   };
@@ -104,7 +107,7 @@ export default function ShootScreen(props) {
             <ClearButton onPress={handleClear} text="Clear" />
           </View>
           <View style={styles.windEle}>
-            <FuncButton onPress={handleEleUP} text="Up" />
+            <FuncButton onPress={() => handleEleUP()} text="Up" />
             <FuncButton onPress={handleEleDWN} text="Dwn" />
           </View>
           <View style={styles.windEle}>
@@ -130,7 +133,7 @@ export default function ShootScreen(props) {
           <CalcButton text="1" />
           <CalcButton text="2" />
           <CalcButton text="3" />
-          <CalcButton text="X" />
+          <CalcButton text="G" />
         </View>
         <View style={styles.zeroShot}>
           <CalcButton text="0" />
