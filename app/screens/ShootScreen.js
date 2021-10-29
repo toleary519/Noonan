@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { View, Text, StyleSheet, Modal } from "react-native";
 import CalcButton from "../helpers/components/CalcButton";
 import { FuncButton, ClearButton } from "../helpers/components/FuncButtons";
 
@@ -69,6 +69,13 @@ const styles = StyleSheet.create({
   },
 });
 
+const shots = [
+  { club: "9 Iron", min: 140, max: 159 },
+  { club: "8 Iron", min: 150, max: 164 },
+  { club: "7 Iron", min: 165, max: 179 },
+  { club: "6 Iron", min: 180, max: 200 },
+];
+
 export default function ShootScreen(props) {
   const [distance, setDistance] = useState("");
   const [elevation, setElevation] = useState(0);
@@ -94,6 +101,24 @@ export default function ShootScreen(props) {
     setElevation(0);
     setWind(0);
   };
+
+  const execute = { club: "", power: "" };
+
+  const getClub = (distance) => {
+    for (const shot of shots) {
+      if (distance >= shot.min && distance <= shot.max) {
+        execute.club = shot.club;
+        execute.power =
+          parseFloat(
+            50 + (100 / (shot.max - shot.min)) * (distance - shot.min)
+          ).toFixed(2) + " %";
+      }
+    }
+
+    return execute;
+  };
+
+  let trueDistance = Number(distance) + elevation + wind;
 
   return (
     <View style={styles.container}>
@@ -142,7 +167,7 @@ export default function ShootScreen(props) {
           <CalcButton onPress={() => handleDistance("3")} text="3" />
         </View>
         <View style={styles.zeroShot}>
-          <CalcButton text="Get Shot" />
+          <CalcButton onPress={() => handleDistance()} text="Get Shot" />
         </View>
       </View>
     </View>
