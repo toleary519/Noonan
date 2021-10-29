@@ -7,7 +7,7 @@ import { getClub } from "../helpers/calculator";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fbf0da",
+    backgroundColor: "#edf6f9",
   },
   top: {
     flex: 1,
@@ -69,14 +69,15 @@ const styles = StyleSheet.create({
     color: "green",
   },
   modalDisplay: {
-    marginTop: 55,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#edf6f9",
   },
   modalText: {
     textAlign: "center",
     padding: 10,
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: "bold",
     color: "#1C0F13",
   },
@@ -94,12 +95,12 @@ export default function ShootScreen(props) {
   const [distance, setDistance] = useState("");
   const [elevation, setElevation] = useState(0);
   const [wind, setWind] = useState(0);
-  let actualDistance = Number(distance) + elevation + wind;
 
+  let actualDistance = Number(distance) + elevation + wind;
   let execute = getClub(actualDistance);
 
-  const handleDistance = (dig) => {
-    setDistance(distance + dig);
+  const handleDistance = (stringDigit) => {
+    setDistance(distance + stringDigit); // if this is broken put back to "dig"
   };
   const handleEleUP = () => {
     setElevation(elevation + 1);
@@ -132,7 +133,7 @@ export default function ShootScreen(props) {
           <Text style={styles.displayText}>{elevation}</Text>
           <Text style={styles.displayText}>{wind}</Text>
         </View>
-        <Modal visible={modalOpen}>
+        <Modal visible={modalOpen} animationType="slide">
           <View style={styles.modalDisplay}>
             <Text style={styles.modalText}>{execute.club}</Text>
             <Text style={styles.modalText}>{execute.power}</Text>
