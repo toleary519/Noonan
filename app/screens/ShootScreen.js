@@ -6,7 +6,7 @@ import { FuncButton, ClearButton } from "../helpers/components/FuncButtons";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FDF8EE",
+    backgroundColor: "#fbf0da",
   },
   top: {
     flex: 1,
@@ -30,17 +30,21 @@ const styles = StyleSheet.create({
   functionals: {
     flexDirection: "row",
     justifyContent: "space-around",
+    alignItems: "center",
   },
   clearButton: {
     flexDirection: "column",
     justifyContent: "center",
+    alignItems: "center",
   },
   windEle: {
     flexDirection: "column",
   },
   numbers: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
+    alignItems: "center",
   },
   labelText: {
     textAlign: "center",
@@ -50,6 +54,7 @@ const styles = StyleSheet.create({
     color: "#1C0F13",
   },
   displayText: {
+    flex: 1,
     textAlign: "center",
     padding: 10,
     fontSize: 40,
@@ -60,11 +65,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginBottom: 40,
+    color: "green",
   },
 });
 
 export default function ShootScreen(props) {
-  const [distance, setDistance] = useState(distance ? distance : "0");
+  const [distance, setDistance] = useState("");
   const [elevation, setElevation] = useState(0);
   const [wind, setWind] = useState(0);
 
@@ -84,7 +90,7 @@ export default function ShootScreen(props) {
     setWind(wind - 1);
   };
   const handleClear = () => {
-    setDistance("0");
+    setDistance("");
     setElevation(0);
     setWind(0);
   };
@@ -107,7 +113,7 @@ export default function ShootScreen(props) {
             <ClearButton onPress={handleClear} text="Clear" />
           </View>
           <View style={styles.windEle}>
-            <FuncButton onPress={() => handleEleUP()} text="Up" />
+            <FuncButton onPress={handleEleUP} text="Up" />
             <FuncButton onPress={handleEleDWN} text="Dwn" />
           </View>
           <View style={styles.windEle}>
@@ -118,25 +124,24 @@ export default function ShootScreen(props) {
       </View>
       <View style={styles.bottom}>
         <View style={styles.numbers}>
-          <CalcButton text="7" />
-          <CalcButton text="8" />
-          <CalcButton text="9" />
+          <CalcButton onPress={() => handleDistance("7")} text="7" />
+          <CalcButton onPress={() => handleDistance("8")} text="8" />
+          <CalcButton onPress={() => handleDistance("9")} text="9" />
           <CalcButton text="S" />
         </View>
         <View style={styles.numbers}>
-          <CalcButton text="4" />
-          <CalcButton text="5" />
-          <CalcButton text="6" />
+          <CalcButton onPress={() => handleDistance("4")} text="4" />
+          <CalcButton onPress={() => handleDistance("5")} text="5" />
+          <CalcButton onPress={() => handleDistance("6")} text="6" />
           <CalcButton text="R" />
         </View>
-        <View style={[styles.numbers, { marginLeft: 4 }]}>
-          <CalcButton text="1" />
-          <CalcButton text="2" />
-          <CalcButton text="3" />
-          <CalcButton text="G" />
+        <View style={styles.numbers}>
+          <CalcButton onPress={() => handleDistance("0")} text="0" />
+          <CalcButton onPress={() => handleDistance("1")} text="1" />
+          <CalcButton onPress={() => handleDistance("2")} text="2" />
+          <CalcButton onPress={() => handleDistance("3")} text="3" />
         </View>
         <View style={styles.zeroShot}>
-          <CalcButton text="0" />
           <CalcButton text="Get Shot" />
         </View>
       </View>
