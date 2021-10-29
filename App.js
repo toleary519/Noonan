@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
@@ -7,15 +6,7 @@ import ShootScreen from "./app/screens/ShootScreen";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Alert,
-  Platform,
-  SafeAreaView,
-} from "react-native"; //components
+import { StyleSheet } from "react-native"; //components
 
 const Stack = createStackNavigator();
 
