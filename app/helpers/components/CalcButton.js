@@ -1,9 +1,11 @@
 import React from "react";
-import { Text, StyleSheet, Pressable, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export default CalcButton = ({ text }) => (
-  <TouchableOpacity>
-    <Text style={styles.digit}>{text}</Text>
+export default CalcButton = ({ text, onPress }) => (
+  <TouchableOpacity delayPressIn={150}>
+    <Text onPress={onPress} style={styles.digit}>
+      {text}
+    </Text>
   </TouchableOpacity>
 );
 
@@ -13,6 +15,6 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 55,
     fontWeight: "bold",
-    color: "#1C0F13",
+    color: "#2f8587",
   },
 });
