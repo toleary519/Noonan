@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Modal } from "react-native";
 import CalcButton from "../helpers/components/CalcButton";
 import { FuncButton, ClearButton } from "../helpers/components/FuncButtons";
+import { getClub } from "../helpers/calculator";
 
 const styles = StyleSheet.create({
   container: {
@@ -67,6 +68,18 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     color: "green",
   },
+  modalDisplay: {
+    marginTop: 55,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalText: {
+    textAlign: "center",
+    padding: 10,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#1C0F13",
+  },
 });
 
 const shots = [
@@ -77,9 +90,13 @@ const shots = [
 ];
 
 export default function ShootScreen(props) {
+  const [modalOpen, setModalOpen] = useState(false);
   const [distance, setDistance] = useState("");
   const [elevation, setElevation] = useState(0);
   const [wind, setWind] = useState(0);
+  let actualDistance = Number(distance) + elevation + wind;
+
+  let execute = getClub(actualDistance);
 
   const handleDistance = (dig) => {
     setDistance(distance + dig);
@@ -102,24 +119,6 @@ export default function ShootScreen(props) {
     setWind(0);
   };
 
-  const execute = { club: "", power: "" };
-
-  const getClub = (distance) => {
-    for (const shot of shots) {
-      if (distance >= shot.min && distance <= shot.max) {
-        execute.club = shot.club;
-        execute.power =
-          parseFloat(
-            50 + (100 / (shot.max - shot.min)) * (distance - shot.min)
-          ).toFixed(2) + " %";
-      }
-    }
-
-    return execute;
-  };
-
-  let trueDistance = Number(distance) + elevation + wind;
-
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -133,6 +132,13 @@ export default function ShootScreen(props) {
           <Text style={styles.displayText}>{elevation}</Text>
           <Text style={styles.displayText}>{wind}</Text>
         </View>
+        <Modal visible={modalOpen}>
+          <View style={styles.modalDisplay}>
+            <Text style={styles.modalText}>{execute.club}</Text>
+            <Text style={styles.modalText}>{execute.power}</Text>
+            <CalcButton onPress={() => setModalOpen(false)} text="back" />
+          </View>
+        </Modal>
         <View style={styles.functionals}>
           <View style={styles.clearButton}>
             <ClearButton onPress={handleClear} text="Clear" />
@@ -167,7 +173,7 @@ export default function ShootScreen(props) {
           <CalcButton onPress={() => handleDistance("3")} text="3" />
         </View>
         <View style={styles.zeroShot}>
-          <CalcButton onPress={() => handleDistance()} text="Get Shot" />
+          <CalcButton onPress={() => setModalOpen(true)} text="Get Shot" />
         </View>
       </View>
     </View>
