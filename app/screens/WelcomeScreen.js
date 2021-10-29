@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fbf0da",
+    backgroundColor: "#edf6f9",
     fontSize: 55,
   },
 });
