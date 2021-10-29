@@ -20,3 +20,5 @@ const getClub = (distance) => {
 
   return execute;
 };
+
+export { getClub };
