@@ -20,9 +20,11 @@ const styles = StyleSheet.create({
 });
 
 <Modal visible={modalOpen} animationType="slide">
-  <View style={styles.modalDisplay}>
-    <Text style={styles.modalText}>{execute.club}</Text>
-    <Text style={styles.modalText}>{execute.power}</Text>
+  <View style={}>
+    <Text style={}>club</Text>
+    <Text style={}>max</Text>
+    <Text style={}>min</Text>
+    <Text style={}>min-percent</Text>
     <CalcButton onPress={() => setModalOpen(false)} text="back" />
   </View>
 </Modal>;
