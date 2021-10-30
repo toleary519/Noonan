@@ -1,5 +1,6 @@
-import React from "react";
-import { Text, View, SafeAreaView, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { Text, View, StyleSheet, Modal } from "react-native";
+import AddAClubButton from "../helpers/components/AddAClubButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,6 +14,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     fontSize: 25,
+    backgroundColor: "#edf6f9",
+    padding: 10,
+  },
+  addModal: {
+    paddingTop: 40,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    fontSize: 15,
+    backgroundColor: "#edf6f9",
+    padding: 10,
+  },
+  addEdit: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    fontSize: 15,
     backgroundColor: "#edf6f9",
     padding: 10,
   },
@@ -43,10 +59,32 @@ const CreateBag = () => {
 };
 
 export default function BagScreen(props) {
+  const [addModalOpen, setAddModalOpen] = useState(false);
+  const [addClub, setAddClub] = useState();
+  const [addClubMin, setAddClubMin] = useState();
+  const [addClubMax, setAddClubMax] = useState();
+  const [addClubPercent, setAddClubPercent] = useState();
+  const [editClubMin, setEditClubMin] = useState();
+  const [editClubMax, setEditClubMax] = useState();
+  const [editClubPercent, setEditClubPercent] = useState();
+
   return (
     <View style={styles.container}>
       <Text style={styles.club}>Your Bag</Text>
-      {/* <View>Modale to add</View> */}
+      <AddAClubButton
+        style={styles.addEdit}
+        onPress={() => setAddModalOpen(true)}
+        text="add"
+      />
+      <Modal visible={addModalOpen} animationType="slide">
+        <View style={styles.addModal}>
+          <Text style={styles.addModal}>club</Text>
+          <Text style={styles.addModal}>max</Text>
+          <Text style={styles.addModal}>min</Text>
+          <Text style={styles.addModal}>min-percent</Text>
+          <AddAClubButton onPress={() => setAddModalOpen(false)} text="exit" />
+        </View>
+      </Modal>
       {CreateBag()}
     </View>
   );
