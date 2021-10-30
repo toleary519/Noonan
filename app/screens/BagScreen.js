@@ -33,6 +33,7 @@ const CreateBag = () => {
   return shots.map((shot, i) => {
     return (
       <View key={i} style={styles.club}>
+        {/* <View>Modal to Edit</View> */}
         <Text style={styles.club}>{shot.club}</Text>
         <Text style={styles.club}>MIN : {shot.min}</Text>
         <Text style={styles.club}>MAX : {shot.max}</Text>
@@ -45,6 +46,7 @@ export default function BagScreen(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.club}>Your Bag</Text>
+      {/* <View>Modale to add</View> */}
       {CreateBag()}
     </View>
   );
