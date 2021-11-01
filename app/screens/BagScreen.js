@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, Modal } from "react-native";
+import { Text, View, StyleSheet, Modal, TextInput } from "react-native";
 import AddAClubButton from "../helpers/components/AddAClubButton";
 import ClubPicker from "../helpers/components/ClubPicker";
 import MaxPicker from "../helpers/components/MaxPicker";
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   pickerContainer: {},
+  input: {},
 });
 
 const shots = [
@@ -68,31 +69,31 @@ const saveNewClub = (clubOBJ) => {
 export default function BagScreen(props) {
   const [addModalOpen, setAddModalOpen] = useState(false);
 
-  const [addClubState, setAddClubState] = useState({
-    addClub: "",
-    addClubMax: "",
-    addClubMin: "",
-    addClubPercent: "",
-  });
-  const [editClubState, setEditClubState] = useState({
-    editClubMax: "",
-    editClubMin: "",
-    editClubPercent: "",
-  });
+  // const [addClubState, setAddClubState] = useState({
+  //   addClub: "",
+  //   addClubMax: "",
+  //   addClubMin: "",
+  //   addClubPercent: "",
+  // });
+  // const [editClubState, setEditClubState] = useState({
+  //   editClubMax: "",
+  //   editClubMin: "",
+  //   editClubPercent: "",
+  // });
 
-  // const [addClub, setAddClub] = useState();
-  // const [addClubMin, setAddClubMin] = useState();
-  // const [addClubMax, setAddClubMax] = useState();
-  // const [addClubPercent, setAddClubPercent] = useState();
-  // const [editClubMin, setEditClubMin] = useState();
-  // const [editClubMax, setEditClubMax] = useState();
-  // const [editClubPercent, setEditClubPercent] = useState();
+  const [addClub, setAddClub] = useState();
+  const [addClubMin, setAddClubMin] = useState();
+  const [addClubMax, setAddClubMax] = useState();
+  const [addClubPercent, setAddClubPercent] = useState();
+  const [editClubMin, setEditClubMin] = useState();
+  const [editClubMax, setEditClubMax] = useState();
+  const [editClubPercent, setEditClubPercent] = useState();
 
   let newClub = {
-    club: addClubState.addClub,
-    min: addClubState.addClubMin,
-    max: addClubState.addClubMax,
-    minPow: addClubState.addClubPercent,
+    club: addClub,
+    min: addClubMin,
+    max: addClubMax,
+    minPow: addClubPercent,
   };
 
   return (
@@ -108,9 +109,17 @@ export default function BagScreen(props) {
           <View style={styles.pickerContainer}>
             <ClubPicker />
           </View>
+          <Text style={styles.pickerTitle}>max</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setAddClubMax(text)}
+            value={input}
+            placeholder={"yds"}
+          />
           <Text style={styles.addModal}>min</Text>
           <Text style={styles.addModal}>min-percent</Text>
           <AddAClubButton onPress={() => setAddModalOpen(false)} text="exit" />
+          {/* <button to save whole thing> */}
         </View>
       </Modal>
       {CreateBag()}

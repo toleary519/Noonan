@@ -7,14 +7,17 @@ const maxDistance = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 function MaxPicker(props) {
   return (
     <View>
-      <View>
-        <Text style={styles.pickerTitle}>max</Text>
-        <Picker>
-          {maxDistance.map((item) => (
-            <Picker.Item key={item} value={item} label={item} />
-          ))}
-        </Picker>
-      </View>
+      <Text style={styles.pickerTitle}>max</Text>
+      <Picker>
+        {maxDistance.map((item) => (
+          <Picker.Item
+            selectedValue={item}
+            key={item}
+            value={item}
+            label={item}
+          />
+        ))}
+      </Picker>
     </View>
   );
 }
