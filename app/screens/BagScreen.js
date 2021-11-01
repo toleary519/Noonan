@@ -67,36 +67,33 @@ const saveNewClub = (clubOBJ) => {
 
 export default function BagScreen(props) {
   const [addModalOpen, setAddModalOpen] = useState(false);
-  const [addClub, setAddClub] = useState();
-  const [addClubMin, setAddClubMin] = useState();
-  const [addClubMax, setAddClubMax] = useState();
-  const [addClubPercent, setAddClubPercent] = useState();
-  const [editClubMin, setEditClubMin] = useState();
-  const [editClubMax, setEditClubMax] = useState();
-  const [editClubPercent, setEditClubPercent] = useState();
+
+  const [addClubState, setAddClubState] = useState({
+    addClub: "",
+    addClubMax: "",
+    addClubMin: "",
+    addClubPercent: "",
+  });
+  const [editClubState, setEditClubState] = useState({
+    editClubMax: "",
+    editClubMin: "",
+    editClubPercent: "",
+  });
+
+  // const [addClub, setAddClub] = useState();
+  // const [addClubMin, setAddClubMin] = useState();
+  // const [addClubMax, setAddClubMax] = useState();
+  // const [addClubPercent, setAddClubPercent] = useState();
+  // const [editClubMin, setEditClubMin] = useState();
+  // const [editClubMax, setEditClubMax] = useState();
+  // const [editClubPercent, setEditClubPercent] = useState();
 
   let newClub = {
-    club: addClub,
-    min: addClubMin,
-    max: addClubMax,
-    minPow: addClubPercent,
+    club: addClubState.addClub,
+    min: addClubState.addClubMin,
+    max: addClubState.addClubMax,
+    minPow: addClubState.addClubPercent,
   };
-
-  // const pickerClubs = [
-  //   "Dr",
-  //   "3w",
-  //   "5w",
-  //   "1i",
-  //   "2i",
-  //   "3i",
-  //   "4i",
-  //   "5i",
-  //   "6i",
-  //   "7i",
-  //   "8i",
-  //   "9i",
-  // ];
-  // const maxDistance = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <View style={styles.container}>
