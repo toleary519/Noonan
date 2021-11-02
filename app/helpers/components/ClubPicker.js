@@ -21,7 +21,7 @@ function ClubPicker(props) {
   return (
     <View>
       <View>
-        <Text style={styles.pickerTitle}>club</Text>
+        <Text style={styles.pickerTitle}>Club</Text>
         <Picker>
           {pickerClubs.map((item) => (
             <Picker.Item key={item} value={item} label={item} />
@@ -36,7 +36,7 @@ export default ClubPicker;
 
 const styles = StyleSheet.create({
   pickerTitle: {
-    fontSize: 15,
+    fontSize: 18,
     backgroundColor: "#edf6f9",
     padding: 10,
   },
