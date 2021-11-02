@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
+  ScrollView,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import AddAClubButton from "../helpers/components/AddAClubButton";
@@ -127,8 +128,14 @@ export default function BagScreen(props) {
     "7i",
     "8i",
     "9i",
+    "PW",
+    "SW",
+    "52",
+    "54",
+    "56",
+    "60",
   ];
-
+  const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
   const [addClub, setAddClub] = useState(null);
   const [addClubMin, setAddClubMin] = useState(null);
   const [addClubMax, setAddClubMax] = useState(null);
@@ -138,14 +145,14 @@ export default function BagScreen(props) {
   const [editClubPercent, setEditClubPercent] = useState(null);
 
   let newClub = {
-    club: addClub,
+    club: pickerValue,
     min: addClubMin,
     max: addClubMax,
     minPow: addClubPercent,
   };
 
   const clearAll = () => {
-    setAddClubMin(null);
+    setPickerValue(pickerClubs[0]);
     setAddClubMin(null);
     setAddClubMax(null);
     setAddClubPercent(null);
@@ -164,17 +171,15 @@ export default function BagScreen(props) {
           <View style={styles.addModal}>
             <View>
               <Text style={styles.inputTitle}>Add A Club</Text>
-              <Picker style={styles.picker}>
+              <Picker
+                style={styles.picker}
+                selectedValue={pickerValue}
+                onValueChange={(item) => {
+                  setPickerValue(item);
+                }}
+              >
                 {pickerClubs.map((item) => (
-                  <Picker.Item
-                    onValueChange={(item) => {
-                      setAddClub(item);
-                    }}
-                    key={item}
-                    selectedValue={item}
-                    value={item}
-                    label={item}
-                  />
+                  <Picker.Item key={item} value={item} label={item} />
                 ))}
               </Picker>
             </View>
@@ -223,6 +228,7 @@ export default function BagScreen(props) {
                 onPress={() => {
                   saveNewClub(newClub);
                   console.log(shots);
+                  clearAll();
                   setAddModalOpen(false);
                 }}
                 text="save"
@@ -231,7 +237,7 @@ export default function BagScreen(props) {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
-      {CreateBag()}
+      <ScrollView>{CreateBag()}</ScrollView>
     </View>
   );
 }
