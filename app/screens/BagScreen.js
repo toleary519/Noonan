@@ -220,7 +220,11 @@ export default function BagScreen(props) {
                 text="exit"
               />
               <AddAClubButton
-                onPress={() => setAddModalOpen(false)}
+                onPress={() => {
+                  saveNewClub(newClub);
+                  console.log(shots);
+                  setAddModalOpen(false);
+                }}
                 text="save"
               />
             </View>
