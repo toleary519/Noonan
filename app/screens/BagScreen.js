@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, Modal, TextInput } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Modal,
+  TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import AddAClubButton from "../helpers/components/AddAClubButton";
 // import ClubPicker from "../helpers/components/ClubPicker";
@@ -121,19 +129,26 @@ export default function BagScreen(props) {
     "9i",
   ];
 
-  const [addClub, setAddClub] = useState();
-  const [addClubMin, setAddClubMin] = useState();
-  const [addClubMax, setAddClubMax] = useState("");
-  const [addClubPercent, setAddClubPercent] = useState();
-  const [editClubMin, setEditClubMin] = useState();
-  const [editClubMax, setEditClubMax] = useState();
-  const [editClubPercent, setEditClubPercent] = useState();
+  const [addClub, setAddClub] = useState(null);
+  const [addClubMin, setAddClubMin] = useState(null);
+  const [addClubMax, setAddClubMax] = useState(null);
+  const [addClubPercent, setAddClubPercent] = useState(null);
+  const [editClubMin, setEditClubMin] = useState(null);
+  const [editClubMax, setEditClubMax] = useState(null);
+  const [editClubPercent, setEditClubPercent] = useState(null);
 
   let newClub = {
     club: addClub,
     min: addClubMin,
     max: addClubMax,
     minPow: addClubPercent,
+  };
+
+  const clearAll = () => {
+    setAddClubMin(null);
+    setAddClubMin(null);
+    setAddClubMax(null);
+    setAddClubPercent(null);
   };
 
   return (
@@ -145,60 +160,72 @@ export default function BagScreen(props) {
         text="add"
       />
       <Modal visible={addModalOpen} animationType="fade">
-        <View style={styles.addModal}>
-          <View>
-            <Text style={styles.inputTitle}>Add A Club</Text>
-            <Picker style={styles.picker}>
-              {pickerClubs.map((item) => (
-                <Picker.Item key={item} value={item} label={item} />
-              ))}
-            </Picker>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.addModal}>
+            <View>
+              <Text style={styles.inputTitle}>Add A Club</Text>
+              <Picker style={styles.picker}>
+                {pickerClubs.map((item) => (
+                  <Picker.Item
+                    onValueChange={(item) => {
+                      setAddClub(item);
+                    }}
+                    key={item}
+                    selectedValue={item}
+                    value={item}
+                    label={item}
+                  />
+                ))}
+              </Picker>
+            </View>
+            <View>
+              <Text style={styles.inputTitle}>Max</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => setAddClubMax(text)}
+                value={addClubMax}
+                placeholder={"yds"}
+                keyboardType={"number-pad"}
+                textAlign={"center"}
+              />
+            </View>
+            <View>
+              <Text style={styles.inputTitle}>Min</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => setAddClubMin(text)}
+                value={addClubMin}
+                placeholder={"yds"}
+                keyboardType={"number-pad"}
+                textAlign={"center"}
+              />
+            </View>
+            <View>
+              <Text style={styles.inputTitle}>Percent</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => setAddClubPercent(text)}
+                value={addClubPercent}
+                placeholder={"% power"}
+                keyboardType={"number-pad"}
+                textAlign={"center"}
+              />
+            </View>
+            <View style={styles.exitSaveFooter}>
+              <AddAClubButton
+                onPress={() => {
+                  setAddModalOpen(false);
+                  clearAll();
+                }}
+                text="exit"
+              />
+              <AddAClubButton
+                onPress={() => setAddModalOpen(false)}
+                text="save"
+              />
+            </View>
           </View>
-          <View>
-            <Text style={styles.inputTitle}>Max</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => setAddClubMax(text)}
-              value={addClubMax}
-              placeholder={"yds"}
-              keyboardType={"number-pad"}
-              textAlign={"center"}
-            />
-          </View>
-          <View>
-            <Text style={styles.inputTitle}>Min</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => setAddClubMin(text)}
-              value={addClubMin}
-              placeholder={"yds"}
-              keyboardType={"number-pad"}
-              textAlign={"center"}
-            />
-          </View>
-          <View>
-            <Text style={styles.inputTitle}>Percent</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => setAddClubPercent(text)}
-              value={addClubPercent}
-              placeholder={"% power"}
-              keyboardType={"number-pad"}
-              textAlign={"center"}
-            />
-          </View>
-          <View style={styles.exitSaveFooter}>
-            <AddAClubButton
-              onPress={() => setAddModalOpen(false)}
-              text="exit"
-            />
-            <AddAClubButton
-              onPress={() => setAddModalOpen(false)}
-              text="save"
-            />
-          </View>
-          {/* <button to save whole thing> */}
-        </View>
+        </TouchableWithoutFeedback>
       </Modal>
       {CreateBag()}
     </View>
