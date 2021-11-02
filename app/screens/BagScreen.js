@@ -34,8 +34,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#edf6f9",
     padding: 10,
   },
-  pickerContainer: {},
-  input: {},
+  pickerContainer: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-around",
+  },
+  input: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 60,
+    height: 50,
+    fontSize: 18,
+    backgroundColor: "#edf6f9",
+    borderWidth: 3,
+    borderRadius: 10,
+    borderColor: "black",
+  },
 });
 
 const shots = [
@@ -83,7 +97,7 @@ export default function BagScreen(props) {
 
   const [addClub, setAddClub] = useState();
   const [addClubMin, setAddClubMin] = useState();
-  const [addClubMax, setAddClubMax] = useState();
+  const [addClubMax, setAddClubMax] = useState("");
   const [addClubPercent, setAddClubPercent] = useState();
   const [editClubMin, setEditClubMin] = useState();
   const [editClubMax, setEditClubMax] = useState();
@@ -109,15 +123,36 @@ export default function BagScreen(props) {
           <View style={styles.pickerContainer}>
             <ClubPicker />
           </View>
-          <Text style={styles.pickerTitle}>max</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => setAddClubMax(text)}
-            value={input}
-            placeholder={"yds"}
-          />
-          <Text style={styles.addModal}>min</Text>
-          <Text style={styles.addModal}>min-percent</Text>
+          <View style={styles.pickerContainer}>
+            <Text>Max</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => setAddClubMax(text)}
+              value={addClubMax}
+              placeholder={"  yds"}
+              keyboardType={"number-pad"}
+            />
+          </View>
+          <View style={styles.pickerContainer}>
+            <Text>Min</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => setAddClubMin(text)}
+              value={addClubMin}
+              placeholder={"  yds"}
+              keyboardType={"number-pad"}
+            />
+          </View>
+          <View style={styles.pickerContainer}>
+            <Text style={styles.pickerTitle}>Percent</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => setAddClubPercent(text)}
+              value={addClubPercent}
+              placeholder={"  % power"}
+              keyboardType={"number-pad"}
+            />
+          </View>
           <AddAClubButton onPress={() => setAddModalOpen(false)} text="exit" />
           {/* <button to save whole thing> */}
         </View>
