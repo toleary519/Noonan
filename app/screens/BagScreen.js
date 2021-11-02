@@ -11,8 +11,6 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import AddAClubButton from "../helpers/components/AddAClubButton";
-// import ClubPicker from "../helpers/components/ClubPicker";
-// import MaxPicker from "../helpers/components/MaxPicker";
 
 const styles = StyleSheet.create({
   container: {
@@ -84,6 +82,27 @@ const shots = [
   { club: "6 Iron", min: 180, max: 200, minPow: 50 },
 ];
 
+const pickerClubs = [
+  "Driver",
+  "3w",
+  "5w",
+  "1i",
+  "2i",
+  "3i",
+  "4i",
+  "5i",
+  "6i",
+  "7i",
+  "8i",
+  "9i",
+  "PW",
+  "SW",
+  "52",
+  "54",
+  "56",
+  "60",
+];
+
 const CreateBag = () => {
   return shots.map((shot, i) => {
     return (
@@ -103,40 +122,7 @@ const saveNewClub = (clubOBJ) => {
 
 export default function BagScreen(props) {
   const [addModalOpen, setAddModalOpen] = useState(false);
-
-  // const [addClubState, setAddClubState] = useState({
-  //   addClub: "",
-  //   addClubMax: "",
-  //   addClubMin: "",
-  //   addClubPercent: "",
-  // });
-  // const [editClubState, setEditClubState] = useState({
-  //   editClubMax: "",
-  //   editClubMin: "",
-  //   editClubPercent: "",
-  // });
-  const pickerClubs = [
-    "Driver",
-    "3w",
-    "5w",
-    "1i",
-    "2i",
-    "3i",
-    "4i",
-    "5i",
-    "6i",
-    "7i",
-    "8i",
-    "9i",
-    "PW",
-    "SW",
-    "52",
-    "54",
-    "56",
-    "60",
-  ];
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
-  const [addClub, setAddClub] = useState(null);
   const [addClubMin, setAddClubMin] = useState(null);
   const [addClubMax, setAddClubMax] = useState(null);
   const [addClubPercent, setAddClubPercent] = useState(null);
