@@ -16,6 +16,7 @@ import {
   EvilIcons,
   AntDesign,
 } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const styles = StyleSheet.create({
   container: {
@@ -28,9 +29,14 @@ const styles = StyleSheet.create({
   club: {
     flexDirection: "row",
     justifyContent: "space-around",
+    alignContent: "space-around",
     fontSize: 15,
     backgroundColor: "#edf6f9",
     padding: 10,
+  },
+  clubList: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
   addModal: {
     flex: 1,
@@ -232,14 +238,22 @@ export default function BagScreen(props) {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
+      {/* < THIS IS WHERE THE LIST STARTS > */}
+      {/* < THIS IS WHERE THE LIST STARTS > */}
+      {/* < THIS IS WHERE THE LIST STARTS > */}
+      {/* < THIS IS WHERE THE LIST STARTS > */}
+      {/* < THIS IS WHERE THE LIST STARTS > */}
       <FlatList
         data={shots}
         renderItem={({ item }) => (
           <View style={styles.club}>
-            <AntDesign name="edit" onPress={() => setEditModalOpen(true)} />
-            <Text style={styles.club}>{item.club}</Text>
-            <Text style={styles.club}>MIN : {item.min}</Text>
-            <Text style={styles.club}>MAX : {item.max}</Text>
+            <TouchableOpacity onPress={() => setEditModalOpen(true)}>
+              <View style={styles.club}>
+                <Text>{item.club}</Text>
+                <Text>MIN : {item.min}</Text>
+                <Text>MAX : {item.max}</Text>
+              </View>
+            </TouchableOpacity>
             <Modal visible={editModalOpen} animationType="fade">
               <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.addModal}>
