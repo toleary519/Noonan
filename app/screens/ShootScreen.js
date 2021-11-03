@@ -130,6 +130,8 @@ export default function ShootScreen(props) {
     setDistance("");
     setElevation(0);
     setWind(0);
+    setRough(false);
+    setSand(false);
   };
 
   return (
