@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#edf6f9",
   },
   top: {
-    flex: 1,
     justifyContent: "space-around",
   },
   bottom: {
     flex: 2,
     justifyContent: "space-around",
+    marginBottom: 25,
   },
   labels: {
     flexDirection: "row",
@@ -35,21 +35,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   clearButton: {
+    // borderWidth: 1,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   },
   windEle: {
+    // borderWidth: 1,
     flexDirection: "column",
     justifyContent: "space-between",
   },
   numbers: {
-    flex: 1,
+    // borderWidth: 1,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
   },
   labelText: {
+    // borderWidth: 1,
     textAlign: "center",
     padding: 10,
     fontSize: 20,
@@ -57,50 +60,47 @@ const styles = StyleSheet.create({
     color: "#1C0F13",
   },
   displayText: {
-    flex: 1,
+    // borderWidth: 1,
     textAlign: "center",
     padding: 10,
     fontSize: 40,
     fontWeight: "bold",
     color: "#1C0F13",
   },
-  zeroShot: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginBottom: 40,
-    color: "green",
-  },
-  modalDisplay: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#edf6f9",
-  },
-  modalText: {
-    textAlign: "center",
-    padding: 10,
-    fontSize: 40,
-    fontWeight: "bold",
-    color: "#1C0F13",
-  },
+  // modalDisplay: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   backgroundColor: "#edf6f9",
+  // },
+  // modalText: {
+  //   textAlign: "center",
+  //   padding: 10,
+  //   fontSize: 40,
+  //   fontWeight: "bold",
+  //   color: "#1C0F13",
+  // },
   arrow: {
     fontSize: 50,
     padding: 10,
     color: "black",
   },
   shotText: {
-    fontSize: 45,
-    padding: 15,
+    fontSize: 35,
     color: "white",
-    backgroundColor: "black",
   },
   shotDisplay: {
-    height: 100,
-    width: "100%",
+    height: 60,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 10,
+    borderWidth: 1,
+    borderRadius: 30,
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: "black",
   },
 });
 
@@ -151,10 +151,12 @@ export default function ShootScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <View style={styles.shotDisplay}>
-          <Text style={styles.shotText}>{execute.club}</Text>
-          <Text style={styles.shotText}>{execute.power}</Text>
-        </View>
+        {distance ? (
+          <View style={styles.shotDisplay}>
+            <Text style={styles.shotText}> {execute.club} </Text>
+            <Text style={styles.shotText}> {execute.power} </Text>
+          </View>
+        ) : null}
         <View style={styles.labels}>
           <Text style={styles.labelText}>Distance</Text>
           <Text style={styles.labelText}>Elevation</Text>
