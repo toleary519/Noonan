@@ -88,6 +88,20 @@ const styles = StyleSheet.create({
     padding: 10,
     color: "black",
   },
+  shotText: {
+    fontSize: 45,
+    padding: 15,
+    color: "white",
+    backgroundColor: "black",
+  },
+  shotDisplay: {
+    height: 100,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 10,
+  },
 });
 
 const shots = [
@@ -137,6 +151,10 @@ export default function ShootScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
+        <View style={styles.shotDisplay}>
+          <Text style={styles.shotText}>{execute.club}</Text>
+          <Text style={styles.shotText}>{execute.power}</Text>
+        </View>
         <View style={styles.labels}>
           <Text style={styles.labelText}>Distance</Text>
           <Text style={styles.labelText}>Elevation</Text>
@@ -147,13 +165,13 @@ export default function ShootScreen(props) {
           <Text style={styles.displayText}>{elevation}</Text>
           <Text style={styles.displayText}>{wind}</Text>
         </View>
-        <Modal visible={modalOpen} animationType="slide">
+        {/* <Modal visible={modalOpen} animationType="slide">
           <View style={styles.modalDisplay}>
             <Text style={styles.modalText}>{execute.club}</Text>
             <Text style={styles.modalText}>{execute.power}</Text>
             <CalcButton onPress={() => setModalOpen(false)} text="back" />
           </View>
-        </Modal>
+        </Modal> */}
         <View style={styles.functionals}>
           <View style={styles.clearButton}>
             <ClearButton onPress={handleClear} text="Clear" />
@@ -217,9 +235,9 @@ export default function ShootScreen(props) {
           <CalcButton onPress={() => handleDistance("2")} text="2" />
           <CalcButton onPress={() => handleDistance("3")} text="3" />
         </View>
-        <View style={styles.zeroShot}>
+        {/* <View style={styles.zeroShot}>
           <CalcButton onPress={() => setModalOpen(true)} text="Get Shot" />
-        </View>
+        </View> */}
       </View>
     </View>
   );
