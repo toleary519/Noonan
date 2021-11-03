@@ -81,6 +81,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#1C0F13",
   },
+  activated: {
+    textAlign: "center",
+    padding: 10,
+    fontSize: 55,
+    fontWeight: "bold",
+    color: "#C5283D",
+  },
 });
 
 const shots = [
@@ -101,6 +108,8 @@ export default function ShootScreen(props) {
   let actualDistance =
     Number(distance) + elevation + wind + (sand ? 3 : 0) + (rough ? 5 : 0);
   let execute = getClub(actualDistance);
+
+  console.log("actual distance:", actualDistance);
 
   const handleDistance = (stringDigit) => {
     setDistance(distance + stringDigit); // if this is broken put back to "dig"
@@ -162,13 +171,15 @@ export default function ShootScreen(props) {
           <CalcButton onPress={() => handleDistance("7")} text="7" />
           <CalcButton onPress={() => handleDistance("8")} text="8" />
           <CalcButton onPress={() => handleDistance("9")} text="9" />
-          <CalcButton onPress={() => setSand(false ? true : false)} text="S" />
+          <CalcButton onPress={() => setSand(sand ? false : true)} text="S" />
+          {console.log("sand:", sand)}
         </View>
         <View style={styles.numbers}>
           <CalcButton onPress={() => handleDistance("4")} text="4" />
           <CalcButton onPress={() => handleDistance("5")} text="5" />
           <CalcButton onPress={() => handleDistance("6")} text="6" />
-          <CalcButton onPress={() => setRough(false ? true : false)} text="R" />
+          <CalcButton onPress={() => setRough(rough ? false : true)} text="R" />
+          {console.log("rough:", rough)}
         </View>
         <View style={styles.numbers}>
           <CalcButton onPress={() => handleDistance("0")} text="0" />
