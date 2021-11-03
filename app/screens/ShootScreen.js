@@ -171,14 +171,22 @@ export default function ShootScreen(props) {
           <CalcButton onPress={() => handleDistance("7")} text="7" />
           <CalcButton onPress={() => handleDistance("8")} text="8" />
           <CalcButton onPress={() => handleDistance("9")} text="9" />
-          <CalcButton onPress={() => setSand(sand ? false : true)} text="S" />
+          <CalcButton
+            onPress={() => setSand(sand ? false : true)}
+            special={sand}
+            text="S"
+          />
           {console.log("sand:", sand)}
         </View>
         <View style={styles.numbers}>
           <CalcButton onPress={() => handleDistance("4")} text="4" />
           <CalcButton onPress={() => handleDistance("5")} text="5" />
           <CalcButton onPress={() => handleDistance("6")} text="6" />
-          <CalcButton onPress={() => setRough(rough ? false : true)} text="R" />
+          <CalcButton
+            onPress={() => setRough(rough ? false : true)}
+            special={rough}
+            text="R"
+          />
           {console.log("rough:", rough)}
         </View>
         <View style={styles.numbers}>
