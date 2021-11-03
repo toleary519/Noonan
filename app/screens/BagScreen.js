@@ -7,10 +7,15 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
-  ScrollView,
+  FlatList,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import AddAClubButton from "../helpers/components/AddAClubButton";
+import {
+  MaterialCommunityIcons,
+  EvilIcons,
+  AntDesign,
+} from "@expo/vector-icons";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +28,7 @@ const styles = StyleSheet.create({
   club: {
     flexDirection: "row",
     justifyContent: "space-around",
-    fontSize: 25,
+    fontSize: 15,
     backgroundColor: "#edf6f9",
     padding: 10,
   },
@@ -72,14 +77,14 @@ const styles = StyleSheet.create({
 });
 
 const shots = [
-  { club: "60", min: 5, max: 25, minPow: 50 },
-  { club: "56", min: 26, max: 45, minPow: 50 },
-  { club: "52", min: 46, max: 80, minPow: 50 },
-  { club: "PW", min: 81, max: 139, minPow: 50 },
-  { club: "9 Iron", min: 140, max: 159, minPow: 50 },
-  { club: "8 Iron", min: 150, max: 164, minPow: 50 },
-  { club: "7 Iron", min: 165, max: 179, minPow: 50 },
-  { club: "6 Iron", min: 180, max: 200, minPow: 50 },
+  { key: 1, club: "60", min: 5, max: 25, minPow: 50 },
+  { key: 2, club: "56", min: 26, max: 45, minPow: 50 },
+  { key: 3, club: "52", min: 46, max: 80, minPow: 50 },
+  { key: 4, club: "PW", min: 81, max: 139, minPow: 50 },
+  { key: 5, club: "9i", min: 140, max: 159, minPow: 50 },
+  { key: 6, club: "8i", min: 150, max: 164, minPow: 50 },
+  { key: 7, club: "7i", min: 165, max: 179, minPow: 50 },
+  { key: 8, club: "6i", min: 180, max: 200, minPow: 50 },
 ];
 
 const pickerClubs = [
@@ -103,25 +108,13 @@ const pickerClubs = [
   "60",
 ];
 
-const CreateBag = () => {
-  return shots.map((shot, i) => {
-    return (
-      <View key={i} style={styles.club}>
-        {/* <View>Modal to Edit</View> */}
-        <Text style={styles.club}>{shot.club}</Text>
-        <Text style={styles.club}>MIN : {shot.min}</Text>
-        <Text style={styles.club}>MAX : {shot.max}</Text>
-      </View>
-    );
-  });
-};
-
 const saveNewClub = (clubOBJ) => {
   shots.push(clubOBJ);
 };
 
 export default function BagScreen(props) {
   const [addModalOpen, setAddModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
   const [addClubMin, setAddClubMin] = useState(null);
   const [addClubMax, setAddClubMax] = useState(null);
@@ -137,11 +130,27 @@ export default function BagScreen(props) {
     minPow: addClubPercent,
   };
 
-  const clearAll = () => {
+  const addClearAll = () => {
     setPickerValue(pickerClubs[0]);
     setAddClubMin(null);
     setAddClubMax(null);
     setAddClubPercent(null);
+  };
+
+  const editClearAll = () => {
+    setAddClubMin(null);
+    setAddClubMax(null);
+    setAddClubPercent(null);
+  };
+
+  const editClub = (item) => {
+    for (const shot of shots) {
+      if (shot.club === item.club) {
+        shot.max = Number(editClubMax);
+        shot.min = Number(editClubMin);
+        shot.minPow = Number(editClubPercent);
+      }
+    }
   };
 
   return (
@@ -206,7 +215,7 @@ export default function BagScreen(props) {
               <AddAClubButton
                 onPress={() => {
                   setAddModalOpen(false);
-                  clearAll();
+                  addClearAll();
                 }}
                 text="exit"
               />
@@ -214,7 +223,7 @@ export default function BagScreen(props) {
                 onPress={() => {
                   saveNewClub(newClub);
                   console.log(shots);
-                  clearAll();
+                  addClearAll();
                   setAddModalOpen(false);
                 }}
                 text="save"
@@ -223,7 +232,77 @@ export default function BagScreen(props) {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
-      <ScrollView>{CreateBag()}</ScrollView>
+      <FlatList
+        data={shots}
+        renderItem={({ item }) => (
+          <View style={styles.club}>
+            <AntDesign name="edit" onPress={() => setEditModalOpen(true)} />
+            <Text style={styles.club}>{item.club}</Text>
+            <Text style={styles.club}>MIN : {item.min}</Text>
+            <Text style={styles.club}>MAX : {item.max}</Text>
+            <Modal visible={editModalOpen} animationType="fade">
+              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.addModal}>
+                  <View>
+                    <Text style={styles.inputTitle}>Edit Club</Text>
+                    <Text style={styles.inputTitle}>{item.club}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.inputTitle}>Max</Text>
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={(text) => setEditClubMax(text)}
+                      value={editClubMax}
+                      placeholder={"yds"}
+                      keyboardType={"number-pad"}
+                      textAlign={"center"}
+                    />
+                  </View>
+                  <View>
+                    <Text style={styles.inputTitle}>Min</Text>
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={(text) => setEditClubMin(text)}
+                      value={editClubMin}
+                      placeholder={"yds"}
+                      keyboardType={"number-pad"}
+                      textAlign={"center"}
+                    />
+                  </View>
+                  <View>
+                    <Text style={styles.inputTitle}>Percent</Text>
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={(text) => setEditClubPercent(text)}
+                      value={editClubPercent}
+                      placeholder={"% Power"}
+                      keyboardType={"number-pad"}
+                      textAlign={"center"}
+                    />
+                  </View>
+                  <View style={styles.exitSaveFooter}>
+                    <AddAClubButton
+                      onPress={() => {
+                        setEditModalOpen(false);
+                        editClearAll();
+                      }}
+                      text="exit"
+                    />
+                    <AddAClubButton
+                      onPress={() => {
+                        editClub(item);
+                        editClearAll();
+                        setEditModalOpen(false);
+                      }}
+                      text="save"
+                    />
+                  </View>
+                </View>
+              </TouchableWithoutFeedback>
+            </Modal>
+          </View>
+        )}
+      />
     </View>
   );
 }
