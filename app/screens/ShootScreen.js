@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Modal } from "react-native";
 import CalcButton from "../helpers/components/CalcButton";
 import { FuncButton, ClearButton } from "../helpers/components/FuncButtons";
 import { getClub } from "../helpers/calculator";
+import { Feather } from "@expo/vector-icons";
 
 const styles = StyleSheet.create({
   container: {
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
   },
   windEle: {
     flexDirection: "column",
+    justifyContent: "space-between",
   },
   numbers: {
     flex: 1,
@@ -81,12 +83,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#1C0F13",
   },
-  activated: {
-    textAlign: "center",
+  arrow: {
+    fontSize: 50,
     padding: 10,
-    fontSize: 55,
-    fontWeight: "bold",
-    color: "#C5283D",
+    color: "black",
   },
 });
 
@@ -157,12 +157,32 @@ export default function ShootScreen(props) {
             <ClearButton onPress={handleClear} text="Clear" />
           </View>
           <View style={styles.windEle}>
-            <FuncButton onPress={handleEleUP} text="Up" />
-            <FuncButton onPress={handleEleDWN} text="Dwn" />
+            <Feather
+              style={styles.arrow}
+              name="arrow-up-circle"
+              onPress={handleEleUP}
+            />
+            {/* <FuncButton onPress={handleEleUP} text="Up" /> */}
+            <Feather
+              style={styles.arrow}
+              name="arrow-down-circle"
+              onPress={handleEleDWN}
+            />
+            {/* <FuncButton onPress={handleEleDWN} text="Dwn" /> */}
           </View>
           <View style={styles.windEle}>
-            <FuncButton onPress={handleWindUP} text="Up" />
-            <FuncButton onPress={handleWindDWN} text="Dwn" />
+            <Feather
+              style={styles.arrow}
+              name="arrow-down-circle"
+              onPress={handleWindUP}
+            />
+            {/* <FuncButton onPress={handleWindUP} text="Up" /> */}
+            <Feather
+              style={styles.arrow}
+              name="arrow-up-circle"
+              onPress={handleWindDWN}
+            />
+            {/* <FuncButton onPress={handleWindDWN} text="Dwn" /> */}
           </View>
         </View>
       </View>
