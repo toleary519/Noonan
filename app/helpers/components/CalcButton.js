@@ -11,6 +11,7 @@ export default CalcButton = ({ text, onPress, special }) => (
 
 const styles = StyleSheet.create({
   digit: {
+    // borderWidth: 1,
     textAlign: "center",
     padding: 10,
     fontSize: 55,
