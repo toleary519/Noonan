@@ -55,15 +55,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   input: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 150,
     height: 50,
     fontSize: 18,
     backgroundColor: "#edf6f9",
-    borderWidth: 3,
+    borderWidth: 1,
     borderRadius: 10,
     borderColor: "black",
+    padding: 10,
   },
   inputTitle: {
     fontSize: 20,
@@ -86,6 +84,11 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  editBox: {
+    flexDirection: "column",
   },
 });
 
@@ -178,70 +181,6 @@ export default function BagScreen(props) {
   //   }
   // // };
   // const deleteClub = shots.filter(s => s.key !== editValue.key);
-
-  // const EditMode = () => (
-  //   <Modal visible={editModalOpen} animationType="fade">
-  //     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-  //       <View style={styles.addModal}>
-  //         {console.log("Inside - editValue:", editValue)}
-  //         <View>
-  //           <Text style={styles.inputTitle}>Edit Club</Text>
-  //           <Text style={styles.inputTitle}>{editValue.club}</Text>
-  //         </View>
-  //         <View>
-  //           <Text style={styles.inputTitle}>Max</Text>
-  //           <TextInput
-  //             style={styles.input}
-  //             onChangeText={(text) => setEditClubMax(text)}
-  //             value={editClubMax}
-  //             placeholder={"yds"}
-  //             keyboardType={"number-pad"}
-  //             textAlign={"center"}
-  //           />
-  //         </View>
-  //         <View>
-  //           <Text style={styles.inputTitle}>Min</Text>
-  //           <TextInput
-  //             style={styles.input}
-  //             onChangeText={(text) => setEditClubMin(text)}
-  //             value={editClubMin}
-  //             placeholder={"yds"}
-  //             keyboardType={"number-pad"}
-  //             textAlign={"center"}
-  //           />
-  //         </View>
-  //         <View>
-  //           <Text style={styles.inputTitle}>Percent</Text>
-  //           <TextInput
-  //             style={styles.input}
-  //             onChangeText={(text) => setEditClubPercent(text)}
-  //             value={editClubPercent}
-  //             placeholder={"% Power"}
-  //             keyboardType={"number-pad"}
-  //             textAlign={"center"}
-  //           />
-  //         </View>
-  //         <View style={styles.exitSaveFooter}>
-  //           <AddAClubButton
-  //             onPress={() => {
-  //               editClearAll();
-  //               setEditModalOpen(false);
-  //             }}
-  //             text="exit"
-  //           />
-  //           <AddAClubButton
-  //             onPress={() => {
-  //               editClub(editValue);
-  //               editClearAll();
-  //               setEditModalOpen(false);
-  //             }}
-  //             text="save"
-  //           />
-  //         </View>
-  //       </View>
-  //     </TouchableWithoutFeedback>
-  //   </Modal>
-  // );
 
   const QuestionModal = () => (
     <Modal visible={questionModalOpen} animationType="fade">
@@ -352,7 +291,6 @@ export default function BagScreen(props) {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
-
       {/* < LIST STARTS ************************************************> */}
       <View>
         <FlatList
@@ -366,88 +304,68 @@ export default function BagScreen(props) {
                   console.log("Outside - editValue:", editValue);
                 }}
               >
-                <View style={styles.club}>
-                  <Text>{item.club}</Text>
-                  <Text>MIN : {item.min}</Text>
-                  <Text>MAX : {item.max}</Text>
-                </View>
+                <Text>{item.club}</Text>
+                {editModalOpen ? (
+                  <View style={styles.editBox}>
+                    <View style={styles.row}>
+                      <TextInput
+                        style={styles.input}
+                        onChangeText={(text) => setEditClubMax(text)}
+                        value={editClubMax}
+                        placeholder={"max yds"}
+                        keyboardType={"number-pad"}
+                        textAlign={"center"}
+                      />
+
+                      <TextInput
+                        style={styles.input}
+                        onChangeText={(text) => setEditClubMin(text)}
+                        value={editClubMin}
+                        placeholder={"min yds"}
+                        keyboardType={"number-pad"}
+                        textAlign={"center"}
+                      />
+
+                      <TextInput
+                        style={styles.input}
+                        onChangeText={(text) => setEditClubPercent(text)}
+                        value={editClubPercent}
+                        placeholder={"% Power"}
+                        keyboardType={"number-pad"}
+                        textAlign={"center"}
+                      />
+                    </View>
+
+                    <View style={styles.row}>
+                      <AddAClubButton
+                        onPress={() => {
+                          editClearAll();
+                          setEditModalOpen(false);
+                        }}
+                        text="exit"
+                      />
+                      <AntDesign
+                        onPress={() => setQuestionModalOpen(true)}
+                        name="questioncircleo"
+                        size={24}
+                        color="black"
+                      />
+                      <AddAClubButton
+                        onPress={() => {
+                          editClub(editValue);
+                          editClearAll();
+                          setEditModalOpen(false);
+                        }}
+                        text="save"
+                      />
+                    </View>
+                    <QuestionModal />
+                  </View>
+                ) : null}
               </TouchableOpacity>
             </View>
           )}
         />
-        {/* <EDIT MODAL ********************************> */}
-        <Modal visible={editModalOpen} animationType="fade">
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.addModal}>
-              {console.log("Inside - editValue:", editValue)}
-              <View>
-                <Text style={styles.inputTitle}>Edit Club</Text>
-                <Text style={styles.inputTitle}>{editValue.club}</Text>
-              </View>
-              <View>
-                <Text style={styles.inputTitle}>Max</Text>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(text) => setEditClubMax(text)}
-                  value={editClubMax}
-                  placeholder={"yds"}
-                  keyboardType={"number-pad"}
-                  textAlign={"center"}
-                />
-              </View>
-              <View>
-                <Text style={styles.inputTitle}>Min</Text>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(text) => setEditClubMin(text)}
-                  value={editClubMin}
-                  placeholder={"yds"}
-                  keyboardType={"number-pad"}
-                  textAlign={"center"}
-                />
-              </View>
-              <View>
-                {/* <QUESTION MARK MODAL ************************************************> */}
-                <QuestionModal />
-                {/* <QUESTION MARK MODAL ENDS ************************************************> */}
-                <View style={styles.row}>
-                  <Text style={styles.inputTitle}>Percent</Text>
-                  <AntDesign
-                    onPress={() => setQuestionModalOpen(true)}
-                    name="questioncircleo"
-                    size={24}
-                    color="black"
-                  />
-                </View>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(text) => setEditClubPercent(text)}
-                  value={editClubPercent}
-                  placeholder={"% Power"}
-                  keyboardType={"number-pad"}
-                  textAlign={"center"}
-                />
-              </View>
-              <View style={styles.exitSaveFooter}>
-                <AddAClubButton
-                  onPress={() => {
-                    editClearAll();
-                    setEditModalOpen(false);
-                  }}
-                  text="exit"
-                />
-                <AddAClubButton
-                  onPress={() => {
-                    editClub(editValue);
-                    editClearAll();
-                    setEditModalOpen(false);
-                  }}
-                  text="save"
-                />
-              </View>
-            </View>
-          </TouchableWithoutFeedback>
-        </Modal>
       </View>
     </View>
   );
