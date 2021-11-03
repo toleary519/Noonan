@@ -95,8 +95,11 @@ export default function ShootScreen(props) {
   const [distance, setDistance] = useState("");
   const [elevation, setElevation] = useState(0);
   const [wind, setWind] = useState(0);
+  const [rough, setRough] = useState(false);
+  const [sand, setSand] = useState(false);
 
-  let actualDistance = Number(distance) + elevation + wind;
+  let actualDistance =
+    Number(distance) + elevation + wind + (sand ? 3 : 0) + (rough ? 5 : 0);
   let execute = getClub(actualDistance);
 
   const handleDistance = (stringDigit) => {
@@ -159,13 +162,13 @@ export default function ShootScreen(props) {
           <CalcButton onPress={() => handleDistance("7")} text="7" />
           <CalcButton onPress={() => handleDistance("8")} text="8" />
           <CalcButton onPress={() => handleDistance("9")} text="9" />
-          <CalcButton text="S" />
+          <CalcButton onPress={() => setSand(false ? true : false)} text="S" />
         </View>
         <View style={styles.numbers}>
           <CalcButton onPress={() => handleDistance("4")} text="4" />
           <CalcButton onPress={() => handleDistance("5")} text="5" />
           <CalcButton onPress={() => handleDistance("6")} text="6" />
-          <CalcButton text="R" />
+          <CalcButton onPress={() => setRough(false ? true : false)} text="R" />
         </View>
         <View style={styles.numbers}>
           <CalcButton onPress={() => handleDistance("0")} text="0" />
