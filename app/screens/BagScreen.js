@@ -29,14 +29,9 @@ const styles = StyleSheet.create({
   club: {
     flexDirection: "row",
     justifyContent: "space-around",
-    alignContent: "space-around",
     fontSize: 15,
     backgroundColor: "#edf6f9",
     padding: 10,
-  },
-  clubList: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
   },
   addModal: {
     flex: 1,
@@ -122,6 +117,7 @@ export default function BagScreen(props) {
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
+  const [editValue, setEditValue] = useState({});
   const [addClubMin, setAddClubMin] = useState(null);
   const [addClubMax, setAddClubMax] = useState(null);
   const [addClubPercent, setAddClubPercent] = useState(null);
@@ -247,7 +243,12 @@ export default function BagScreen(props) {
         data={shots}
         renderItem={({ item }) => (
           <View style={styles.club}>
-            <TouchableOpacity onPress={() => setEditModalOpen(true)}>
+            <TouchableOpacity
+              onPress={() => {
+                setEditValue(item);
+                setEditModalOpen(true);
+              }}
+            >
               <View style={styles.club}>
                 <Text>{item.club}</Text>
                 <Text>MIN : {item.min}</Text>
@@ -259,7 +260,7 @@ export default function BagScreen(props) {
                 <View style={styles.addModal}>
                   <View>
                     <Text style={styles.inputTitle}>Edit Club</Text>
-                    <Text style={styles.inputTitle}>{item.club}</Text>
+                    <Text style={styles.inputTitle}>{editValue.club}</Text>
                   </View>
                   <View>
                     <Text style={styles.inputTitle}>Max</Text>
