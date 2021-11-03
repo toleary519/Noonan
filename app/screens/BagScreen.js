@@ -84,6 +84,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  row: {
+    flexDirection: "row",
+  },
 });
 
 const shots = [
@@ -152,9 +155,9 @@ export default function BagScreen(props) {
 
   const editClearAll = () => {
     setEditValue(shots[0]);
-    setAddClubMin(null);
-    setAddClubMax(null);
-    setAddClubPercent(null);
+    setAddClubMin("");
+    setAddClubMax("");
+    setAddClubPercent("");
   };
 
   const editClub = (item) => {
@@ -176,67 +179,86 @@ export default function BagScreen(props) {
   // // };
   // const deleteClub = shots.filter(s => s.key !== editValue.key);
 
-  const EditMode = () => (
-    <Modal visible={editModalOpen} animationType="fade">
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.addModal}>
-          {console.log("Inside - editValue:", editValue)}
-          <View>
-            <Text style={styles.inputTitle}>Edit Club</Text>
-            <Text style={styles.inputTitle}>{editValue.club}</Text>
-          </View>
-          <View>
-            <Text style={styles.inputTitle}>Max</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => setEditClubMax(text)}
-              value={editClubMax}
-              placeholder={"yds"}
-              keyboardType={"number-pad"}
-              textAlign={"center"}
-            />
-          </View>
-          <View>
-            <Text style={styles.inputTitle}>Min</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => setEditClubMin(text)}
-              value={editClubMin}
-              placeholder={"yds"}
-              keyboardType={"number-pad"}
-              textAlign={"center"}
-            />
-          </View>
-          <View>
-            <Text style={styles.inputTitle}>Percent</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => setEditClubPercent(text)}
-              value={editClubPercent}
-              placeholder={"% Power"}
-              keyboardType={"number-pad"}
-              textAlign={"center"}
-            />
-          </View>
-          <View style={styles.exitSaveFooter}>
-            <AddAClubButton
-              onPress={() => {
-                editClearAll();
-                setEditModalOpen(false);
-              }}
-              text="exit"
-            />
-            <AddAClubButton
-              onPress={() => {
-                editClub(editValue);
-                editClearAll();
-                setEditModalOpen(false);
-              }}
-              text="save"
-            />
-          </View>
-        </View>
-      </TouchableWithoutFeedback>
+  // const EditMode = () => (
+  //   <Modal visible={editModalOpen} animationType="fade">
+  //     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+  //       <View style={styles.addModal}>
+  //         {console.log("Inside - editValue:", editValue)}
+  //         <View>
+  //           <Text style={styles.inputTitle}>Edit Club</Text>
+  //           <Text style={styles.inputTitle}>{editValue.club}</Text>
+  //         </View>
+  //         <View>
+  //           <Text style={styles.inputTitle}>Max</Text>
+  //           <TextInput
+  //             style={styles.input}
+  //             onChangeText={(text) => setEditClubMax(text)}
+  //             value={editClubMax}
+  //             placeholder={"yds"}
+  //             keyboardType={"number-pad"}
+  //             textAlign={"center"}
+  //           />
+  //         </View>
+  //         <View>
+  //           <Text style={styles.inputTitle}>Min</Text>
+  //           <TextInput
+  //             style={styles.input}
+  //             onChangeText={(text) => setEditClubMin(text)}
+  //             value={editClubMin}
+  //             placeholder={"yds"}
+  //             keyboardType={"number-pad"}
+  //             textAlign={"center"}
+  //           />
+  //         </View>
+  //         <View>
+  //           <Text style={styles.inputTitle}>Percent</Text>
+  //           <TextInput
+  //             style={styles.input}
+  //             onChangeText={(text) => setEditClubPercent(text)}
+  //             value={editClubPercent}
+  //             placeholder={"% Power"}
+  //             keyboardType={"number-pad"}
+  //             textAlign={"center"}
+  //           />
+  //         </View>
+  //         <View style={styles.exitSaveFooter}>
+  //           <AddAClubButton
+  //             onPress={() => {
+  //               editClearAll();
+  //               setEditModalOpen(false);
+  //             }}
+  //             text="exit"
+  //           />
+  //           <AddAClubButton
+  //             onPress={() => {
+  //               editClub(editValue);
+  //               editClearAll();
+  //               setEditModalOpen(false);
+  //             }}
+  //             text="save"
+  //           />
+  //         </View>
+  //       </View>
+  //     </TouchableWithoutFeedback>
+  //   </Modal>
+  // );
+
+  const QuestionModal = () => (
+    <Modal visible={questionModalOpen} animationType="fade">
+      <View style={styles.paragraph}>
+        <Text style={styles.paragraph}>
+          {" "}
+          Noonan uses the minumum power to calculate the spread of your club.
+          For example, if you hit your PW 100yds at 100% of your swing and 75yds
+          at 50% swing your input would be MAX: 100, MIN: 75, %: 50.{" "}
+        </Text>
+        <Ionicons
+          onPress={() => setQuestionModalOpen(false)}
+          name="close-circle"
+          size={24}
+          color="black"
+        />
+      </View>
     </Modal>
   );
 
@@ -288,30 +310,18 @@ export default function BagScreen(props) {
               />
             </View>
             <View>
-              {/* <Modal visible={questionModalOpen} animationType="fade">
-                <View style={styles.paragraph}>
-                  <Text style={styles.paragraph}>
-                    {" "}
-                    Noonan uses the percentage power of your swing to give you a
-                    power estimate for yardages within the club spread. When you
-                    hit this club to achieve the minimum distance, what
-                    percentage do you think that is?{" "}
-                  </Text>
-                  <Ionicons
-                    onPress={() => setQuestionModalOpen(false)}
-                    name="close-circle"
-                    size={24}
-                    color="black"
-                  />
-                </View>
-              </Modal> */}
-              <Text style={styles.inputTitle}>Percent</Text>
-              <AntDesign
-                onPress={() => setQuestionModalOpen(true)}
-                name="questioncircleo"
-                size={24}
-                color="black"
-              />
+              {/* <QUESTION MARK MODAL ************************************************> */}
+              <QuestionModal />
+              {/* <QUESTION MARK MODAL ENDS ************************************************> */}
+              <View style={styles.row}>
+                <Text style={styles.inputTitle}>Percent</Text>
+                <AntDesign
+                  onPress={() => setQuestionModalOpen(true)}
+                  name="questioncircleo"
+                  size={24}
+                  color="black"
+                />
+              </View>
               <TextInput
                 style={styles.input}
                 onChangeText={(text) => setAddClubPercent(text)}
@@ -342,11 +352,8 @@ export default function BagScreen(props) {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
-      {/* < THIS IS WHERE THE LIST STARTS > */}
-      {/* < THIS IS WHERE THE LIST STARTS > */}
-      {/* < THIS IS WHERE THE LIST STARTS > */}
-      {/* < THIS IS WHERE THE LIST STARTS > */}
-      {/* < THIS IS WHERE THE LIST STARTS > */}
+
+      {/* < LIST STARTS ************************************************> */}
       <View>
         <FlatList
           data={shots}
@@ -368,7 +375,79 @@ export default function BagScreen(props) {
             </View>
           )}
         />
-        <EditMode />
+        {/* <EDIT MODAL ********************************> */}
+        <Modal visible={editModalOpen} animationType="fade">
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.addModal}>
+              {console.log("Inside - editValue:", editValue)}
+              <View>
+                <Text style={styles.inputTitle}>Edit Club</Text>
+                <Text style={styles.inputTitle}>{editValue.club}</Text>
+              </View>
+              <View>
+                <Text style={styles.inputTitle}>Max</Text>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={(text) => setEditClubMax(text)}
+                  value={editClubMax}
+                  placeholder={"yds"}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
+              <View>
+                <Text style={styles.inputTitle}>Min</Text>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={(text) => setEditClubMin(text)}
+                  value={editClubMin}
+                  placeholder={"yds"}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
+              <View>
+                {/* <QUESTION MARK MODAL ************************************************> */}
+                <QuestionModal />
+                {/* <QUESTION MARK MODAL ENDS ************************************************> */}
+                <View style={styles.row}>
+                  <Text style={styles.inputTitle}>Percent</Text>
+                  <AntDesign
+                    onPress={() => setQuestionModalOpen(true)}
+                    name="questioncircleo"
+                    size={24}
+                    color="black"
+                  />
+                </View>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={(text) => setEditClubPercent(text)}
+                  value={editClubPercent}
+                  placeholder={"% Power"}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
+              <View style={styles.exitSaveFooter}>
+                <AddAClubButton
+                  onPress={() => {
+                    editClearAll();
+                    setEditModalOpen(false);
+                  }}
+                  text="exit"
+                />
+                <AddAClubButton
+                  onPress={() => {
+                    editClub(editValue);
+                    editClearAll();
+                    setEditModalOpen(false);
+                  }}
+                  text="save"
+                />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
       </View>
     </View>
   );
