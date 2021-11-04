@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   FlatList,
+  ImageBackground,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import AddAClubButton from "../helpers/components/AddAClubButton";
@@ -97,6 +98,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
     marginBottom: 15,
+  },
+  backgroundImage: {
+    width: "100%",
+    height: "100%",
   },
 });
 
@@ -213,6 +218,11 @@ export default function BagScreen(props) {
 
   return (
     <View style={styles.container}>
+      {/* <ImageBackground
+        style={styles.backgroundImage}
+        source={require("../assets/texture-background.jpeg")}
+        resizeMode="cover"
+      > */}
       <Text style={styles.club}>Your Bag</Text>
       {editDisplayOpen ? null : (
         <AddAClubButton
@@ -390,6 +400,7 @@ export default function BagScreen(props) {
           </View>
         ) : null}
       </View>
+      {/* </ImageBackground> */}
     </View>
   );
 }
