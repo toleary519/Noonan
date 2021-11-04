@@ -111,6 +111,8 @@ const shots = [
   { key: 7, club: "6i", min: 180, max: 200, minPow: 50 },
 ];
 
+const reset = { key: null, club: null, min: null, max: null, minPow: null };
+
 const pickerClubs = [
   "Driver",
   "3w",
@@ -165,10 +167,10 @@ export default function BagScreen(props) {
   };
 
   const editClearAll = () => {
-    setEditValue(shots[0]);
-    setAddClubMin("");
-    setAddClubMax("");
-    setAddClubPercent("");
+    setEditValue(reset);
+    setEditClubMin(null);
+    setEditClubMax(null);
+    setEditClubPercent(null);
   };
 
   const editClub = (item) => {
