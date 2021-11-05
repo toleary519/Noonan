@@ -143,7 +143,7 @@ const saveNewClub = (clubOBJ) => {
   shots.push(clubOBJ);
 };
 
-export default function BagScreen(props) {
+export default function BagScreen({ navigation }) {
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [editDisplayOpen, setEditDisplayOpen] = useState(false);
   const [questionModalOpen, setQuestionModalOpen] = useState(false);
@@ -223,6 +223,12 @@ export default function BagScreen(props) {
         source={require("../assets/texture-background.jpeg")}
         resizeMode="cover"
       > */}
+      <Ionicons
+        name="arrow-back"
+        onPress={() => navigation.navigate("noonan")}
+        size={24}
+        color="black"
+      />
       <Text style={styles.club}>Your Bag</Text>
       {editDisplayOpen ? null : (
         <AddAClubButton
