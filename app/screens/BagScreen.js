@@ -197,24 +197,24 @@ export default function BagScreen({ navigation }) {
   // // };
   // const deleteClub = shots.filter(s => s.key !== editValue.key);
 
-  const QuestionModal = () => (
-    <Modal visible={questionModalOpen} animationType="fade">
-      <View style={styles.paragraph}>
-        <Text style={styles.paragraph}>
-          {" "}
-          Noonan uses the minumum power to calculate the spread of your club.
-          For example, if you hit your PW 100yds at 100% of your swing and 75yds
-          at 50% swing your input would be MAX: 100, MIN: 75, %: 50.{" "}
-        </Text>
-        <Ionicons
-          onPress={() => setQuestionModalOpen(false)}
-          name="close-circle"
-          size={24}
-          color="black"
-        />
-      </View>
-    </Modal>
-  );
+  // const QuestionModal = () => (
+  //   <Modal visible={questionModalOpen} animationType="fade">
+  //     <View style={styles.paragraph}>
+  //       <Text style={styles.paragraph}>
+  //         {" "}
+  //         Noonan uses the minumum power to calculate the spread of your club.
+  //         For example, if you hit your PW 100yds at 100% of your swing and 75yds
+  //         at 50% swing your input would be MAX: 100, MIN: 75, %: 50.{" "}
+  //       </Text>
+  //       <Ionicons
+  //         onPress={() => setQuestionModalOpen(false)}
+  //         name="close-circle"
+  //         size={24}
+  //         color="black"
+  //       />
+  //     </View>
+  //   </Modal>
+  // );
 
   return (
     <View style={styles.container}>
