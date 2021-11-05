@@ -1,7 +1,7 @@
 import React from "react";
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
-import BagScreen from "./app/screens/BagScreen";
+import BagScreenFormat from "./app/screens/BagScreenFormat";
 import ShootScreenFormat from "./app/screens/ShootScreenFormat";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -14,7 +14,11 @@ function MyStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="noonan" component={WelcomeScreen} />
-      <Stack.Screen name="Bag" component={BagScreen} />
+      <Stack.Screen
+        name="Bag"
+        component={BagScreenFormat}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Shoot"
         component={ShootScreenFormat}
