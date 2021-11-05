@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Modal,
   TextInput,
+  ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
@@ -32,13 +33,20 @@ const shots = [
   { key: 5, club: "8i", min: 150, max: 164, minPow: 50 },
   { key: 6, club: "7i", min: 165, max: 179, minPow: 50 },
   { key: 7, club: "6i", min: 180, max: 200, minPow: 50 },
+  { key: 8, club: "6i", min: 180, max: 200, minPow: 50 },
+  { key: 9, club: "6i", min: 180, max: 200, minPow: 50 },
+  { key: 10, club: "6i", min: 180, max: 200, minPow: 50 },
+  { key: 11, club: "6i", min: 180, max: 200, minPow: 50 },
+  { key: 12, club: "6i", min: 180, max: 200, minPow: 50 },
+  { key: 13, club: "6i", min: 180, max: 200, minPow: 50 },
+  { key: 14, club: "6i", min: 180, max: 200, minPow: 50 },
 ];
 
 const reset = { key: null, club: null, min: null, max: null, minPow: null };
 
 function BagScreenFormat({ navigation }) {
   return (
-    <View>
+    <ScrollView>
       <View style={styles.bagContainer}>
         <View style={styles.topContainer}>
           <View style={styles.titleContainer}>
@@ -67,15 +75,35 @@ function BagScreenFormat({ navigation }) {
                   <Text style={styles.elementText}>{item.club}</Text>
                 </View>
                 <View style={styles.clubStatsBox}>
-                  <Text style={styles.elementText}>{item.max}</Text>
-                  <Text style={styles.elementText}>{item.min}</Text>
+                  <View style={styles.statsMax}>
+                    <MaterialCommunityIcons
+                      name="speedometer"
+                      size={24}
+                      color="white"
+                      style={{ paddingTop: 5 }}
+                    />
+                    <Text style={[styles.elementText, { paddingLeft: 5 }]}>
+                      {item.max}
+                    </Text>
+                  </View>
+                  <View style={styles.statsMin}>
+                    <MaterialCommunityIcons
+                      name="speedometer-slow"
+                      size={24}
+                      color="white"
+                      style={{ paddingTop: 5 }}
+                    />
+                    <Text style={[styles.elementText, { paddingLeft: 5 }]}>
+                      {item.min}
+                    </Text>
+                  </View>
                 </View>
               </TouchableOpacity>
             </View>
           ))}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -97,6 +125,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontSize: 90,
     paddingLeft: wp("8%"),
+    fontFamily: "Roboto-Regular",
     // paddingBottom: hp("3%"),
   },
   addExitBox: {
@@ -117,7 +146,7 @@ const styles = StyleSheet.create({
     width: wp("33.33"),
     justifyContent: "center",
     alignItems: "center",
-    padding: 30,
+    padding: wp("8%"),
   },
   clubNameBox: {
     justifyContent: "center",
@@ -139,5 +168,15 @@ const styles = StyleSheet.create({
   },
   elementText: {
     fontSize: hp("2.5%"),
+  },
+  statsMax: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    color: "white",
+    // padding,
+  },
+  statsMin: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
