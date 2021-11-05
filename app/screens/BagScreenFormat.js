@@ -189,36 +189,41 @@ function BagScreenFormat({ navigation }) {
             </View>
             <View style={styles.valuesContainer}>
               <View style={styles.valuesElement}>
-                <Text>text input</Text>
+                <Text style={styles.editValuesText}>text input</Text>
               </View>
               <View style={styles.valuesElement}>
-                <Text>text input</Text>
+                <Text style={styles.editValuesText}>text input</Text>
               </View>
               <View style={styles.valuesElement}>
-                <Text>text input</Text>
+                <Text style={styles.editValuesText}>text input</Text>
               </View>
             </View>
             <View style={styles.explinationContainer}>
               <View style={styles.explinationElement}>
-                <Text>explain</Text>
+                <Text style={styles.editValuesText}>explain</Text>
               </View>
               <View style={styles.explinationElement}>
-                <Text>explain</Text>
+                <Text style={styles.editValuesText}>explain</Text>
               </View>
               <View
                 style={[styles.explinationElement, { borderRightWidth: 0 }]}
               >
-                <Text>explain</Text>
+                <Text style={styles.editValuesText}>explain</Text>
               </View>
             </View>
             <View style={styles.editExitBox}>
-              <AntDesign name="save" size={50} color={colors.green} />
+              <AntDesign
+                name="save"
+                size={60}
+                color={colors.green}
+                style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
+              />
               <Ionicons
                 name="ios-exit-outline"
                 onPress={() => setEditDisplayOpen(false)}
-                size={50}
+                size={60}
                 color={colors.red}
-                style={[{ left: wp("1%") }, { padding: hp("1%") }]}
+                style={[{ left: wp("4%") }, { padding: hp("1%") }]}
               />
             </View>
           </View>
@@ -308,6 +313,7 @@ const styles = StyleSheet.create({
   editClubNameContainer: {
     flex: 1,
     justifyContent: "flex-start",
+    height: hp("33%"),
     width: hp("66%"),
   },
   editClubText: {
@@ -320,28 +326,43 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     marginBottom: hp("40%"),
+    right: wp("10%"),
   },
   valuesContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    height: hp("15%"),
+    alignItems: "center",
+    height: hp("16%"),
+    width: wp("85%"),
+    left: wp("7.5%"),
   },
   valuesElement: {
+    flexDirection: "column",
+    justifyContent: "center",
     height: hp("12.5"),
     width: wp("25%"),
     backgroundColor: colors.blue,
+    borderRadius: 8,
   },
   explinationContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    height: hp("25%"),
+    height: hp("19%"),
   },
   explinationElement: {
-    height: hp("12.5%"),
+    flexDirection: "column",
+    justifyContent: "center",
+    height: hp("16%"),
     width: wp("29%"),
+    borderRadius: 10,
+
     backgroundColor: colors.green,
     borderRightWidth: 2,
     borderRightColor: colors.bg,
+  },
+  editValuesText: {
+    textAlign: "center",
+    fontSize: hp("2.5%"),
   },
 });
