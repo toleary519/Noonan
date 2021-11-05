@@ -68,7 +68,6 @@ const pickerClubs = [
 function BagScreenFormat({ navigation }) {
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [editDisplayOpen, setEditDisplayOpen] = useState(false);
-  const [questionModalOpen, setQuestionModalOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
   const [editValue, setEditValue] = useState(shots[0]);
   const [addClubMin, setAddClubMin] = useState(null);
@@ -184,18 +183,39 @@ function BagScreenFormat({ navigation }) {
           <View style={styles.editContainer}>
             <View style={styles.editTopContainer}>
               <View style={styles.editClubNameContainer}>
-                <Text style={styles.editClubText}>7i</Text>
+                <Text style={styles.editClubText}>{editValue.club}</Text>
               </View>
             </View>
             <View style={styles.valuesContainer}>
               <View style={styles.valuesElement}>
-                <Text style={styles.editValuesText}>text input</Text>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setEditClubMax(text)}
+                  value={editClubMax}
+                  placeholder={String(editValue.max)}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
               </View>
               <View style={styles.valuesElement}>
-                <Text style={styles.editValuesText}>text input</Text>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setEditClubPercent(text)}
+                  value={editClubPercent}
+                  placeholder={String(editValue.minPow)}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
               </View>
               <View style={styles.valuesElement}>
-                <Text style={styles.editValuesText}>text input</Text>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setEditClubMin(text)}
+                  value={editClubMin}
+                  placeholder={String(editValue.min)}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
               </View>
             </View>
             <View style={styles.explinationContainer}>
@@ -214,13 +234,21 @@ function BagScreenFormat({ navigation }) {
             <View style={styles.editExitBox}>
               <AntDesign
                 name="save"
+                onPress={() => {
+                  editClub(editValue);
+                  editClearAll();
+                  setEditDisplayOpen(false);
+                }}
                 size={60}
                 color={colors.green}
                 style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
               />
               <Ionicons
                 name="ios-exit-outline"
-                onPress={() => setEditDisplayOpen(false)}
+                onPress={() => {
+                  setEditDisplayOpen(false);
+                  editClearAll();
+                }}
                 size={60}
                 color={colors.red}
                 style={[{ left: wp("4%") }, { padding: hp("1%") }]}
