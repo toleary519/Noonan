@@ -15,7 +15,11 @@ function MyStack() {
     <Stack.Navigator>
       <Stack.Screen name="noonan" component={WelcomeScreen} />
       <Stack.Screen name="Bag" component={BagScreen} />
-      <Stack.Screen name="Shoot" component={ShootScreenFormat} />
+      <Stack.Screen
+        name="Shoot"
+        component={ShootScreenFormat}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
