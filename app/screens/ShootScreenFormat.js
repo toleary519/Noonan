@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import CalcButton from "../helpers/components/CalcButton";
 import { ClearButton } from "../helpers/components/FuncButtons";
 import { getClub } from "../helpers/calculator";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../assets/colors/colors";
-
-const shots = [
-  { key: 0, club: "60", min: 5, max: 25, minPow: 50 },
-  { key: 1, club: "56", min: 26, max: 45, minPow: 50 },
-  { key: 2, club: "52", min: 46, max: 80, minPow: 50 },
-  { key: 3, club: "PW", min: 81, max: 139, minPow: 50 },
-  { key: 4, club: "9i", min: 140, max: 159, minPow: 50 },
-  { key: 5, club: "8i", min: 150, max: 164, minPow: 50 },
-  { key: 6, club: "7i", min: 165, max: 179, minPow: 50 },
-  { key: 7, club: "6i", min: 180, max: 200, minPow: 50 },
-];
 
 function ShootScreenFormat({ navigation }) {
   const [distance, setDistance] = useState("");
@@ -212,15 +205,15 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   shotDisplayWindow: {
-    position: "absolute",
+    position: "relative",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.green,
-    width: 314,
-    height: 93,
-    top: 26,
-    left: 31,
+    width: wp("86%"),
+    height: hp("12%"),
+    top: hp("4.5%"),
+    left: wp("8%"),
     borderRadius: 10,
   },
   shotDisplayFont: {
@@ -236,9 +229,9 @@ const styles = StyleSheet.create({
     flex: 3,
     flexDirection: "row",
     justifyContent: "space-around",
-    width: 314,
-    top: 137,
-    left: 31,
+    width: wp("86%"),
+    top: hp("17%"),
+    left: wp("8%"),
   },
   dashboardLabelBox: {
     flexDirection: "column",
@@ -255,8 +248,8 @@ const styles = StyleSheet.create({
   dashboardElement: {
     justifyContent: "center",
     alignItems: "center",
-    height: 55,
-    width: 55,
+    height: wp("14.6%"),
+    width: wp("14.6%"),
     borderRadius: 10,
     margin: 10,
   },
@@ -273,18 +266,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
     backgroundColor: colors.red,
-    width: 314,
-    height: 44,
-    top: 372,
-    left: 31,
+    width: wp("86%"),
+    height: hp("5.5%"),
+    top: hp("45%"),
+    left: wp("8%"),
     borderRadius: 10,
   },
   calcButtonContainer: {
     flexDirection: "column",
     justifyContent: "space-around",
-    width: 314,
-    top: 425,
-    left: 31,
+    width: wp("86%"),
+    top: hp("53%"),
+    left: wp("8%"),
   },
   calcButtonRow: {
     flexDirection: "row",
@@ -292,8 +285,8 @@ const styles = StyleSheet.create({
   },
   calcButton: {
     backgroundColor: colors.brown,
-    height: 55,
-    width: 55,
+    height: wp("17.6%"),
+    width: wp("17.6%"),
     borderRadius: 10,
     margin: 10,
   },
