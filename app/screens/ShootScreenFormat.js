@@ -49,10 +49,11 @@ function ShootScreenFormat({ navigation }) {
   return (
     <View style={styles.shootScreenContainer}>
       <Ionicons
-        name="arrow-back"
+        name="ios-exit-outline"
         onPress={() => navigation.navigate("noonan")}
-        size={24}
+        size={32}
         color="black"
+        // style={{ transform: [{ rotateX: "90deg" }] }}
       />
       <View style={styles.shotDisplayContainer}>
         <View style={styles.shotDisplayWindow}>
@@ -198,8 +199,7 @@ export default ShootScreenFormat;
 
 const styles = StyleSheet.create({
   shootScreenContainer: {
-    backgroundColor: colors.bg,
-    paddingTop: 40,
+    paddingTop: hp("5%"),
   },
   shotDisplayContainer: {
     flex: 2,
