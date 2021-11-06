@@ -45,7 +45,7 @@ const shots = [
 const reset = { key: null, club: null, min: null, max: null, minPow: null };
 
 const pickerClubs = [
-  "Driver",
+  "Dr",
   "3w",
   "5w",
   "1i",
@@ -64,6 +64,10 @@ const pickerClubs = [
   "56",
   "60",
 ];
+
+const saveNewClub = (clubOBJ) => {
+  shots.push(clubOBJ);
+};
 
 function BagScreenFormat({ navigation }) {
   const [addModalOpen, setAddModalOpen] = useState(false);
@@ -112,6 +116,94 @@ function BagScreenFormat({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.bagContainer}>
+        {addModalOpen ? (
+          <View style={styles.editContainer}>
+            <View style={styles.editTopContainer}>
+              <View style={styles.editClubNameContainer}>
+                <Picker
+                  itemStyle={styles.picker}
+                  selectedValue={pickerValue}
+                  onValueChange={(item) => {
+                    setPickerValue(item);
+                  }}
+                >
+                  {pickerClubs.map((item) => (
+                    <Picker.Item key={item} value={item} label={item} />
+                  ))}
+                </Picker>
+              </View>
+            </View>
+            <View style={styles.valuesContainer}>
+              <View style={styles.valuesElement}>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setAddClubMax(text)}
+                  value={addClubMax}
+                  placeholder={"yds"}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
+              <View style={styles.valuesElement}>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setAddClubPercent(text)}
+                  value={addClubPercent}
+                  placeholder={"% pow"}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
+              <View style={styles.valuesElement}>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setAddClubMin(text)}
+                  value={addClubMin}
+                  placeholder={"yds"}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
+            </View>
+            <View style={styles.explinationContainer}>
+              <View style={styles.explinationElement}>
+                <Text style={styles.editValuesText}>explain</Text>
+              </View>
+              <View style={styles.explinationElement}>
+                <Text style={styles.editValuesText}>explain</Text>
+              </View>
+              <View
+                style={[styles.explinationElement, { borderRightWidth: 0 }]}
+              >
+                <Text style={styles.editValuesText}>explain</Text>
+              </View>
+            </View>
+            <View style={styles.editExitBox}>
+              <AntDesign
+                name="save"
+                onPress={() => {
+                  saveNewClub(newClub);
+                  console.log(shots);
+                  addClearAll();
+                  setAddModalOpen(false);
+                }}
+                size={60}
+                color={colors.green}
+                style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
+              />
+              <Ionicons
+                name="ios-exit-outline"
+                onPress={() => {
+                  setAddModalOpen(false);
+                  addClearAll();
+                }}
+                size={60}
+                color={colors.red}
+                style={[{ left: wp("4%") }, { padding: hp("1%") }]}
+              />
+            </View>
+          </View>
+        ) : null}
         {editDisplayOpen ? null : (
           <View style={styles.topContainer}>
             <View style={styles.titleContainer}>
@@ -120,6 +212,7 @@ function BagScreenFormat({ navigation }) {
             <View style={styles.addExitBox}>
               <Ionicons
                 name="md-add-circle-outline"
+                onPress={() => setAddModalOpen(true)}
                 size={40}
                 color={colors.green}
               />
@@ -392,5 +485,10 @@ const styles = StyleSheet.create({
   editValuesText: {
     textAlign: "center",
     fontSize: hp("2.5%"),
+  },
+  picker: {
+    height: hp("25%"),
+    width: wp("50%"),
+    fontSize: hp("10%"),
   },
 });
