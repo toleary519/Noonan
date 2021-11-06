@@ -6,23 +6,28 @@ import ShootScreenFormat from "./app/screens/ShootScreenFormat";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { StyleSheet } from "react-native"; //components
 
-const Stack = createStackNavigator();
+const Stack = createMaterialTopTabNavigator();
 
 function MyStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="noonan" component={WelcomeScreen} />
+    <Stack.Navigator initialRouteName={"noonan"} backBehavior={"order"}>
       <Stack.Screen
         name="Bag"
         component={BagScreenFormat}
-        options={{ headerShown: false }}
+        options={[{ headerShown: false, tabBarShowLabel: false }]}
+      />
+      <Stack.Screen
+        name="noonan"
+        component={WelcomeScreen}
+        options={[{ headerShown: false, tabBarShowLabel: false }]}
       />
       <Stack.Screen
         name="Shoot"
         component={ShootScreenFormat}
-        options={{ headerShown: false }}
+        options={[{ headerShown: false, tabBarShowLabel: false }]}
       />
     </Stack.Navigator>
   );
