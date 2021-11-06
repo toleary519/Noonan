@@ -28,7 +28,7 @@ const shots = [
   { key: 0, club: "60", min: 5, max: 25, minPow: 50 },
   { key: 1, club: "56", min: 26, max: 45, minPow: 50 },
   { key: 2, club: "52", min: 46, max: 80, minPow: 50 },
-  { key: 3, club: "PW", min: 81, max: 139, minPow: 50 },
+  { key: 3, club: "Pw", min: 81, max: 139, minPow: 50 },
   { key: 4, club: "9i", min: 140, max: 159, minPow: 50 },
   { key: 5, club: "8i", min: 150, max: 164, minPow: 50 },
   { key: 6, club: "7i", min: 165, max: 179, minPow: 50 },
@@ -289,7 +289,15 @@ function BagScreenFormat({ navigation }) {
           <View style={styles.editContainer}>
             <View style={styles.editTopContainer}>
               <View style={styles.editClubNameContainer}>
-                <Text style={styles.editClubText}>{editValue.club}</Text>
+                <Text
+                  style={
+                    editValue.club === "Pw" || "60" || "56" || "52"
+                      ? [styles.editClubText, { fontSize: hp("15.5%") }]
+                      : styles.editClubText
+                  }
+                >
+                  {editValue.club}
+                </Text>
               </View>
             </View>
             <View style={styles.valuesContainer}>
@@ -396,6 +404,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontSize: 90,
     paddingLeft: wp("8%"),
+    fontFamily: "Roboto-regular",
   },
   addExitBox: {
     flexDirection: "column",
@@ -437,12 +446,12 @@ const styles = StyleSheet.create({
   },
   elementText: {
     fontSize: hp("2.5%"),
+    fontFamily: "Roboto-regular",
   },
   statsMax: {
     flexDirection: "row",
     justifyContent: "space-between",
     color: "white",
-    // padding,
   },
   statsMin: {
     flexDirection: "row",
@@ -463,8 +472,9 @@ const styles = StyleSheet.create({
   },
   editClubText: {
     textAlign: "left",
-    fontSize: hp("22.5%"),
+    fontSize: hp("20.5%"),
     paddingLeft: wp("8%"),
+    fontFamily: "Roboto-regular",
   },
   editExitBox: {
     flexDirection: "row",
@@ -501,7 +511,6 @@ const styles = StyleSheet.create({
     height: hp("16%"),
     width: wp("29%"),
     borderRadius: 10,
-
     backgroundColor: colors.green,
     borderRightWidth: 2,
     borderRightColor: colors.bg,
@@ -509,6 +518,7 @@ const styles = StyleSheet.create({
   editValuesText: {
     textAlign: "center",
     fontSize: hp("2.5%"),
+    fontFamily: "Roboto-regular",
   },
   explainText: {
     textAlign: "center",
@@ -516,10 +526,12 @@ const styles = StyleSheet.create({
     marginRight: wp("1%"),
     marginLeft: wp("1%"),
     color: colors.bg,
+    fontFamily: "Roboto-regular",
   },
   picker: {
     height: hp("25%"),
     width: wp("50%"),
     fontSize: hp("10%"),
+    fontFamily: "Roboto-regular",
   },
 });
