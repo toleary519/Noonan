@@ -59,11 +59,14 @@ function ShootScreenFormat({ navigation }) {
         <View style={styles.shotDisplayWindow}>
           {distance > 5 ? (
             <View style={{ flexDirection: "row" }}>
-              <Text style={styles.shotDisplayFont}>{execute.club}</Text>
-              <Text style={styles.shotDisplayFont}>{execute.power}</Text>
+              <Text style={styles.shotDisplayClubFont}>{execute.club}</Text>
+              <Text style={styles.shotDisplayPercentFont}>{execute.power}</Text>
+              <Text style={styles.shotDisplayPercentSymbol}>%</Text>
             </View>
           ) : (
-            <Text style={styles.shotDisplayFont}>Noonan</Text>
+            <Text style={[styles.shotDisplayClubFont, { fontSize: hp("8%") }]}>
+              noonan
+            </Text>
           )}
         </View>
       </View>
@@ -82,16 +85,16 @@ function ShootScreenFormat({ navigation }) {
         <View style={styles.dashboardDisplayBox}>
           <View style={styles.dashboardElement}>
             {distance ? (
-              <Text style={(styles.font, { fontSize: 25 })}>{distance}</Text>
+              <Text style={(styles.font, { fontSize: 40 })}>{distance}</Text>
             ) : (
-              <Text style={(styles.font, { fontSize: 25 })}>0</Text>
+              <Text style={(styles.font, { fontSize: 40 })}>0</Text>
             )}
           </View>
           <View style={styles.dashboardElement}>
-            <Text style={(styles.font, { fontSize: 25 })}>{elevation}</Text>
+            <Text style={(styles.font, { fontSize: 40 })}>{elevation}</Text>
           </View>
           <View style={styles.dashboardElement}>
-            <Text style={(styles.font, { fontSize: 25 })}>{wind}</Text>
+            <Text style={(styles.font, { fontSize: 40 })}>{wind}</Text>
           </View>
         </View>
         <View style={styles.elevationBox}>
@@ -202,73 +205,90 @@ const styles = StyleSheet.create({
     paddingTop: hp("5%"),
   },
   shotDisplayContainer: {
-    flex: 2,
-  },
-  shotDisplayWindow: {
-    position: "relative",
-    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.green,
     width: wp("86%"),
-    height: hp("12%"),
-    top: hp("4.5%"),
+    height: hp("15%"),
     left: wp("8%"),
-    borderRadius: 10,
+    marginBottom: hp("3.5%"),
   },
-  shotDisplayFont: {
+  shotDisplayWindow: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    width: wp("86%"),
+    height: hp("20%"),
+    borderRadius: 10,
+    marginTop: hp("1.5%"),
+    marginLeft: wp("6%"),
+    marginRight: wp("6%"),
+  },
+  shotDisplayClubFont: {
     textAlign: "center",
-    paddingTop: 4,
-    paddingLeft: 10,
-    paddingRight: 10,
-    fontSize: 40,
+    // paddingLeft: wp("2.6"), //10
+    // paddingRight: wp("6%"), //25
+    fontSize: hp("10%"),
     fontWeight: "bold",
-    color: colors.bg,
+  },
+  shotDisplayPercentFont: {
+    textAlign: "center",
+    paddingTop: hp("4.8%"),
+    paddingLeft: wp("2.6"),
+    paddingRight: wp("2.6"),
+    fontSize: hp("6%"),
+    fontWeight: "bold",
+  },
+  shotDisplayPercentSymbol: {
+    textAlign: "center",
+    paddingTop: hp("8.4%"),
+    paddingRight: wp("1.6"),
+    fontSize: hp("2%"),
+    fontWeight: "bold",
   },
   dashboardContainer: {
-    flex: 3,
     flexDirection: "row",
     justifyContent: "space-around",
     width: wp("86%"),
-    top: hp("17%"),
+    height: hp("20%"),
     left: wp("8%"),
   },
   dashboardLabelBox: {
     flexDirection: "column",
+    marginRight: wp("2.7%"),
   },
   dashboardDisplayBox: {
     flexDirection: "column",
   },
-  // elevationBox: {
-  //   flexDirection: "column",
-  // },
-  // windBox: {
-  //   flexDirection: "column",
-  // },
+  elevationBox: {
+    flexDirection: "column",
+  },
+  windBox: {
+    flexDirection: "column",
+  },
   dashboardElement: {
     justifyContent: "center",
     alignItems: "center",
     height: wp("14.6%"),
-    width: wp("14.6%"),
+    width: wp("18.6%"),
     borderRadius: 10,
-    margin: 10,
+    marginRight: wp("2.7%"),
+    marginLeft: wp("2.7%"),
   },
   // elevationElement: {},
   // windElement: {},
   clearContainer: {
-    flex: 1,
     flexDirection: "row",
-    height: 65,
+    alignItems: "center",
+    height: hp("6%"),
+    marginTop: hp("2.5%"),
   },
   clearButton: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
     backgroundColor: colors.red,
     width: wp("86%"),
-    height: hp("5.5%"),
-    top: hp("45%"),
+    height: hp("5.5"),
     left: wp("8%"),
     borderRadius: 10,
   },
@@ -276,7 +296,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-around",
     width: wp("86%"),
-    top: hp("53%"),
     left: wp("8%"),
   },
   calcButtonRow: {
@@ -284,14 +303,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   calcButton: {
-    backgroundColor: colors.brown,
+    backgroundColor: colors.green,
     height: wp("17.6%"),
     width: wp("17.6%"),
     borderRadius: 10,
-    margin: 10,
+    marginTop: hp("2.4%"), //20
+    marginLeft: wp("5.3%"), //20
+    marginRight: wp("5.3%"), //20
   },
   font: {
-    fontSize: 18,
+    fontSize: hp("2.3%"), //19
     textAlign: "center",
+    fontWeight: "bold",
   },
 });
