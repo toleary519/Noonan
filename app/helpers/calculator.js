@@ -15,12 +15,10 @@ const getClub = (distance) => {
   for (const shot of shots) {
     if (distance >= shot.min && distance <= shot.max) {
       execute.club = shot.club;
-      execute.power =
-        parseFloat(
-          shot.minPow +
-            ((100 - shot.minPow) / (shot.max - shot.min)) *
-              (distance - shot.min)
-        ).toFixed(2) + " %";
+      execute.power = Math.round(
+        shot.minPow +
+          ((100 - shot.minPow) / (shot.max - shot.min)) * (distance - shot.min)
+      );
     }
   }
 
