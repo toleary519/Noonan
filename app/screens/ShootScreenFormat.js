@@ -72,68 +72,68 @@ function ShootScreenFormat({ navigation }) {
       </View>
       <View style={styles.dashboardContainer}>
         <View style={styles.dashboardLabelBox}>
-          <View style={styles.dashboardElement}>
-            <Text style={styles.font}>Distance</Text>
-          </View>
-          <View style={styles.dashboardElement}>
-            <Text style={styles.font}>Elevation</Text>
-          </View>
-          <View style={styles.dashboardElement}>
-            <Text style={styles.font}>Wind</Text>
-          </View>
+          <Text style={styles.labelElement}>Distance</Text>
+          <Text style={styles.labelElement}>Elevation</Text>
+          <Text style={styles.labelElement}>Wind</Text>
         </View>
         <View style={styles.dashboardDisplayBox}>
-          <View style={styles.dashboardElement}>
+          <View>
             {distance ? (
-              <Text style={(styles.font, { fontSize: 40 })}>{distance}</Text>
+              <Text style={styles.displayElement}>{distance}</Text>
             ) : (
-              <Text style={(styles.font, { fontSize: 40 })}>0</Text>
+              <Text style={styles.displayElement}>0</Text>
             )}
           </View>
-          <View style={styles.dashboardElement}>
-            <Text style={(styles.font, { fontSize: 40 })}>{elevation}</Text>
-          </View>
-          <View style={styles.dashboardElement}>
-            <Text style={(styles.font, { fontSize: 40 })}>{wind}</Text>
-          </View>
+
+          <Text style={styles.displayElement}>{elevation}</Text>
+
+          <Text style={styles.displayElement}>{wind}</Text>
         </View>
         <View style={styles.elevationBox}>
-          <View style={styles.dashboardElement}>
-            <Feather size={45} name="arrow-up-circle" onPress={handleEleUP} />
+          <View style={[styles.elevationElement, { marginTop: hp("1%") }]}>
+            <Feather
+              size={hp("5%")}
+              name="arrow-up-circle"
+              onPress={handleEleUP}
+            />
           </View>
-          <View style={styles.dashboardElement}>
-            {/* <Foundation name="mountains" size={45} color="black" /> */}
+          <View style={styles.elevationElement}>
+            {/* <Foundation name="mountains" size={55} color="black" /> */}
             <MaterialCommunityIcons
               name="elevation-rise"
-              size={38}
+              size={hp("5%")}
               color="black"
             />
           </View>
-          <View style={styles.dashboardElement}>
+          <View style={styles.elevationElement}>
             <Feather
-              size={45}
+              size={hp("5%")}
               name="arrow-down-circle"
               onPress={handleEleDWN}
             />
           </View>
         </View>
         <View style={styles.windBox}>
-          <View style={styles.dashboardElement}>
+          <View style={[styles.windElement, { marginTop: hp("1%") }]}>
             <Feather
-              size={45}
+              size={hp("5%")}
               name="arrow-down-circle"
               onPress={handleWindUP}
             />
           </View>
-          <View style={styles.dashboardElement}>
+          <View style={styles.windElement}>
             <MaterialCommunityIcons
               name="weather-windy"
-              size={38}
+              size={hp("5%")}
               color="black"
             />
           </View>
-          <View style={styles.dashboardElement}>
-            <Feather size={45} name="arrow-up-circle" onPress={handleWindDWN} />
+          <View style={styles.windElement}>
+            <Feather
+              size={hp("5%")}
+              name="arrow-up-circle"
+              onPress={handleWindDWN}
+            />
           </View>
         </View>
       </View>
@@ -254,28 +254,46 @@ const styles = StyleSheet.create({
   },
   dashboardLabelBox: {
     flexDirection: "column",
-    marginRight: wp("2.7%"),
+    height: wp("15%"),
+    width: wp("26.3%"),
+    marginTop: hp("2%"),
+  },
+  labelElement: {
+    height: wp("14.6%"),
+    width: wp("25.6%"),
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+    textAlign: "center",
   },
   dashboardDisplayBox: {
     flexDirection: "column",
+    height: wp("15%"),
+    width: wp("26%"),
+    marginRight: wp("2%"),
+  },
+  displayElement: {
+    height: wp("14.6%"),
+    width: wp("25.6%"),
+    fontSize: hp("4%"),
+    textAlign: "center",
   },
   elevationBox: {
     flexDirection: "column",
+    width: wp("19.3%"),
   },
   windBox: {
     flexDirection: "column",
+    width: wp("19.3%"),
   },
-  dashboardElement: {
-    justifyContent: "center",
-    alignItems: "center",
+  elevationElement: {
     height: wp("14.6%"),
-    width: wp("18.6%"),
-    borderRadius: 10,
-    marginRight: wp("2.7%"),
-    marginLeft: wp("2.7%"),
+    width: wp("19.3%"),
+    // marginTop: hp("1%"),
   },
-  // elevationElement: {},
-  // windElement: {},
+  windElement: {
+    height: wp("14.6%"),
+    width: wp("19.3%"),
+  },
   clearContainer: {
     flexDirection: "row",
     alignItems: "center",
