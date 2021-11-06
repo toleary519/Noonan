@@ -8,7 +8,7 @@ import { Feather } from "@expo/vector-icons";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#edf6f9",
+    backgroundColor: "#F6F2E7",
   },
   top: {
     justifyContent: "space-around",
