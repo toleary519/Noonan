@@ -167,7 +167,8 @@ function BagScreenFormat({ navigation }) {
             </View>
             <View style={styles.explinationContainer}>
               <View style={styles.explinationElement}>
-                <Text style={styles.editValuesText}>explain</Text>
+                <Text style={styles.editValuesText}>-MAX-</Text>
+                <Text style={styles.editValuesText}>How far do you hit</Text>
               </View>
               <View style={styles.explinationElement}>
                 <Text style={styles.editValuesText}>explain</Text>
@@ -313,15 +314,26 @@ function BagScreenFormat({ navigation }) {
             </View>
             <View style={styles.explinationContainer}>
               <View style={styles.explinationElement}>
-                <Text style={styles.editValuesText}>explain</Text>
+                <Text style={styles.explainText}>-MAX-</Text>
+                <Text style={styles.explainText}>
+                  How far do you hit {editValue.club} with a full swing?
+                </Text>
               </View>
               <View style={styles.explinationElement}>
-                <Text style={styles.editValuesText}>explain</Text>
+                <Text style={styles.explainText}>-% Power-</Text>
+                <Text style={styles.explainText}>
+                  What is the minimum power you would hit this club before
+                  clubbing down?
+                </Text>
               </View>
               <View
                 style={[styles.explinationElement, { borderRightWidth: 0 }]}
               >
-                <Text style={styles.editValuesText}>explain</Text>
+                <Text style={styles.explainText}>-Min-</Text>
+                <Text style={styles.explainText}>
+                  How far do you hit {editValue.club} with a{" "}
+                  {editClubPercent ? editClubPercent : editValue.minPow}% swing?
+                </Text>
               </View>
             </View>
             <View style={styles.editExitBox}>
@@ -485,6 +497,13 @@ const styles = StyleSheet.create({
   editValuesText: {
     textAlign: "center",
     fontSize: hp("2.5%"),
+  },
+  explainText: {
+    textAlign: "center",
+    fontSize: hp("1%"),
+    marginRight: wp("1%"),
+    marginLeft: wp("1%"),
+    color: colors.bg,
   },
   picker: {
     height: hp("25%"),
