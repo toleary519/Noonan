@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     fontSize: 40,
     fontWeight: "bold",
+    fontFamily: "Roboto-regular",
   },
   special: {
     textAlign: "center",
@@ -22,5 +23,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     color: "#FC440F",
+    fontFamily: "Roboto-regular",
   },
 });
