@@ -48,24 +48,21 @@ function ShootScreenFormat({ navigation }) {
 
   return (
     <View style={styles.shootScreenContainer}>
-      <Ionicons
-        name="ios-exit-outline"
-        onPress={() => navigation.navigate("noonan")}
-        size={32}
-        color="black"
-        // style={{ transform: [{ rotateX: "90deg" }] }}
-      />
       <View style={styles.shotDisplayContainer}>
         <View style={styles.shotDisplayWindow}>
           {distance > 5 ? (
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.shotDisplayClubFont}>{execute.club}</Text>
-              <Text style={styles.shotDisplayPercentFont}>{execute.power}</Text>
-              <Text style={styles.shotDisplayPercentSymbol}>%</Text>
+              <View style={{ flexDirection: "row" }}>
+                <Text style={styles.shotDisplayPercentFont}>
+                  {execute.power}
+                </Text>
+                <Text style={styles.shotDisplayPercentSymbol}>%</Text>
+              </View>
             </View>
           ) : (
-            <Text style={[styles.shotDisplayClubFont, { fontSize: hp("8%") }]}>
-              noonan
+            <Text style={[styles.shotDisplayClubFont, { fontSize: hp("4%") }]}>
+              enter distance
             </Text>
           )}
         </View>
@@ -225,8 +222,8 @@ const styles = StyleSheet.create({
   },
   shotDisplayClubFont: {
     textAlign: "center",
-    // paddingLeft: wp("2.6"), //10
-    // paddingRight: wp("6%"), //25
+
+    marginRight: wp("6%"), //25
     fontSize: hp("10%"),
     fontWeight: "bold",
   },
