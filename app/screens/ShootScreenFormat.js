@@ -82,9 +82,29 @@ function ShootScreenFormat({ navigation }) {
             )}
           </View>
 
-          <Text style={styles.displayElement}>{elevation}</Text>
+          <Text
+            style={
+              elevation > 0
+                ? [styles.displayElement, { color: "#F0544F" }]
+                : elevation < 0
+                ? [styles.displayElement, { color: "#00C49A" }]
+                : styles.displayElement
+            }
+          >
+            {Math.abs(elevation)}
+          </Text>
 
-          <Text style={styles.displayElement}>{wind}</Text>
+          <Text
+            style={
+              wind > 0
+                ? [styles.displayElement, { color: "#F0544F" }]
+                : wind < 0
+                ? [styles.displayElement, { color: "#00C49A" }]
+                : styles.displayElement
+            }
+          >
+            {Math.abs(wind)}
+          </Text>
         </View>
         <View style={styles.elevationBox}>
           <View style={[styles.elevationElement, { marginTop: hp("1%") }]}>
@@ -114,8 +134,8 @@ function ShootScreenFormat({ navigation }) {
           <View style={[styles.windElement, { marginTop: hp("1%") }]}>
             <Feather
               size={hp("5%")}
-              name="arrow-down-circle"
-              onPress={handleWindUP}
+              name="arrow-up-circle"
+              onPress={handleWindDWN}
             />
           </View>
           <View style={styles.windElement}>
@@ -128,8 +148,8 @@ function ShootScreenFormat({ navigation }) {
           <View style={styles.windElement}>
             <Feather
               size={hp("5%")}
-              name="arrow-up-circle"
-              onPress={handleWindDWN}
+              name="arrow-down-circle"
+              onPress={handleWindUP}
             />
           </View>
         </View>
