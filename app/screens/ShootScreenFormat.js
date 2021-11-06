@@ -246,6 +246,7 @@ const styles = StyleSheet.create({
     marginRight: wp("6%"), //25
     fontSize: hp("10%"),
     fontWeight: "bold",
+    fontFamily: "Roboto-regular",
   },
   shotDisplayPercentFont: {
     textAlign: "center",
@@ -254,6 +255,7 @@ const styles = StyleSheet.create({
     paddingRight: wp("2.6"),
     fontSize: hp("6%"),
     fontWeight: "bold",
+    fontFamily: "Roboto-regular",
   },
   shotDisplayPercentSymbol: {
     textAlign: "center",
@@ -261,6 +263,7 @@ const styles = StyleSheet.create({
     paddingRight: wp("1.6"),
     fontSize: hp("2%"),
     fontWeight: "bold",
+    fontFamily: "Roboto-regular",
   },
   dashboardContainer: {
     flexDirection: "row",
@@ -281,6 +284,7 @@ const styles = StyleSheet.create({
     fontSize: hp("2%"),
     fontWeight: "bold",
     textAlign: "center",
+    fontFamily: "Roboto-regular",
   },
   dashboardDisplayBox: {
     flexDirection: "column",
@@ -293,6 +297,7 @@ const styles = StyleSheet.create({
     width: wp("25.6%"),
     fontSize: hp("4%"),
     textAlign: "center",
+    fontFamily: "Roboto-regular",
   },
   elevationBox: {
     flexDirection: "column",
@@ -350,5 +355,6 @@ const styles = StyleSheet.create({
     fontSize: hp("2.3%"), //19
     textAlign: "center",
     fontWeight: "bold",
+    fontFamily: "Roboto-regular",
   },
 });
