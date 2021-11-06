@@ -167,16 +167,28 @@ function BagScreenFormat({ navigation }) {
             </View>
             <View style={styles.explinationContainer}>
               <View style={styles.explinationElement}>
-                <Text style={styles.editValuesText}>-MAX-</Text>
-                <Text style={styles.editValuesText}>How far do you hit</Text>
+                <Text style={styles.explainText}>-MAX-</Text>
+                <Text style={styles.explainText}>
+                  How far do you hit {pickerValue} with a full swing?
+                </Text>
               </View>
               <View style={styles.explinationElement}>
-                <Text style={styles.editValuesText}>explain</Text>
+                <Text style={styles.explainText}>-% Power-</Text>
+                <Text style={styles.explainText}>
+                  What is the minimum power you would hit this club before
+                  clubbing down?
+                </Text>
               </View>
               <View
                 style={[styles.explinationElement, { borderRightWidth: 0 }]}
               >
-                <Text style={styles.editValuesText}>explain</Text>
+                <Text style={styles.explainText}>-MIN-</Text>
+                <Text style={styles.explainText}>
+                  How far do you hit {pickerValue}{" "}
+                  {addClubPercent
+                    ? `with a ${addClubPercent} % swing?`
+                    : `on your most conservative swing?`}
+                </Text>
               </View>
             </View>
             <View style={styles.editExitBox}>
@@ -329,7 +341,7 @@ function BagScreenFormat({ navigation }) {
               <View
                 style={[styles.explinationElement, { borderRightWidth: 0 }]}
               >
-                <Text style={styles.explainText}>-Min-</Text>
+                <Text style={styles.explainText}>-MIN-</Text>
                 <Text style={styles.explainText}>
                   How far do you hit {editValue.club} with a{" "}
                   {editClubPercent ? editClubPercent : editValue.minPow}% swing?
