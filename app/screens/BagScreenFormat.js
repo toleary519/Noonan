@@ -306,6 +306,7 @@ function BagScreenFormat({ navigation }) {
             color={colors.green}
             style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
           />
+          {/* <BROKEN DELETE FUNCTION NEEDS TO BE UPDATED TO WORK WITH NEW FUNCTIONALITY ********************************> */}
           {/* <AntDesign
             name="delete"
             onPress={() => {
@@ -315,6 +316,7 @@ function BagScreenFormat({ navigation }) {
             size={60}
             color={colors.red}
           /> */}
+          {/* <BROKEN DELETE FUNCTION NEEDS TO BE UPDATED TO WORK WITH NEW FUNCTIONALITY ********************************> */}
         </View>
       </View>
       {/* <RIGHT SIDE STARTS HERE ****************************************************************> */}
