@@ -121,6 +121,7 @@ function BagScreenFormat({ navigation }) {
   };
 
   return (
+    // <REMOVE THE MODAL AND SET IT UP AS THE ALTERNANTIVE TO THE EDIT ****************************************************************>
     <View style={styles.bagContainer}>
       {addModalOpen ? (
         <View style={styles.editContainer}>
