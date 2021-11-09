@@ -7,7 +7,7 @@ import {
 import CalcButton from "../helpers/components/CalcButton";
 import { ClearButton } from "../helpers/components/FuncButtons";
 import { getClub } from "../helpers/calculator";
-import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../assets/colors/colors";
 
 function ShootScreenFormat({ navigation }) {
@@ -115,7 +115,6 @@ function ShootScreenFormat({ navigation }) {
             />
           </View>
           <View style={styles.elevationElement}>
-            {/* <Foundation name="mountains" size={55} color="black" /> */}
             <MaterialCommunityIcons
               name="elevation-rise"
               size={hp("5%")}
