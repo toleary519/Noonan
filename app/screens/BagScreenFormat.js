@@ -161,7 +161,7 @@ function BagScreenFormat({ navigation }) {
               <View style={styles.explinationElement}>
                 <Text style={styles.explainText}>-% Power-</Text>
                 <Text style={styles.explainText}>
-                  What is the minimum power you would hit this club before
+                  What is the minimum power you would swing this club before
                   clubbing down?
                 </Text>
               </View>
@@ -268,7 +268,7 @@ function BagScreenFormat({ navigation }) {
               <View style={styles.explinationElement}>
                 <Text style={styles.explainText}>-% Power-</Text>
                 <Text style={styles.explainText}>
-                  What is the minimum power you would hit this club before
+                  What is the minimum power you would swing this club before
                   clubbing down?
                 </Text>
               </View>
