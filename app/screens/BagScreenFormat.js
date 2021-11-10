@@ -107,9 +107,9 @@ function BagScreenFormat({ navigation }) {
   const editClub = (item) => {
     for (const shot of shots) {
       if (shot.club === item.club) {
-        shot.max = Number(editClubMax);
-        shot.min = Number(editClubMin);
-        shot.minPow = Number(editClubPercent);
+        shot.max = Number(editClubMax) || shot.max;
+        shot.min = Number(editClubMin) || shot.min;
+        shot.minPow = Number(editClubPercent) || shot.minPow;
       }
     }
   };
