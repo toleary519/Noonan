@@ -42,6 +42,8 @@ const shots = [
   { key: 14, club: "6i", min: 180, max: 200, minPow: 50 },
 ];
 
+/* <NEEDS TO GO TO STORAGE ^^^^^^^^^^^^^^> */
+
 const reset = { key: null, club: null, min: null, max: null, minPow: null };
 
 const pickerClubs = [
