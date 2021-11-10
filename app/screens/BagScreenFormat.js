@@ -26,9 +26,9 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const shots = [
-  { key: 0, club: "60", min: 5, max: 25, minPow: 50 },
-  { key: 1, club: "56", min: 26, max: 45, minPow: 50 },
-  { key: 2, club: "52", min: 46, max: 80, minPow: 50 },
+  { key: 0, club: "60°", min: 5, max: 25, minPow: 50 },
+  { key: 1, club: "56°", min: 26, max: 45, minPow: 50 },
+  { key: 2, club: "52°", min: 46, max: 80, minPow: 50 },
   { key: 3, club: "Pw", min: 81, max: 139, minPow: 50 },
   { key: 4, club: "9i", min: 140, max: 159, minPow: 50 },
   { key: 5, club: "8i", min: 150, max: 164, minPow: 50 },
@@ -55,10 +55,10 @@ const pickerClubs = [
   "9i",
   "PW",
   "SW",
-  "52",
-  "54",
-  "56",
-  "60",
+  "52°",
+  "54°",
+  "56°",
+  "60°",
 ];
 
 const saveNewClub = (clubOBJ) => {
@@ -237,7 +237,7 @@ function BagScreenFormat({ navigation }) {
             <Text
               style={
                 editValue.club === "Pw" || "60" || "56" || "52"
-                  ? [styles.editClubText, { fontSize: hp("15.5%") }]
+                  ? [styles.editClubText, { fontSize: hp("12.5%") }]
                   : styles.editClubText
               }
             >
