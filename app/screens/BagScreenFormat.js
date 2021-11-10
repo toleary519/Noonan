@@ -34,13 +34,6 @@ const shots = [
   { key: 5, club: "8i", min: 150, max: 164, minPow: 50 },
   { key: 6, club: "7i", min: 165, max: 179, minPow: 50 },
   { key: 7, club: "6i", min: 180, max: 200, minPow: 50 },
-  { key: 8, club: "6i", min: 180, max: 200, minPow: 50 },
-  { key: 9, club: "6i", min: 180, max: 200, minPow: 50 },
-  { key: 10, club: "6i", min: 180, max: 200, minPow: 50 },
-  { key: 11, club: "6i", min: 180, max: 200, minPow: 50 },
-  { key: 12, club: "6i", min: 180, max: 200, minPow: 50 },
-  { key: 13, club: "6i", min: 180, max: 200, minPow: 50 },
-  { key: 14, club: "6i", min: 180, max: 200, minPow: 50 },
 ];
 
 /* <NEEDS TO GO TO STORAGE ^^^^^^^^^^^^^^> */
