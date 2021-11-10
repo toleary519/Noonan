@@ -72,7 +72,7 @@ const saveNewClub = (clubOBJ) => {
 };
 
 function BagScreenFormat({ navigation }) {
-  const [addModalOpen, setAddModalOpen] = useState(false);
+  const [addDisplayOpen, setAddDisplayOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
   const [editValue, setEditValue] = useState(shots[0]);
   const [addClubMin, setAddClubMin] = useState(null);
@@ -123,12 +123,12 @@ function BagScreenFormat({ navigation }) {
   };
 
   return (
-    // <REMOVE THE MODAL AND SET IT UP AS THE ALTERNANTIVE TO THE EDIT ****************************************************************>
+    // <ADD CLUB VIEW BEGINS HERE *****************************************************************************>
     <View style={styles.bagContainer}>
-      {addModalOpen ? (
-        <View style={styles.editContainer}>
-          <View style={styles.editTopContainer}>
-            <View style={styles.editClubNameContainer}>
+      {addDisplayOpen ? (
+        <View style={styles.leftContainer}>
+          <View style={styles.editContainer}>
+            <View style={styles.editTopContainer}>
               <Picker
                 itemStyle={styles.picker}
                 selectedValue={pickerValue}
@@ -141,176 +141,183 @@ function BagScreenFormat({ navigation }) {
                 ))}
               </Picker>
             </View>
+
+            <View style={styles.editChunk}>
+              <View style={styles.explinationElement}>
+                <Text style={styles.explainText}>-MAX-</Text>
+                <Text style={styles.explainText}>
+                  How far do you hit {pickerValue} with a full swing?
+                </Text>
+              </View>
+              <View style={styles.valuesElement}>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setAddClubMax(text)}
+                  value={addClubMax}
+                  placeholder={"yds"}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
+            </View>
+            <View style={styles.editChunk}>
+              <View style={styles.explinationElement}>
+                <Text style={styles.explainText}>-% Power-</Text>
+                <Text style={styles.explainText}>
+                  What is the minimum power you would hit this club before
+                  clubbing down?
+                </Text>
+              </View>
+              <View style={styles.valuesElement}>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setAddClubPercent(text)}
+                  value={addClubPercent}
+                  placeholder={"%"}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
+            </View>
+            <View style={styles.editChunk}>
+              <View
+                style={[styles.explinationElement, { borderRightWidth: 0 }]}
+              >
+                <Text style={styles.explainText}>-MIN-</Text>
+                <Text style={styles.explainText}>
+                  How far do you hit {pickerValue}{" "}
+                  {addClubPercent
+                    ? `with a ${addClubPercent} % swing?`
+                    : `on your most conservative swing?`}
+                </Text>
+              </View>
+              <View style={styles.valuesElement}>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setAddClubMin(text)}
+                  value={addClubMin}
+                  placeholder={"yds"}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
+            </View>
+            <View style={styles.editExitBox}>
+              <AntDesign
+                name="save"
+                onPress={() => {
+                  saveNewClub(newClub);
+                  console.log(shots);
+                  addClearAll();
+                  setAddDisplayOpen(false);
+                }}
+                size={60}
+                color={colors.green}
+                style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
+              />
+              <Ionicons
+                name="remove-circle-outline"
+                onPress={() => {
+                  setAddDisplayOpen(false);
+                  addClearAll();
+                }}
+                size={60}
+                color={colors.red}
+                style={[{ left: wp("4%") }, { padding: hp("1%") }]}
+              />
+            </View>
           </View>
-          <View style={styles.valuesContainer}>
-            <View style={styles.valuesElement}>
-              <TextInput
-                style={styles.editValuesText}
-                onChangeText={(text) => setAddClubMax(text)}
-                value={addClubMax}
-                placeholder={"yds"}
-                keyboardType={"number-pad"}
-                textAlign={"center"}
-              />
-            </View>
-            <View style={styles.valuesElement}>
-              <TextInput
-                style={styles.editValuesText}
-                onChangeText={(text) => setAddClubPercent(text)}
-                value={addClubPercent}
-                placeholder={"% pow"}
-                keyboardType={"number-pad"}
-                textAlign={"center"}
-              />
-            </View>
-            <View style={styles.valuesElement}>
-              <TextInput
-                style={styles.editValuesText}
-                onChangeText={(text) => setAddClubMin(text)}
-                value={addClubMin}
-                placeholder={"yds"}
-                keyboardType={"number-pad"}
-                textAlign={"center"}
-              />
+        </View>
+      ) : null}
+      {/* // <ADD CLUB VIEW ENDS HERE *****************************************************************************> */}
+      {/* <EDIT DISPLAY STARTS ****************************************************************************> */}
+      {addDisplayOpen ? null : (
+        <View style={styles.leftContainer}>
+          <View style={styles.editTopContainer}>
+            <View style={styles.editClubNameContainer}>
+              <Text
+                style={
+                  editValue.club === "Pw" || "60" || "56" || "52"
+                    ? [styles.editClubText, { fontSize: hp("15.5%") }]
+                    : styles.editClubText
+                }
+              >
+                {editValue.club}
+              </Text>
             </View>
           </View>
+          <View style={styles.valuesContainer}></View>
           <View style={styles.explinationContainer}>
-            <View style={styles.explinationElement}>
-              <Text style={styles.explainText}>-MAX-</Text>
-              <Text style={styles.explainText}>
-                How far do you hit {pickerValue} with a full swing?
-              </Text>
+            <View style={styles.editChunk}>
+              <View style={styles.explinationElement}>
+                <Text style={styles.explainText}>-MAX-</Text>
+                <Text style={styles.explainText}>
+                  How far do you hit {editValue.club} with a full swing?
+                </Text>
+              </View>
+              <View style={styles.valuesElement}>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setEditClubMax(text)}
+                  value={editClubMax}
+                  placeholder={String(editValue.max)}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
             </View>
-            <View style={styles.explinationElement}>
-              <Text style={styles.explainText}>-% Power-</Text>
-              <Text style={styles.explainText}>
-                What is the minimum power you would hit this club before
-                clubbing down?
-              </Text>
+            <View style={styles.editChunk}>
+              <View style={styles.explinationElement}>
+                <Text style={styles.explainText}>-% Power-</Text>
+                <Text style={styles.explainText}>
+                  What is the minimum power you would hit this club before
+                  clubbing down?
+                </Text>
+              </View>
+              <View style={styles.valuesElement}>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setEditClubPercent(text)}
+                  value={editClubPercent}
+                  placeholder={String(editValue.minPow)}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
             </View>
-            <View style={[styles.explinationElement, { borderRightWidth: 0 }]}>
-              <Text style={styles.explainText}>-MIN-</Text>
-              <Text style={styles.explainText}>
-                How far do you hit {pickerValue}{" "}
-                {addClubPercent
-                  ? `with a ${addClubPercent} % swing?`
-                  : `on your most conservative swing?`}
-              </Text>
+            <View style={styles.editChunk}>
+              <View style={styles.explinationElement}>
+                <Text style={styles.explainText}>-MIN-</Text>
+                <Text style={styles.explainText}>
+                  How far do you hit {editValue.club} with a{" "}
+                  {editClubPercent ? editClubPercent : editValue.minPow}% swing?
+                </Text>
+              </View>
+              <View style={styles.valuesElement}>
+                <TextInput
+                  style={styles.editValuesText}
+                  onChangeText={(text) => setEditClubMin(text)}
+                  value={editClubMin}
+                  placeholder={String(editValue.min)}
+                  keyboardType={"number-pad"}
+                  textAlign={"center"}
+                />
+              </View>
             </View>
           </View>
           <View style={styles.editExitBox}>
             <AntDesign
               name="save"
               onPress={() => {
-                saveNewClub(newClub);
-                console.log(shots);
-                addClearAll();
-                setAddModalOpen(false);
+                editClub(editValue);
+                editClearAll();
               }}
               size={60}
               color={colors.green}
               style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
             />
-            <Ionicons
-              name="ios-exit-outline"
-              onPress={() => {
-                setAddModalOpen(false);
-                addClearAll();
-              }}
-              size={60}
-              color={colors.red}
-              style={[{ left: wp("4%") }, { padding: hp("1%") }]}
-            />
-          </View>
-        </View>
-      ) : null}
-      {/* <EDIT DISPLAY STARTS ****************************************************************************> */}
-      <View style={styles.leftContainer}>
-        <View style={styles.editTopContainer}>
-          <View style={styles.editClubNameContainer}>
-            <Text
-              style={
-                editValue.club === "Pw" || "60" || "56" || "52"
-                  ? [styles.editClubText, { fontSize: hp("15.5%") }]
-                  : styles.editClubText
-              }
-            >
-              {editValue.club}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.valuesContainer}></View>
-        <View style={styles.explinationContainer}>
-          <View style={styles.editChunk}>
-            <View style={styles.explinationElement}>
-              <Text style={styles.explainText}>-MAX-</Text>
-              <Text style={styles.explainText}>
-                How far do you hit {editValue.club} with a full swing?
-              </Text>
-            </View>
-            <View style={styles.valuesElement}>
-              <TextInput
-                style={styles.editValuesText}
-                onChangeText={(text) => setEditClubMax(text)}
-                value={editClubMax}
-                placeholder={String(editValue.max)}
-                keyboardType={"number-pad"}
-                textAlign={"center"}
-              />
-            </View>
-          </View>
-          <View style={styles.editChunk}>
-            <View style={styles.explinationElement}>
-              <Text style={styles.explainText}>-% Power-</Text>
-              <Text style={styles.explainText}>
-                What is the minimum power you would hit this club before
-                clubbing down?
-              </Text>
-            </View>
-            <View style={styles.valuesElement}>
-              <TextInput
-                style={styles.editValuesText}
-                onChangeText={(text) => setEditClubPercent(text)}
-                value={editClubPercent}
-                placeholder={String(editValue.minPow)}
-                keyboardType={"number-pad"}
-                textAlign={"center"}
-              />
-            </View>
-          </View>
-          <View style={styles.editChunk}>
-            <View style={styles.explinationElement}>
-              <Text style={styles.explainText}>-MIN-</Text>
-              <Text style={styles.explainText}>
-                How far do you hit {editValue.club} with a{" "}
-                {editClubPercent ? editClubPercent : editValue.minPow}% swing?
-              </Text>
-            </View>
-            <View style={styles.valuesElement}>
-              <TextInput
-                style={styles.editValuesText}
-                onChangeText={(text) => setEditClubMin(text)}
-                value={editClubMin}
-                placeholder={String(editValue.min)}
-                keyboardType={"number-pad"}
-                textAlign={"center"}
-              />
-            </View>
-          </View>
-        </View>
-        <View style={styles.editExitBox}>
-          <AntDesign
-            name="save"
-            onPress={() => {
-              editClub(editValue);
-              editClearAll();
-            }}
-            size={60}
-            color={colors.green}
-            style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
-          />
-          {/* <BROKEN DELETE FUNCTION NEEDS TO BE UPDATED TO WORK WITH NEW FUNCTIONALITY ********************************> */}
-          {/* <AntDesign
+            {/* <BROKEN DELETE FUNCTION NEEDS TO BE UPDATED TO WORK WITH NEW FUNCTIONALITY ********************************> */}
+            {/* <AntDesign
             name="delete"
             onPress={() => {
               deleteClub(editValue);
@@ -319,9 +326,11 @@ function BagScreenFormat({ navigation }) {
             size={60}
             color={colors.red}
           /> */}
-          {/* <BROKEN DELETE FUNCTION NEEDS TO BE UPDATED TO WORK WITH NEW FUNCTIONALITY ********************************> */}
+            {/* <BROKEN DELETE FUNCTION NEEDS TO BE UPDATED TO WORK WITH NEW FUNCTIONALITY ********************************> */}
+          </View>
         </View>
-      </View>
+      )}
+      {/* <EDIT DISPLAY ENDS HERE ***********************************************************> */}
       {/* <RIGHT SIDE STARTS HERE ****************************************************************> */}
       <ScrollView>
         <View style={styles.rightContainer}>
@@ -331,7 +340,7 @@ function BagScreenFormat({ navigation }) {
           <View style={styles.addExitBox}>
             <Ionicons
               name="md-add-circle-outline"
-              onPress={() => setAddModalOpen(true)}
+              onPress={() => setAddDisplayOpen(true)}
               size={40}
               color={colors.green}
             />
