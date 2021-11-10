@@ -9,6 +9,10 @@ const shots = [
   { key: 7, club: "6i", min: 180, max: 200, minPow: 50 },
 ];
 
+{
+  /* <NEEDS TO GO TO STORAGE ^^^^^^^^^^^^^^> */
+}
+
 const getClub = (distance) => {
   const execute = { club: "", power: "" };
 
