@@ -127,8 +127,11 @@ function BagScreenFormat({ navigation }) {
     // <ADD CLUB VIEW BEGINS HERE *****************************************************************************>
     <View style={styles.bagContainer}>
       {addDisplayOpen ? (
-        <View style={styles.leftContainer}>
-          <View style={styles.editContainer}>
+        <KeyboardAwareScrollView
+          style={styles.leftContainer}
+          extraHeight={hp("15%")}
+        >
+          <View style={styles.leftContainer}>
             <View style={styles.editTopContainer}>
               <Picker
                 itemStyle={styles.picker}
@@ -228,7 +231,7 @@ function BagScreenFormat({ navigation }) {
               />
             </View>
           </View>
-        </View>
+        </KeyboardAwareScrollView>
       ) : null}
       {/* // <ADD CLUB VIEW ENDS HERE *****************************************************************************> */}
       {/* <EDIT DISPLAY STARTS ****************************************************************************> */}
