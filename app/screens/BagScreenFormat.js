@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -232,19 +233,20 @@ function BagScreenFormat({ navigation }) {
       {/* // <ADD CLUB VIEW ENDS HERE *****************************************************************************> */}
       {/* <EDIT DISPLAY STARTS ****************************************************************************> */}
       {addDisplayOpen ? null : (
-        <View style={styles.leftContainer}>
+        <KeyboardAwareScrollView
+          style={styles.leftContainer}
+          extraHeight={hp("15%")}
+        >
           <View style={styles.editTopContainer}>
-            <View style={styles.editClubNameContainer}>
-              <Text
-                style={
-                  editValue.club === "Pw" || "60" || "56" || "52"
-                    ? [styles.editClubText, { fontSize: hp("15.5%") }]
-                    : styles.editClubText
-                }
-              >
-                {editValue.club}
-              </Text>
-            </View>
+            <Text
+              style={
+                editValue.club === "Pw" || "60" || "56" || "52"
+                  ? [styles.editClubText, { fontSize: hp("15.5%") }]
+                  : styles.editClubText
+              }
+            >
+              {editValue.club}
+            </Text>
           </View>
           <View style={styles.valuesContainer}></View>
           <View style={styles.explinationContainer}>
@@ -328,7 +330,7 @@ function BagScreenFormat({ navigation }) {
           /> */}
             {/* <BROKEN DELETE FUNCTION NEEDS TO BE UPDATED TO WORK WITH NEW FUNCTIONALITY ********************************> */}
           </View>
-        </View>
+        </KeyboardAwareScrollView>
       )}
       {/* <EDIT DISPLAY ENDS HERE ***********************************************************> */}
       {/* <RIGHT SIDE STARTS HERE ****************************************************************> */}
