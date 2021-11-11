@@ -36,18 +36,18 @@ const styles = StyleSheet.create({
     flex: 6,
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#F6F2E7",
+    backgroundColor: colors.darkBlack,
   },
   text: {
     textAlign: "center",
     margin: hp("3%"),
     fontSize: hp("8%"),
-    color: colors.green,
+    color: colors.darkGold,
     fontFamily: "Roboto-regular",
   },
   noonan: {
     margin: hp("3%"),
     fontSize: hp("8%"),
-    color: colors.green,
+    color: colors.darkGold,
   },
 });
