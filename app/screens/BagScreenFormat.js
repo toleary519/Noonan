@@ -18,7 +18,7 @@ import { Picker } from "@react-native-picker/picker";
 import AddAClubButton from "../helpers/components/AddAClubButton";
 import { colors } from "../assets/colors/colors";
 import {
-  MaterialCommunityIcons,
+  MaterialIcons,
   EvilIcons,
   AntDesign,
   Ionicons,
@@ -108,12 +108,12 @@ function BagScreenFormat({ navigation }) {
     }
   };
 
-  const deleteClub = (editValue) => {
-    for (const shot of shots) {
-      if ((shot.key = editValue.key)) {
-        shots.splice(shot.key, 1);
+  const deleteAClub = () => {
+    shots.forEach((element, i) => {
+      if (element.key === editValue.key) {
+        shots.splice(i, 1);
       }
-    }
+    });
   };
 
   return (
@@ -125,19 +125,17 @@ function BagScreenFormat({ navigation }) {
           extraHeight={hp("15%")}
         >
           <View style={styles.leftContainer}>
-            <View style={styles.editTopContainer}>
-              <Picker
-                itemStyle={styles.picker}
-                selectedValue={pickerValue}
-                onValueChange={(item) => {
-                  setPickerValue(item);
-                }}
-              >
-                {pickerClubs.map((item) => (
-                  <Picker.Item key={item} value={item} label={item} />
-                ))}
-              </Picker>
-            </View>
+            <Picker
+              itemStyle={styles.picker}
+              selectedValue={pickerValue}
+              onValueChange={(item) => {
+                setPickerValue(item);
+              }}
+            >
+              {pickerClubs.map((item) => (
+                <Picker.Item key={item} value={item} label={item} />
+              ))}
+            </Picker>
 
             <View style={styles.editChunk}>
               <View style={styles.explinationElement}>
@@ -312,6 +310,15 @@ function BagScreenFormat({ navigation }) {
               color={colors.green}
               style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
             />
+            <MaterialIcons
+              name="delete-outline"
+              onPress={() => {
+                deleteAClub(editValue);
+                editClearAll();
+              }}
+              size={60}
+              color={colors.darkRed}
+            />
           </View>
         </KeyboardAwareScrollView>
       )}
@@ -342,7 +349,7 @@ function BagScreenFormat({ navigation }) {
             <TouchableOpacity
               onPress={() => {
                 setEditValue(shots[item.key]);
-                // setEditDisplayOpen(true);
+
                 console.log("Outside - editValue:", editValue);
               }}
             >
@@ -488,6 +495,8 @@ const styles = StyleSheet.create({
     height: hp("25%"),
     width: wp("50%"),
     fontSize: hp("10%"),
+    borderRadius: 10,
     fontFamily: "Roboto-regular",
+    color: "white",
   },
 });
