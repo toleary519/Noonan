@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { colors } from "../../assets/colors/colors";
 
 export default CalcButton = ({ text, onPress, special }) => (
   <TouchableOpacity>
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     fontSize: 40,
     fontWeight: "bold",
-    color: "#FC440F",
+    color: colors.darkRed,
     fontFamily: "Roboto-regular",
   },
 });
