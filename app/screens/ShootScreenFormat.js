@@ -85,7 +85,7 @@ function ShootScreenFormat({ navigation }) {
           <Text
             style={
               elevation > 0
-                ? [styles.displayElement, { color: "#F0544F" }]
+                ? [styles.displayElement, { color: colors.darkRed }]
                 : elevation < 0
                 ? [styles.displayElement, { color: "#00C49A" }]
                 : styles.displayElement
@@ -97,7 +97,7 @@ function ShootScreenFormat({ navigation }) {
           <Text
             style={
               wind > 0
-                ? [styles.displayElement, { color: "#F0544F" }]
+                ? [styles.displayElement, { color: colors.darkRed }]
                 : wind < 0
                 ? [styles.displayElement, { color: "#00C49A" }]
                 : styles.displayElement
@@ -112,13 +112,14 @@ function ShootScreenFormat({ navigation }) {
               size={hp("5%")}
               name="arrow-up-circle"
               onPress={handleEleUP}
+              color={colors.darkGold}
             />
           </View>
           <View style={styles.elevationElement}>
             <MaterialCommunityIcons
               name="elevation-rise"
               size={hp("5%")}
-              color="black"
+              color={colors.darkGold}
             />
           </View>
           <View style={styles.elevationElement}>
@@ -126,6 +127,7 @@ function ShootScreenFormat({ navigation }) {
               size={hp("5%")}
               name="arrow-down-circle"
               onPress={handleEleDWN}
+              color={colors.darkGold}
             />
           </View>
         </View>
@@ -135,13 +137,14 @@ function ShootScreenFormat({ navigation }) {
               size={hp("5%")}
               name="arrow-up-circle"
               onPress={handleWindDWN}
+              color={colors.darkGold}
             />
           </View>
           <View style={styles.windElement}>
             <MaterialCommunityIcons
               name="weather-windy"
               size={hp("5%")}
-              color="black"
+              color={colors.darkGold}
             />
           </View>
           <View style={styles.windElement}>
@@ -149,6 +152,7 @@ function ShootScreenFormat({ navigation }) {
               size={hp("5%")}
               name="arrow-down-circle"
               onPress={handleWindUP}
+              color={colors.darkGold}
             />
           </View>
         </View>
@@ -218,7 +222,9 @@ export default ShootScreenFormat;
 
 const styles = StyleSheet.create({
   shootScreenContainer: {
+    flex: 1,
     paddingTop: hp("5%"),
+    backgroundColor: colors.darkBlack,
   },
   shotDisplayContainer: {
     justifyContent: "center",
@@ -241,11 +247,11 @@ const styles = StyleSheet.create({
   },
   shotDisplayClubFont: {
     textAlign: "center",
-
     marginRight: wp("6%"), //25
     fontSize: hp("10%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
+    color: colors.darkGold,
   },
   shotDisplayPercentFont: {
     textAlign: "center",
@@ -255,6 +261,7 @@ const styles = StyleSheet.create({
     fontSize: hp("6%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
+    color: colors.darkGold,
   },
   shotDisplayPercentSymbol: {
     textAlign: "center",
@@ -263,6 +270,7 @@ const styles = StyleSheet.create({
     fontSize: hp("2%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
+    color: colors.darkGold,
   },
   dashboardContainer: {
     flexDirection: "row",
@@ -284,6 +292,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     fontFamily: "Roboto-regular",
+    color: colors.darkGold,
   },
   dashboardDisplayBox: {
     flexDirection: "column",
@@ -297,6 +306,7 @@ const styles = StyleSheet.create({
     fontSize: hp("4%"),
     textAlign: "center",
     fontFamily: "Roboto-regular",
+    color: colors.darkGold,
   },
   elevationBox: {
     flexDirection: "column",
@@ -325,7 +335,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
-    backgroundColor: colors.red,
+    backgroundColor: colors.darkRed,
     width: wp("86%"),
     height: hp("5.5"),
     left: wp("8%"),
@@ -342,7 +352,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   calcButton: {
-    backgroundColor: colors.green,
+    backgroundColor: colors.darkBlue,
     height: wp("17.6%"),
     width: wp("17.6%"),
     borderRadius: 10,
@@ -355,5 +365,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
+    color: colors.darkGold,
   },
 });
