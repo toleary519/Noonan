@@ -18,22 +18,14 @@ const getFonts = () =>
 
 function MyStack() {
   return (
-    <Stack.Navigator initialRouteName={"noonan"} backBehavior={"order"}>
-      <Stack.Screen
-        name="Bag"
-        component={BagScreenFormat}
-        options={[{ headerShown: false, tabBarShowLabel: false }]}
-      />
-      <Stack.Screen
-        name="noonan"
-        component={WelcomeScreen}
-        options={[{ headerShown: false, tabBarShowLabel: false }]}
-      />
-      <Stack.Screen
-        name="Shoot"
-        component={ShootScreenFormat}
-        options={[{ headerShown: false, tabBarShowLabel: false }]}
-      />
+    <Stack.Navigator
+      initialRouteName={"noonan"}
+      backBehavior={"order"}
+      screenOptions={{ tabBarShowLabel: false }}
+    >
+      <Stack.Screen name="Bag" component={BagScreenFormat} options={[]} />
+      <Stack.Screen name="noonan" component={WelcomeScreen} options={[]} />
+      <Stack.Screen name="Shoot" component={ShootScreenFormat} options={[]} />
     </Stack.Navigator>
   );
 }
