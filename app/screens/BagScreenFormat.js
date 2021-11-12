@@ -69,7 +69,7 @@ const saveNewClub = (clubOBJ) => {
 function BagScreenFormat({ navigation }) {
   const [addDisplayOpen, setAddDisplayOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
-  const [editValue, setEditValue] = useState(shots[0]);
+  const [editValue, setEditValue] = useState(shots[0] || null);
   const [addClubMin, setAddClubMin] = useState(null);
   const [addClubMax, setAddClubMax] = useState(null);
   const [addClubPercent, setAddClubPercent] = useState(null);
@@ -242,7 +242,7 @@ function BagScreenFormat({ navigation }) {
       ) : null}
       {/* // <ADD CLUB VIEW ENDS HERE *****************************************************************************> */}
       {/* <EDIT DISPLAY STARTS ****************************************************************************> */}
-      {addDisplayOpen ? null : (
+      {addDisplayOpen || shots.length === 0 ? null : (
         <KeyboardAwareScrollView
           style={styles.leftContainer}
           extraHeight={hp("15%")}
@@ -339,6 +339,12 @@ function BagScreenFormat({ navigation }) {
         </KeyboardAwareScrollView>
       )}
       {/* <EDIT DISPLAY ENDS HERE ***********************************************************> */}
+      {/* <EMPTY BAG DISPALY **************************************************> */}
+      {shots.length === 0 && !addDisplayOpen ? (
+        <View style={styles.leftContainer}>
+          <Text style={styles.emptyText}>Your bag is empty</Text>
+        </View>
+      ) : null}
       {/* <RIGHT SIDE STARTS HERE ****************************************************************> */}
       <ScrollView style={styles.rightContainer}>
         <View style={styles.titleContainer}>
@@ -516,5 +522,10 @@ const styles = StyleSheet.create({
     color: "white",
     justifyContent: "center",
     alignItems: "center",
+  },
+  emptyText: {
+    fontSize: hp("4%"),
+    fontFamily: "Roboto-regular",
+    textAlign: "center",
   },
 });
