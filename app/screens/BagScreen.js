@@ -122,6 +122,8 @@ const pickerClubs = [
   "Driver",
   "3w",
   "5w",
+  "h3",
+  "h5",
   "1i",
   "2i",
   "3i",
