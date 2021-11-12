@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
@@ -115,6 +116,21 @@ function BagScreenFormat({ navigation }) {
       }
     });
   };
+
+  // const displayDeleteAlert = () => {
+  //   Alert.alert("Delete this club?", "yah, no", [
+  //     {
+  //       Text: "Delete",
+  //       onPress: () => deleteAClub(),
+  //       style: "Delete",
+  //     },
+  //     {
+  //       Text: "Cancel",
+  //       onPress: () => Alert.alert("Cancel Pressed"),
+  //       style: "Cancel",
+  //     },
+  //   ]);
+  // };
 
   return (
     // <ADD CLUB VIEW BEGINS HERE *****************************************************************************>
@@ -313,7 +329,7 @@ function BagScreenFormat({ navigation }) {
             <MaterialIcons
               name="delete-outline"
               onPress={() => {
-                deleteAClub(editValue);
+                deleteAClub();
                 editClearAll();
               }}
               size={60}
@@ -498,5 +514,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontFamily: "Roboto-regular",
     color: "white",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
