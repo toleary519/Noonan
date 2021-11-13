@@ -17,7 +17,7 @@ const LoginScreen = ({ navigation }) => {
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        navigation.navigate("noonan");
+        navigation.navigate("WelcomeScreen");
       }
     });
 
