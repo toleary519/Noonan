@@ -64,7 +64,7 @@ export default function App() {
     }
   });
 
-  if (fontLoaded && isLoggedIn) {
+  if (isLoggedIn) {
     return (
       <NavigationContainer>
         <MyStack />
@@ -73,14 +73,13 @@ export default function App() {
   } else {
     return (
       <NavigationContainer>
-        <AppLoading
+        {/* <AppLoading
           startAsync={getFonts}
           onFinish={() => setFontLoaded(true)}
           onError={(error) => console.warn(error)}
-        />
-        {/* prompt the login screen */}
+        /> */}
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={LoginScreen} options={[]} />
+          <Stack.Screen name="Login" component={LoginScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
