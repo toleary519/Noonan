@@ -5,6 +5,8 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { colors } from "../assets/colors/colors";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 export default function WelcomeScreen({ navigation }) {
   return (
@@ -24,7 +26,18 @@ export default function WelcomeScreen({ navigation }) {
           onPress={() => navigation.navigate("Shoot")}
           title="Shoot!"
         >
-          <Text style={[styles.text, { marginBottom: hp("14%") }]}>Shoot</Text>
+          <Text style={styles.text}>Shoot</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => firebase.auth().signOut()}>
+          <Text
+            style={[
+              styles.text,
+              { marginBottom: hp("14%"), fontSize: hp("4%") },
+            ]}
+          >
+            Logout
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
