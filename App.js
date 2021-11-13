@@ -10,7 +10,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-require("dotenv").config();
 
 const Stack = createMaterialTopTabNavigator();
 
@@ -20,29 +19,18 @@ const getFonts = () =>
     "Roboto-bold": require("./app/assets/fonts/Roboto-Bold.ttf"),
   });
 
+// full app stack
 function MyStack() {
   return (
-    <NavigationContainer>
-      {isLoggedIn ? (
-        <Stack.Navigator
-          initialRouteName={"noonan"}
-          backBehavior={"order"}
-          screenOptions={{ tabBarShowLabel: false }}
-        >
-          <Stack.Screen name="Bag" component={BagScreenFormat} options={[]} />
-          <Stack.Screen name="noonan" component={WelcomeScreen} options={[]} />
-          <Stack.Screen
-            name="Shoot"
-            component={ShootScreenFormat}
-            options={[]}
-          />
-        </Stack.Navigator>
-      ) : (
-        <Stack.Navigator>
-          <Stack.Screen name="Login" component={LoginScreen} options={[]} />
-        </Stack.Navigator>
-      )}
-    </NavigationContainer>
+    <Stack.Navigator
+      initialRouteName={"noonan"}
+      backBehavior={"order"}
+      screenOptions={{ tabBarShowLabel: false }}
+    >
+      <Stack.Screen name="Bag" component={BagScreenFormat} options={[]} />
+      <Stack.Screen name="noonan" component={WelcomeScreen} options={[]} />
+      <Stack.Screen name="Shoot" component={ShootScreenFormat} options={[]} />
+    </Stack.Navigator>
   );
 }
 
@@ -51,14 +39,14 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const firebaseConfig = {
-    apiKey: API_KEY,
-    authDomain: AUTH_DOMAIN,
-    projectId: PROJECT_ID,
-    databaseURL: DATABASE_URL,
-    storageBucket: STORAGE_BUCKET,
-    messagingSenderId: MESSAGING_SENDER_ID,
-    appId: APP_ID,
-    measurementId: MEASUREMENT_ID,
+    // apiKey: API_KEY,
+    // authDomain: AUTH_DOMAIN,
+    // projectId: PROJECT_ID,
+    // databaseURL: DATABASE_URL,
+    // storageBucket: STORAGE_BUCKET,
+    // messagingSenderId: MESSAGING_SENDER_ID,
+    // appId: APP_ID,
+    // measurementId: MEASUREMENT_ID,
   };
   // check if initialized
   if (!firebase.apps.length) {
@@ -74,11 +62,9 @@ export default function App() {
     } else {
       setIsLoggedIn(false);
     }
-
-    // Do other things
   });
 
-  if (fontLoaded) {
+  if (fontLoaded && isLoggedIn) {
     return (
       <NavigationContainer>
         <MyStack />
@@ -86,11 +72,17 @@ export default function App() {
     );
   } else {
     return (
-      <AppLoading
-        startAsync={getFonts}
-        onFinish={() => setFontLoaded(true)}
-        onError={(error) => console.warn(error)}
-      />
+      <NavigationContainer>
+        <AppLoading
+          startAsync={getFonts}
+          onFinish={() => setFontLoaded(true)}
+          onError={(error) => console.warn(error)}
+        />
+        {/* prompt the login screen */}
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={LoginScreen} options={[]} />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
 }
