@@ -1,45 +1,32 @@
-import React, { useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Modal,
-  TextInput,
-  ScrollView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Alert,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet, TextInput, ScrollView } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { Picker } from "@react-native-picker/picker";
-import AddAClubButton from "../helpers/components/AddAClubButton";
 import { colors } from "../assets/colors/colors";
-import {
-  MaterialIcons,
-  EvilIcons,
-  AntDesign,
-  Ionicons,
-} from "@expo/vector-icons";
+import { MaterialIcons, AntDesign, Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-
-const shots = [
-  { key: 0, club: "60°", min: 5, max: 25, minPow: 50 },
-  { key: 1, club: "56°", min: 26, max: 45, minPow: 50 },
-  { key: 2, club: "52°", min: 46, max: 80, minPow: 50 },
-  { key: 3, club: "Pw", min: 81, max: 139, minPow: 50 },
-  { key: 4, club: "9i", min: 140, max: 159, minPow: 50 },
-  { key: 5, club: "8i", min: 150, max: 164, minPow: 50 },
-  { key: 6, club: "7i", min: 165, max: 179, minPow: 50 },
-  { key: 7, club: "6i", min: 180, max: 200, minPow: 50 },
-];
+import { addShotDB } from "../api/firebaseFunct";
+import { collection } from "firebase/firestore";
+import { onSnapshot } from "@firebase/firestore";
+import { getFirestore } from "@firebase/firestore";
+// const shots = [
+//   { key: 0, club: "60°", min: 5, max: 25, minPow: 50 },
+//   { key: 1, club: "56°", min: 26, max: 45, minPow: 50 },
+//   { key: 2, club: "52°", min: 46, max: 80, minPow: 50 },
+//   { key: 3, club: "Pw", min: 81, max: 139, minPow: 50 },
+//   { key: 4, club: "9i", min: 140, max: 159, minPow: 50 },
+//   { key: 5, club: "8i", min: 150, max: 164, minPow: 50 },
+//   { key: 6, club: "7i", min: 165, max: 179, minPow: 50 },
+//   { key: 7, club: "6i", min: 180, max: 200, minPow: 50 },
+// ];
 
 /* <NEEDS TO GO TO STORAGE ^^^^^^^^^^^^^^> */
 
-const reset = { key: null, club: null, min: null, max: null, minPow: null };
+const reset = { club: null, min: null, max: null, minPow: null };
 
 const pickerClubs = [
   "Dr",
@@ -62,14 +49,20 @@ const pickerClubs = [
   "60°",
 ];
 
-const saveNewClub = (clubOBJ) => {
-  shots.push(clubOBJ);
-};
-
 function BagScreenFormat({ navigation }) {
+  const [shots, setShots] = useState([]);
+  const db = getFirestore();
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "shots"), (snapshot) =>
+        setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      ),
+    []
+  );
+  console.log("shots:", shots);
   const [addDisplayOpen, setAddDisplayOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
-  const [editValue, setEditValue] = useState(shots[0] || null);
+  const [editValue, setEditValue] = useState(shots[0] || { ...reset });
   const [addClubMin, setAddClubMin] = useState(null);
   const [addClubMax, setAddClubMax] = useState(null);
   const [addClubPercent, setAddClubPercent] = useState(null);
@@ -77,8 +70,7 @@ function BagScreenFormat({ navigation }) {
   const [editClubMax, setEditClubMax] = useState(null);
   const [editClubPercent, setEditClubPercent] = useState(null);
 
-  let newClub = {
-    key: shots.length,
+  let newDBclub = {
     club: pickerValue,
     min: addClubMin,
     max: addClubMax,
@@ -98,39 +90,6 @@ function BagScreenFormat({ navigation }) {
     setEditClubMax(null);
     setEditClubPercent(null);
   };
-
-  const editClub = (item) => {
-    for (const shot of shots) {
-      if (shot.club === item.club) {
-        shot.max = Number(editClubMax) || shot.max;
-        shot.min = Number(editClubMin) || shot.min;
-        shot.minPow = Number(editClubPercent) || shot.minPow;
-      }
-    }
-  };
-
-  const deleteAClub = () => {
-    shots.forEach((element, i) => {
-      if (element.key === editValue.key) {
-        shots.splice(i, 1);
-      }
-    });
-  };
-
-  // const displayDeleteAlert = () => {
-  //   Alert.alert("Delete this club?", "yah, no", [
-  //     {
-  //       Text: "Delete",
-  //       onPress: () => deleteAClub(),
-  //       style: "Delete",
-  //     },
-  //     {
-  //       Text: "Cancel",
-  //       onPress: () => Alert.alert("Cancel Pressed"),
-  //       style: "Cancel",
-  //     },
-  //   ]);
-  // };
 
   return (
     // <ADD CLUB VIEW BEGINS HERE *****************************************************************************>
@@ -217,7 +176,7 @@ function BagScreenFormat({ navigation }) {
               <AntDesign
                 name="save"
                 onPress={() => {
-                  saveNewClub(newClub);
+                  addShotDB(newDBclub);
                   console.log(shots);
                   addClearAll();
                   setAddDisplayOpen(false);
@@ -367,12 +326,13 @@ function BagScreenFormat({ navigation }) {
         </View>
 
         {shots.map((item) => (
-          <View key={item.key} style={styles.clubElement}>
+          <View key={item.id} style={styles.clubElement}>
             <TouchableOpacity
               onPress={() => {
-                setEditValue(shots[item.key]);
-
-                console.log("Outside - editValue:", editValue);
+                console.log("editValue:", editValue);
+                setEditValue(shots.filter((shot) => shot.id === item.id)[0]);
+                // <gonna need a change in here ******************************************>
+                console.log("filtered shot:", editValue);
               }}
             >
               <View style={styles.clubNameBox}>
