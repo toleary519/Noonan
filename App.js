@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppLoading from "expo-app-loading";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import BagScreenFormat from "./app/screens/BagScreenFormat";
@@ -10,9 +10,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import { getFirestore } from "@firebase/firestore";
 
+// create stack
 const Stack = createMaterialTopTabNavigator();
 
+// fonts to load in
 const getFonts = () =>
   Font.loadAsync({
     "Roboto-regular": require("./app/assets/fonts/Roboto-Regular.ttf"),
@@ -34,6 +37,9 @@ function MyStack() {
   );
 }
 
+{
+  /* <APP BEGINS HERE ****************************************************************> */
+}
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,9 +54,11 @@ export default function App() {
     // appId: APP_ID,
     // measurementId: MEASUREMENT_ID,
   };
+
   // check if initialized
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
+    getFirestore();
   } else {
     firebase.app();
   }
@@ -64,6 +72,7 @@ export default function App() {
     }
   });
 
+  // auth check navigation
   if (isLoggedIn) {
     return (
       <NavigationContainer>
