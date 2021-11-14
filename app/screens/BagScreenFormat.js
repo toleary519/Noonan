@@ -13,20 +13,13 @@ import { addShotDB } from "../api/firebaseFunct";
 import { collection } from "firebase/firestore";
 import { onSnapshot } from "@firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
-// const shots = [
-//   { key: 0, club: "60°", min: 5, max: 25, minPow: 50 },
-//   { key: 1, club: "56°", min: 26, max: 45, minPow: 50 },
-//   { key: 2, club: "52°", min: 46, max: 80, minPow: 50 },
-//   { key: 3, club: "Pw", min: 81, max: 139, minPow: 50 },
-//   { key: 4, club: "9i", min: 140, max: 159, minPow: 50 },
-//   { key: 5, club: "8i", min: 150, max: 164, minPow: 50 },
-//   { key: 6, club: "7i", min: 165, max: 179, minPow: 50 },
-//   { key: 7, club: "6i", min: 180, max: 200, minPow: 50 },
-// ];
 
-/* <NEEDS TO GO TO STORAGE ^^^^^^^^^^^^^^> */
-
-const reset = { club: null, min: null, max: null, minPow: null };
+const load = {
+  club: "load...",
+  min: "load...",
+  max: "load...",
+  minPow: "load...",
+};
 
 const pickerClubs = [
   "Dr",
@@ -50,8 +43,13 @@ const pickerClubs = [
 ];
 
 function BagScreenFormat({ navigation }) {
-  const [shots, setShots] = useState([]);
+  const [shots, setShots] = useState([load]);
+
+  // establish the db for useEffect below
   const db = getFirestore();
+
+  // get the entire shots collection from firestore and map them to shots state,
+  // also pulling out the doc id to use as key below
   useEffect(
     () =>
       onSnapshot(collection(db, "shots"), (snapshot) =>
@@ -59,10 +57,10 @@ function BagScreenFormat({ navigation }) {
       ),
     []
   );
-  console.log("shots:", shots);
+
   const [addDisplayOpen, setAddDisplayOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
-  const [editValue, setEditValue] = useState(shots[0] || { ...reset });
+  const [editValue, setEditValue] = useState(shots[0] || { ...load });
   const [addClubMin, setAddClubMin] = useState(null);
   const [addClubMax, setAddClubMax] = useState(null);
   const [addClubPercent, setAddClubPercent] = useState(null);
@@ -176,8 +174,9 @@ function BagScreenFormat({ navigation }) {
               <AntDesign
                 name="save"
                 onPress={() => {
+                  // firebase function, newDBclub stretched
                   addShotDB(newDBclub);
-                  console.log(shots);
+                  setEditValue(newDBclub);
                   addClearAll();
                   setAddDisplayOpen(false);
                 }}
@@ -304,6 +303,11 @@ function BagScreenFormat({ navigation }) {
           <Text style={styles.emptyText}>Your bag is empty</Text>
         </View>
       ) : null}
+      {/* {!editValue && shots.length !== 0 ? (
+        <View style={styles.leftContainer}>
+          <Text style={styles.emptyText}>Loading...</Text>
+        </View>
+      ) : null} */}
       {/* <RIGHT SIDE STARTS HERE ****************************************************************> */}
       <ScrollView style={styles.rightContainer}>
         <View style={styles.titleContainer}>
@@ -323,15 +327,16 @@ function BagScreenFormat({ navigation }) {
             color={colors.darkRed}
             style={{ left: wp("1%") }}
           />
+          {console.log("shots at bottom:", shots)}
         </View>
 
         {shots.map((item) => (
           <View key={item.id} style={styles.clubElement}>
             <TouchableOpacity
               onPress={() => {
-                console.log("editValue:", editValue);
+                // console.log("editValue:", editValue);
                 setEditValue(shots.filter((shot) => shot.id === item.id)[0]);
-                // <gonna need a change in here ******************************************>
+                // filter the shots array down to single element set edit value with the [0]
                 console.log("filtered shot:", editValue);
               }}
             >
