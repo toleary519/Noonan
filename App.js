@@ -58,6 +58,7 @@ export default function App() {
   // check if initialized
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
+    // get the database
     getFirestore();
   } else {
     firebase.app();
