@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import { collection, getDocs } from "firebase/compat/firestore";
 
-export function addShotDB(newDBclub) {
+const addShotDB = (newDBclub) => {
   firebase
     .firestore()
     .collection("shots")
@@ -9,4 +9,6 @@ export function addShotDB(newDBclub) {
     // .then((snapshot) => snapshot.get())
     // .then((shotData) => shotData.data())
     .catch((err) => console.error(err));
-}
+};
+
+const deleteShot = () => {};
