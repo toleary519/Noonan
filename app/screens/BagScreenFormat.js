@@ -10,8 +10,9 @@ import { Picker } from "@react-native-picker/picker";
 import { colors } from "../assets/colors/colors";
 import { MaterialIcons, AntDesign, Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { addShotDB } from "../api/firebaseFunct";
-import { collection } from "firebase/firestore";
+// import { addShotDB, deleteShotDB } from "../api/firebaseFunct";
+import { doc, deleteDoc, setDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { onSnapshot } from "@firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
 
@@ -45,7 +46,7 @@ const pickerClubs = [
 
 function BagScreenFormat({ navigation }) {
   const [shots, setShots] = useState([]);
-
+  const [editValue, setEditValue] = useState({});
   // establish the db for useEffect below
   const db = getFirestore();
 
@@ -56,6 +57,7 @@ function BagScreenFormat({ navigation }) {
       onSnapshot(collection(db, "shots"), (snapshot) =>
         setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       );
+      setEditValue({ ...shots[0] });
     },
     // <Need to set editValue here ******************************>
     []
@@ -63,7 +65,7 @@ function BagScreenFormat({ navigation }) {
 
   const [addDisplayOpen, setAddDisplayOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
-  const [editValue, setEditValue] = useState({ ...shots[0] });
+
   const [addClubMin, setAddClubMin] = useState(null);
   const [addClubMax, setAddClubMax] = useState(null);
   const [addClubPercent, setAddClubPercent] = useState(null);
@@ -92,7 +94,16 @@ function BagScreenFormat({ navigation }) {
     setEditClubPercent(null);
   };
 
-  const holder = editValue || shots[0];
+  const addShotDB = async (newDBclub) => {
+    // Add a new document with a generated id.
+    const docRef = await addDoc(collection(db, "shots"), { ...newDBclub });
+    console.log("Document written with ID: ", docRef.id);
+  };
+
+  const deleteShotDB = async (id) => {
+    const docRef = await deleteDoc(doc(db, "shots", id));
+    console.log("delete document with ID: ", docRef.id);
+  };
 
   return (
     // <ADD CLUB VIEW BEGINS HERE *****************************************************************************>
@@ -205,101 +216,105 @@ function BagScreenFormat({ navigation }) {
       ) : null}
       {/* // <ADD CLUB VIEW ENDS HERE *****************************************************************************> */}
       {/* <EDIT DISPLAY STARTS ****************************************************************************> */}
-      {addDisplayOpen || shots.length === 0 ? null : (
-        <KeyboardAwareScrollView
-          style={styles.leftContainer}
-          extraHeight={hp("15%")}
-        >
-          <Text
-            style={styles.editClubText}
-            style={
-              editValue.club === "Pw" || "60" || "56" || "52"
-                ? [styles.editClubText, { fontSize: hp("14.5%") }]
-                : styles.editClubText
-            }
-          >
-            {editValue.club}
-          </Text>
-          <View style={styles.editChunk}>
-            <View style={styles.explinationElement}>
-              <Text style={styles.explainText}>-MAX-</Text>
-              <Text style={styles.explainText}>
-                How far do you hit {editValue.club} with a full swing?
+      {addDisplayOpen || shots.length === 0
+        ? null
+        : editValue && (
+            <KeyboardAwareScrollView
+              style={styles.leftContainer}
+              extraHeight={hp("15%")}
+            >
+              <Text
+                style={styles.editClubText}
+                style={
+                  editValue.club === "Pw" || "60" || "56" || "52"
+                    ? [styles.editClubText, { fontSize: hp("14.5%") }]
+                    : styles.editClubText
+                }
+              >
+                {editValue.club}
               </Text>
-            </View>
-            <View style={styles.valuesElement}>
-              <TextInput
-                style={styles.editValuesText}
-                onChangeText={(text) => setEditClubMax(text)}
-                value={editClubMax}
-                placeholder={String(editValue.max)}
-                keyboardType={"number-pad"}
-                textAlign={"center"}
-              />
-            </View>
-          </View>
-          <View style={styles.editChunk}>
-            <View style={styles.explinationElement}>
-              <Text style={styles.explainText}>-% Power-</Text>
-              <Text style={styles.explainText}>
-                What is the minimum power you would swing this club before
-                clubbing down?
-              </Text>
-            </View>
-            <View style={styles.valuesElement}>
-              <TextInput
-                style={styles.editValuesText}
-                onChangeText={(text) => setEditClubPercent(text)}
-                value={editClubPercent}
-                placeholder={String(editValue.minPow)}
-                keyboardType={"number-pad"}
-                textAlign={"center"}
-              />
-            </View>
-          </View>
-          <View style={styles.editChunk}>
-            <View style={styles.explinationElement}>
-              <Text style={styles.explainText}>-MIN-</Text>
-              <Text style={styles.explainText}>
-                How far do you hit {editValue.club} with a{" "}
-                {editClubPercent ? editClubPercent : editValue.minPow}% swing?
-              </Text>
-            </View>
-            <View style={styles.valuesElement}>
-              <TextInput
-                style={styles.editValuesText}
-                onChangeText={(text) => setEditClubMin(text)}
-                value={editClubMin}
-                placeholder={String(editValue.min)}
-                keyboardType={"number-pad"}
-                textAlign={"center"}
-              />
-            </View>
-          </View>
+              <View style={styles.editChunk}>
+                <View style={styles.explinationElement}>
+                  <Text style={styles.explainText}>-MAX-</Text>
+                  <Text style={styles.explainText}>
+                    How far do you hit {editValue.club} with a full swing?
+                  </Text>
+                </View>
+                <View style={styles.valuesElement}>
+                  <TextInput
+                    style={styles.editValuesText}
+                    onChangeText={(text) => setEditClubMax(text)}
+                    value={editClubMax}
+                    placeholder={String(editValue.max)}
+                    keyboardType={"number-pad"}
+                    textAlign={"center"}
+                  />
+                </View>
+              </View>
+              <View style={styles.editChunk}>
+                <View style={styles.explinationElement}>
+                  <Text style={styles.explainText}>-% Power-</Text>
+                  <Text style={styles.explainText}>
+                    What is the minimum power you would swing this club before
+                    clubbing down?
+                  </Text>
+                </View>
+                <View style={styles.valuesElement}>
+                  <TextInput
+                    style={styles.editValuesText}
+                    onChangeText={(text) => setEditClubPercent(text)}
+                    value={editClubPercent}
+                    placeholder={String(editValue.minPow)}
+                    keyboardType={"number-pad"}
+                    textAlign={"center"}
+                  />
+                </View>
+              </View>
+              <View style={styles.editChunk}>
+                <View style={styles.explinationElement}>
+                  <Text style={styles.explainText}>-MIN-</Text>
+                  <Text style={styles.explainText}>
+                    How far do you hit {editValue.club} with a{" "}
+                    {editClubPercent ? editClubPercent : editValue.minPow}%
+                    swing?
+                  </Text>
+                </View>
+                <View style={styles.valuesElement}>
+                  <TextInput
+                    style={styles.editValuesText}
+                    onChangeText={(text) => setEditClubMin(text)}
+                    value={editClubMin}
+                    placeholder={String(editValue.min)}
+                    keyboardType={"number-pad"}
+                    textAlign={"center"}
+                  />
+                </View>
+              </View>
 
-          <View style={styles.editExitBox}>
-            <AntDesign
-              name="save"
-              onPress={() => {
-                editClub(editValue);
-                editClearAll();
-              }}
-              size={60}
-              color={colors.green}
-              style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
-            />
-            <MaterialIcons
-              name="delete-outline"
-              onPress={() => {
-                deleteAClub();
-                editClearAll();
-              }}
-              size={60}
-              color={colors.darkRed}
-            />
-          </View>
-        </KeyboardAwareScrollView>
-      )}
+              <View style={styles.editExitBox}>
+                <AntDesign
+                  name="save"
+                  onPress={() => {
+                    editClub(editValue);
+                    editClearAll();
+                  }}
+                  size={60}
+                  color={colors.green}
+                  style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
+                />
+                <MaterialIcons
+                  name="delete-outline"
+                  onPress={() => {
+                    deleteShotDB(editValue.id);
+                    setEditValue(shots[0]);
+                    editClearAll();
+                  }}
+                  size={60}
+                  color={colors.darkRed}
+                />
+              </View>
+            </KeyboardAwareScrollView>
+          )}
       {/* <EDIT DISPLAY ENDS HERE ***********************************************************> */}
       {/* <EMPTY BAG DISPALY **************************************************> */}
       {shots.length === 0 && !addDisplayOpen ? (
@@ -307,6 +322,11 @@ function BagScreenFormat({ navigation }) {
           <Text style={styles.emptyText}>Your bag is empty</Text>
         </View>
       ) : null}
+      {!editValue && (
+        <View style={styles.leftContainer}>
+          <Text style={styles.emptyText}>Loading...</Text>
+        </View>
+      )}
       {/* <RIGHT SIDE STARTS HERE ****************************************************************> */}
       <ScrollView style={styles.rightContainer}>
         <View style={styles.titleContainer}>
@@ -328,6 +348,7 @@ function BagScreenFormat({ navigation }) {
           />
           {console.log("shots at bottom:", shots)}
           {console.log("shots[0]:", shots[0])}
+          {console.log("editValue:", editValue)}
         </View>
         {shots.map((item) => (
           <View key={item.id} style={styles.clubElement}>
