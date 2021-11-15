@@ -11,4 +11,4 @@ const addShotDB = (newDBclub) => {
     .catch((err) => console.error(err));
 };
 
-const deleteShot = () => {};
+export { addShotDB };
