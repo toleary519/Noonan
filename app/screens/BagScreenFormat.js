@@ -57,7 +57,7 @@ function BagScreenFormat({ navigation }) {
       onSnapshot(collection(db, "shots"), (snapshot) =>
         setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       );
-      setEditValue({ ...shots[0] });
+      setEditValue(shots[0]);
     },
     // <Need to set editValue here ******************************>
     []
@@ -346,7 +346,7 @@ function BagScreenFormat({ navigation }) {
             color={colors.darkRed}
             style={{ left: wp("1%") }}
           />
-          {console.log("shots at bottom:", shots)}
+          {/* {console.log("shots at bottom:", shots)} */}
           {console.log("shots[0]:", shots[0])}
           {console.log("editValue:", editValue)}
         </View>
@@ -354,10 +354,8 @@ function BagScreenFormat({ navigation }) {
           <View key={item.id} style={styles.clubElement}>
             <TouchableOpacity
               onPress={() => {
-                // console.log("editValue:", editValue);
                 setEditValue(shots.filter((shot) => shot.id === item.id)[0]);
                 // filter the shots array down to single element set edit value with the [0]
-                console.log("filtered shot:", editValue);
               }}
             >
               <View style={styles.clubNameBox}>
