@@ -46,7 +46,6 @@ const pickerClubs = [
 
 function BagScreenFormat({ navigation }) {
   const [shots, setShots] = useState([]);
-  const [editValue, setEditValue] = useState({});
   // establish the db for useEffect below
   const db = getFirestore();
 
@@ -57,7 +56,6 @@ function BagScreenFormat({ navigation }) {
       onSnapshot(collection(db, "shots"), (snapshot) =>
         setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       );
-      setEditValue(shots[0]);
     },
     // <Need to set editValue here ******************************>
     []
@@ -65,7 +63,7 @@ function BagScreenFormat({ navigation }) {
 
   const [addDisplayOpen, setAddDisplayOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
-
+  const [editValue, setEditValue] = useState(shots[0]);
   const [addClubMin, setAddClubMin] = useState(null);
   const [addClubMax, setAddClubMax] = useState(null);
   const [addClubPercent, setAddClubPercent] = useState(null);
@@ -94,15 +92,23 @@ function BagScreenFormat({ navigation }) {
     setEditClubPercent(null);
   };
 
+  //add shots to the db after form completed
   const addShotDB = async (newDBclub) => {
     // Add a new document with a generated id.
     const docRef = await addDoc(collection(db, "shots"), { ...newDBclub });
     console.log("Document written with ID: ", docRef.id);
   };
 
+  //deletes shots from the db after delete is clicked
   const deleteShotDB = async (id) => {
     const docRef = await deleteDoc(doc(db, "shots", id));
     console.log("delete document with ID: ", docRef.id);
+  };
+
+  // if in a loading state at the begining checks for shots to populate and then
+  const updateState = () => {
+    shots[0] ? setEditValue({ ...shots[0] }) : null;
+    console.log("update state runs: ********");
   };
 
   return (
@@ -307,7 +313,6 @@ function BagScreenFormat({ navigation }) {
                   onPress={() => {
                     deleteShotDB(editValue.id);
                     setEditValue(shots[0]);
-                    editClearAll();
                   }}
                   size={60}
                   color={colors.darkRed}
@@ -325,6 +330,7 @@ function BagScreenFormat({ navigation }) {
       {!editValue && (
         <View style={styles.leftContainer}>
           <Text style={styles.emptyText}>Loading...</Text>
+          {updateState()}
         </View>
       )}
       {/* <RIGHT SIDE STARTS HERE ****************************************************************> */}
