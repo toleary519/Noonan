@@ -73,8 +73,24 @@ export default function App() {
     }
   });
 
+  const LoadFonts = async () => {
+    await getFonts();
+  };
+
+  if (!fontLoaded) {
+    return (
+      <AppLoading
+        startAsync={LoadFonts}
+        onFinish={() => setFontLoaded(true)}
+        onError={(err) => {
+          console.log(err);
+        }}
+      />
+    );
+  }
+
   // auth check navigation
-  if (isLoggedIn) {
+  if (isLoggedIn && fontLoaded) {
     return (
       <NavigationContainer>
         <MyStack />
@@ -83,11 +99,6 @@ export default function App() {
   } else {
     return (
       <NavigationContainer>
-        {/* <AppLoading
-          startAsync={getFonts}
-          onFinish={() => setFontLoaded(true)}
-          onError={(error) => console.warn(error)}
-        /> */}
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginScreen} />
         </Stack.Navigator>
