@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import { Text, View, StyleSheet, TextInput, ScrollView } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
@@ -15,10 +16,10 @@ import { onSnapshot } from "@firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
 
 const load = {
-  club: "load...",
-  min: "load...",
-  max: "load...",
-  minPow: "load...",
+  club: ".",
+  min: ".",
+  max: ".",
+  minPow: ".",
 };
 
 const pickerClubs = [
@@ -43,7 +44,7 @@ const pickerClubs = [
 ];
 
 function BagScreenFormat({ navigation }) {
-  const [shots, setShots] = useState([load]);
+  const [shots, setShots] = useState([]);
 
   // establish the db for useEffect below
   const db = getFirestore();
@@ -51,16 +52,18 @@ function BagScreenFormat({ navigation }) {
   // get the entire shots collection from firestore and map them to shots state,
   // also pulling out the doc id to use as key below
   useEffect(
-    () =>
+    () => {
       onSnapshot(collection(db, "shots"), (snapshot) =>
         setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      ),
+      );
+    },
+    // <Need to set editValue here ******************************>
     []
   );
 
   const [addDisplayOpen, setAddDisplayOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
-  const [editValue, setEditValue] = useState(shots[0] || { ...load });
+  const [editValue, setEditValue] = useState({ ...shots[0] });
   const [addClubMin, setAddClubMin] = useState(null);
   const [addClubMax, setAddClubMax] = useState(null);
   const [addClubPercent, setAddClubPercent] = useState(null);
@@ -88,6 +91,8 @@ function BagScreenFormat({ navigation }) {
     setEditClubMax(null);
     setEditClubPercent(null);
   };
+
+  const holder = editValue || shots[0];
 
   return (
     // <ADD CLUB VIEW BEGINS HERE *****************************************************************************>
@@ -215,7 +220,6 @@ function BagScreenFormat({ navigation }) {
           >
             {editValue.club}
           </Text>
-
           <View style={styles.editChunk}>
             <View style={styles.explinationElement}>
               <Text style={styles.explainText}>-MAX-</Text>
@@ -303,11 +307,6 @@ function BagScreenFormat({ navigation }) {
           <Text style={styles.emptyText}>Your bag is empty</Text>
         </View>
       ) : null}
-      {/* {!editValue && shots.length !== 0 ? (
-        <View style={styles.leftContainer}>
-          <Text style={styles.emptyText}>Loading...</Text>
-        </View>
-      ) : null} */}
       {/* <RIGHT SIDE STARTS HERE ****************************************************************> */}
       <ScrollView style={styles.rightContainer}>
         <View style={styles.titleContainer}>
@@ -328,8 +327,8 @@ function BagScreenFormat({ navigation }) {
             style={{ left: wp("1%") }}
           />
           {console.log("shots at bottom:", shots)}
+          {console.log("shots[0]:", shots[0])}
         </View>
-
         {shots.map((item) => (
           <View key={item.id} style={styles.clubElement}>
             <TouchableOpacity
