@@ -375,6 +375,10 @@ const styles = StyleSheet.create({
     marginTop: hp("2.4%"), //20
     marginLeft: wp("5.3%"), //20
     marginRight: wp("5.3%"), //20
+    shadowOpacity: 0.7,
+    shadowOffset: { width: wp("-.5%"), height: hp(".5%") },
+    shadowRadius: 5,
+    shadowColor: colors.darkRed,
   },
   font: {
     fontSize: hp("2.3%"), //19
