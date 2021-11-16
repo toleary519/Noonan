@@ -9,17 +9,33 @@ import { ClearButton } from "../helpers/components/FuncButtons";
 import { getClub } from "../helpers/calculator";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../assets/colors/colors";
+import { collection } from "firebase/firestore";
+import { onSnapshot } from "@firebase/firestore";
+import { getFirestore } from "@firebase/firestore";
 
 function ShootScreenFormat({ navigation }) {
+  const [shots, setShots] = useState([]);
   const [distance, setDistance] = useState("");
   const [elevation, setElevation] = useState(0);
   const [wind, setWind] = useState(0);
   const [rough, setRough] = useState(false);
   const [sand, setSand] = useState(false);
 
+  const db = getFirestore();
+
+  useEffect(
+    () => {
+      onSnapshot(collection(db, "shots"), (snapshot) =>
+        setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      );
+    },
+    // <Need to set editValue here ******************************>
+    []
+  );
+
   let actualDistance =
     Number(distance) + elevation + wind + (sand ? 3 : 0) + (rough ? 5 : 0);
-  let execute = getClub(actualDistance);
+  let execute = getClub(actualDistance, shots);
 
   console.log("actual distance:", actualDistance);
 
@@ -214,6 +230,7 @@ function ShootScreenFormat({ navigation }) {
           </View>
         </View>
       </View>
+      {console.log("shots calc: ", shots)}
     </View>
   );
 }
