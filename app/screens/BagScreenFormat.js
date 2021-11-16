@@ -70,6 +70,7 @@ function BagScreenFormat({ navigation }) {
   const [editClubMin, setEditClubMin] = useState(null);
   const [editClubMax, setEditClubMax] = useState(null);
   const [editClubPercent, setEditClubPercent] = useState(null);
+  const [editButton, setEditButton] = useState(true);
 
   let newDBclub = {
     club: pickerValue,
@@ -321,28 +322,38 @@ function BagScreenFormat({ navigation }) {
                   />
                 </View>
               </View>
-
-              <View style={styles.editExitBox}>
-                <AntDesign
-                  name="save"
-                  onPress={() => {
-                    editShotDB(editDBclub, editValue.id);
-                    editClearAll();
-                  }}
-                  size={60}
-                  color={colors.green}
-                  style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
-                />
-                <MaterialIcons
-                  name="delete-outline"
-                  onPress={() => {
-                    deleteShotDB(editValue.id);
-                    setEditValue(shots[0]);
-                  }}
-                  size={60}
-                  color={colors.darkRed}
-                />
-              </View>
+              {editButton ? (
+                <View style={styles.largeEditBtn}>
+                  <TouchableOpacity onPress={() => setEditButton(false)}>
+                    <Text style={styles.emptyText}>EDIT</Text>
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <View style={styles.editExitBox}>
+                  <AntDesign
+                    name="save"
+                    onPress={() => {
+                      editShotDB(editDBclub, editValue.id);
+                      editClearAll();
+                      setEditButton(true);
+                      setEditValue(shots[0]);
+                    }}
+                    size={60}
+                    color={colors.green}
+                    style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
+                  />
+                  <MaterialIcons
+                    name="delete-outline"
+                    onPress={() => {
+                      deleteShotDB(editValue.id);
+                      setEditButton(true);
+                      setEditValue(shots[0]);
+                    }}
+                    size={60}
+                    color={colors.darkRed}
+                  />
+                </View>
+              )}
             </KeyboardAwareScrollView>
           )}
       {/* <EDIT DISPLAY ENDS HERE ***********************************************************> */}
@@ -382,20 +393,22 @@ function BagScreenFormat({ navigation }) {
           {console.log("shots[0]:", shots[0])}
           {console.log("editValue:", editValue)}
         </View>
-        {shots.map((item) => (
-          <View key={item.id} style={styles.clubElement}>
-            <TouchableOpacity
-              onPress={() => {
-                setEditValue(shots.filter((shot) => shot.id === item.id)[0]);
-                // filter the shots array down to single element set edit value with the [0]
-              }}
-            >
-              <View style={styles.clubNameBox}>
-                <Text style={styles.elementText}>{item.club}</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        ))}
+        {shots
+          .sort((a, b) => b.max - a.max)
+          .map((item) => (
+            <View key={item.id} style={styles.clubElement}>
+              <TouchableOpacity
+                onPress={() => {
+                  setEditValue(shots.filter((shot) => shot.id === item.id)[0]);
+                  // filter the shots array down to single element set edit value with the [0]
+                }}
+              >
+                <View style={styles.clubNameBox}>
+                  <Text style={styles.elementText}>{item.club}</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          ))}
       </ScrollView>
     </View>
   );
@@ -542,5 +555,13 @@ const styles = StyleSheet.create({
     fontSize: hp("4%"),
     fontFamily: "Roboto-regular",
     textAlign: "center",
+  },
+  largeEditBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: hp("6%"),
+    width: wp("38%"),
+    borderRadius: 10,
+    backgroundColor: colors.darkRed,
   },
 });
