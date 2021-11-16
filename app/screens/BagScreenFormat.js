@@ -16,13 +16,6 @@ import { collection, addDoc } from "firebase/firestore";
 import { onSnapshot } from "@firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
 
-const load = {
-  club: ".",
-  min: ".",
-  max: ".",
-  minPow: ".",
-};
-
 const pickerClubs = [
   "Dr",
   "3w",
