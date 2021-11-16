@@ -314,11 +314,14 @@ function BagScreenFormat({ navigation }) {
                   />
                 </View>
               </View>
+              {/* <EDIT BUTTON SHOW NO SHOW **************************************************************************> */}
               {editButton ? (
-                <View style={styles.largeEditBtn}>
-                  <TouchableOpacity onPress={() => setEditButton(false)}>
-                    <Text style={styles.emptyText}>EDIT</Text>
-                  </TouchableOpacity>
+                <View style={styles.editExitBox}>
+                  <View style={styles.largeEditBtn}>
+                    <TouchableOpacity onPress={() => setEditButton(false)}>
+                      <Text style={styles.emptyText}>EDIT</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               ) : (
                 <View style={styles.editExitBox}>
@@ -346,6 +349,7 @@ function BagScreenFormat({ navigation }) {
                   />
                 </View>
               )}
+              {/* <EDIT BUTTON SHOW NO SHOW END **********************************************************************> */}
             </KeyboardAwareScrollView>
           )}
       {/* <EDIT DISPLAY ENDS HERE ***********************************************************> */}
@@ -368,20 +372,17 @@ function BagScreenFormat({ navigation }) {
           <Text style={styles.titleText}>bag</Text>
         </View>
         <View style={styles.addExitBox}>
-          <Ionicons
-            name="md-add-circle-outline"
-            onPress={() => setAddDisplayOpen(true)}
-            size={40}
-            color={colors.green}
-          />
-          <Ionicons
-            name="ios-exit-outline"
-            onPress={() => navigation.navigate("noonan")}
-            size={40}
-            color={colors.darkRed}
-            style={{ left: wp("1%") }}
-          />
-          {/* {console.log("shots at bottom:", shots)} */}
+          <View style={styles.addAClubBtn}>
+            <TouchableOpacity onPress={() => setAddDisplayOpen(true)}>
+              <Text style={styles.elementText}>add club</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.backBtn}>
+            <TouchableOpacity onPress={() => navigation.navigate("noonan")}>
+              <Text style={styles.elementText}>back</Text>
+            </TouchableOpacity>
+          </View>
+
           {console.log("shots[0] - bag :", shots[0])}
           {console.log("editValue:", editValue)}
         </View>
@@ -443,17 +444,18 @@ const styles = StyleSheet.create({
   },
   addExitBox: {
     // borderWidth: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: "column",
+    justifyContent: "space-between",
     alignItems: "center",
+    height: hp("12%"),
     width: wp("34%"),
-    marginRight: wp("4%"),
+    marginBottom: hp("1%"),
   },
 
   clubElement: {
     // borderWidth: 1,
     flexDirection: "column",
-    height: hp("6%"),
+    height: hp("7%"),
     width: wp("26.33"),
     justifyContent: "center",
     alignItems: "center",
@@ -549,11 +551,32 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   largeEditBtn: {
+    // borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
     height: hp("6%"),
     width: wp("38%"),
+    marginTop: hp("2%"),
+    marginLeft: wp("3%"),
     borderRadius: 10,
     backgroundColor: colors.darkRed,
+  },
+  addAClubBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: hp("5%"),
+    width: wp("28%"),
+
+    backgroundColor: colors.green,
+    borderRadius: wp("2%"),
+  },
+  backBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: hp("5%"),
+    width: wp("28%"),
+
+    backgroundColor: colors.darkRed,
+    borderRadius: wp("2%"),
   },
 });
