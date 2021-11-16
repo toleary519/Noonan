@@ -250,8 +250,8 @@ function BagScreenFormat({ navigation }) {
               <Text
                 style={styles.editClubText}
                 style={
-                  editValue.club === "Pw" || "60" || "56" || "52"
-                    ? [styles.editClubText, { fontSize: hp("14.5%") }]
+                  editValue.club === "Pw" || "60°" || "56" || "52"
+                    ? [styles.editClubText, { fontSize: hp("13.5%") }]
                     : styles.editClubText
                 }
               >
@@ -468,9 +468,9 @@ const styles = StyleSheet.create({
     left: wp("4%"),
     backgroundColor: colors.darkBlue,
     borderRadius: wp("2%"),
-    shadowOpacity: 0.55,
+    shadowOpacity: 0.6,
     shadowOffset: { width: wp(".5%"), height: hp(".5%") },
-    shadowRadius: 5,
+    shadowRadius: 2,
     shadowColor: colors.darkRed,
   },
   elementText: {
@@ -493,7 +493,6 @@ const styles = StyleSheet.create({
     fontSize: hp("20.5%"),
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
-    textShadowOpacity: 0.7,
     textShadowOffset: { width: wp("-.5%"), height: hp(".5%") },
     textShadowRadius: 5,
     textShadowColor: colors.darkRed,
@@ -512,9 +511,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: hp("2%"),
     borderBottomRightRadius: hp("2%"),
     backgroundColor: colors.darkBlue,
-    shadowOpacity: 0.55,
-    shadowOffset: { width: wp(".5%"), height: hp(".5%") },
-    shadowRadius: 5,
+    shadowOpacity: 0.6,
+    shadowOffset: { width: wp("0%"), height: hp(".5%") },
+    shadowRadius: 2,
     shadowColor: colors.darkRed,
   },
   editChunk: {
@@ -533,9 +532,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: hp("2%"),
     borderBottomLeftRadius: hp("2%"),
     backgroundColor: colors.green,
-    shadowOpacity: 0.55,
+    shadowOpacity: 0.6,
     shadowOffset: { width: wp("-.5%"), height: hp(".5%") },
-    shadowRadius: 5,
+    shadowRadius: 2,
     shadowColor: colors.darkRed,
   },
   editValuesText: {
@@ -576,10 +575,6 @@ const styles = StyleSheet.create({
     marginLeft: wp("3%"),
     borderRadius: 10,
     backgroundColor: colors.darkRed,
-    shadowOpacity: 0.55,
-    shadowOffset: { width: wp(".5%"), height: hp(".5%") },
-    shadowRadius: 5,
-    shadowColor: colors.darkRed,
   },
   addAClubBtn: {
     justifyContent: "center",
