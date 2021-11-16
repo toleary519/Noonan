@@ -139,17 +139,19 @@ function BagScreenFormat({ navigation }) {
           extraHeight={hp("15%")}
         >
           <View style={styles.leftContainer}>
-            <Picker
-              itemStyle={styles.picker}
-              selectedValue={pickerValue}
-              onValueChange={(item) => {
-                setPickerValue(item);
-              }}
-            >
-              {pickerClubs.map((item) => (
-                <Picker.Item key={item} value={item} label={item} />
-              ))}
-            </Picker>
+            <View style={styles.pickerContainer}>
+              <Picker
+                itemStyle={styles.picker}
+                selectedValue={pickerValue}
+                onValueChange={(item) => {
+                  setPickerValue(item);
+                }}
+              >
+                {pickerClubs.map((item) => (
+                  <Picker.Item key={item} value={item} label={item} />
+                ))}
+              </Picker>
+            </View>
 
             <View style={styles.editChunk}>
               <View style={styles.explinationElement}>
@@ -425,15 +427,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.darkBlack,
     marginTop: hp("2%"),
   },
-  topContainer: {
-    flexDirection: "row",
-  },
   titleContainer: {
+    // borderWidth: 1,
+    // borderColor: colors.green,
     justifyContent: "row",
     justifyContent: "center",
     alignItems: "center",
     height: hp("7%"),
-    width: wp("26.33"),
+    width: wp("29.33"),
     margin: wp("2%"),
   },
   titleText: {
@@ -494,7 +495,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
     textShadowOffset: { width: wp("-.5%"), height: hp(".5%") },
-    textShadowRadius: 5,
+    textShadowRadius: 2,
     textShadowColor: colors.darkRed,
   },
   editExitBox: {
@@ -512,7 +513,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: hp("2%"),
     backgroundColor: colors.darkBlue,
     shadowOpacity: 0.6,
-    shadowOffset: { width: wp("0%"), height: hp(".5%") },
+    shadowOffset: { width: wp("0%"), height: hp(".3%") },
     shadowRadius: 2,
     shadowColor: colors.darkRed,
   },
@@ -533,7 +534,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: hp("2%"),
     backgroundColor: colors.green,
     shadowOpacity: 0.6,
-    shadowOffset: { width: wp("-.5%"), height: hp(".5%") },
+    shadowOffset: { width: wp("-.3%"), height: hp(".3%") },
     shadowRadius: 2,
     shadowColor: colors.darkRed,
   },
@@ -550,9 +551,16 @@ const styles = StyleSheet.create({
     color: colors.darkGold,
     fontFamily: "Roboto-regular",
   },
+  pickerContainer: {
+    // borderWidth: 1,
+    // borderColor: colors.green,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   picker: {
-    height: hp("25%"),
+    height: hp("20%"),
     width: wp("50%"),
+    marginBottom: wp("2%"),
     fontSize: hp("10%"),
     borderRadius: 10,
     fontFamily: "Roboto-regular",
@@ -585,7 +593,7 @@ const styles = StyleSheet.create({
     borderRadius: wp("2%"),
     shadowOpacity: 0.55,
     shadowOffset: { width: wp(".5%"), height: hp(".5%") },
-    shadowRadius: 5,
+    shadowRadius: 2,
     shadowColor: colors.darkRed,
   },
   backBtn: {
@@ -597,7 +605,7 @@ const styles = StyleSheet.create({
     borderRadius: wp("2%"),
     shadowOpacity: 0.55,
     shadowOffset: { width: wp(".5%"), height: hp(".5%") },
-    shadowRadius: 5,
+    shadowRadius: 2,
     shadowColor: colors.darkRed,
   },
 });
