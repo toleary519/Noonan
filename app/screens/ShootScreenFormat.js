@@ -272,6 +272,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
+    textShadowOffset: { width: wp("-.3%"), height: hp(".3%") },
+    textShadowRadius: 2,
+    textShadowColor: colors.darkRed,
   },
   shotDisplayPercentFont: {
     textAlign: "center",
@@ -282,6 +285,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
+    textShadowOffset: { width: wp("-.3%"), height: hp(".3%") },
+    textShadowRadius: 2,
+    textShadowColor: colors.darkRed,
   },
   shotDisplayPercentSymbol: {
     textAlign: "center",
@@ -291,6 +297,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
+    textShadowOffset: { width: wp("-.3%"), height: hp(".3%") },
+    textShadowRadius: 2,
+    textShadowColor: colors.darkRed,
   },
   dashboardContainer: {
     // borderWidth: 1,
