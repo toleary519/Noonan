@@ -319,7 +319,7 @@ function BagScreenFormat({ navigation }) {
                 <View style={styles.editExitBox}>
                   <View style={styles.largeEditBtn}>
                     <TouchableOpacity onPress={() => setEditButton(false)}>
-                      <Text style={styles.emptyText}>EDIT</Text>
+                      <Text style={styles.emptyText}>edit</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -374,7 +374,7 @@ function BagScreenFormat({ navigation }) {
         <View style={styles.addExitBox}>
           <View style={styles.addAClubBtn}>
             <TouchableOpacity onPress={() => setAddDisplayOpen(true)}>
-              <Text style={styles.elementText}>add club</Text>
+              <Text style={styles.elementText}>add</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.backBtn}>
@@ -468,6 +468,10 @@ const styles = StyleSheet.create({
     left: wp("4%"),
     backgroundColor: colors.darkBlue,
     borderRadius: wp("2%"),
+    shadowOpacity: 0.55,
+    shadowOffset: { width: wp(".5%"), height: hp(".5%") },
+    shadowRadius: 5,
+    shadowColor: colors.darkRed,
   },
   elementText: {
     fontSize: hp("2.5%"),
@@ -489,6 +493,10 @@ const styles = StyleSheet.create({
     fontSize: hp("20.5%"),
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
+    textShadowOpacity: 0.7,
+    textShadowOffset: { width: wp("-.5%"), height: hp(".5%") },
+    textShadowRadius: 5,
+    textShadowColor: colors.darkRed,
   },
   editExitBox: {
     flexDirection: "row",
@@ -504,6 +512,10 @@ const styles = StyleSheet.create({
     borderTopRightRadius: hp("2%"),
     borderBottomRightRadius: hp("2%"),
     backgroundColor: colors.darkBlue,
+    shadowOpacity: 0.55,
+    shadowOffset: { width: wp(".5%"), height: hp(".5%") },
+    shadowRadius: 5,
+    shadowColor: colors.darkRed,
   },
   editChunk: {
     flexDirection: "row",
@@ -521,6 +533,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: hp("2%"),
     borderBottomLeftRadius: hp("2%"),
     backgroundColor: colors.green,
+    shadowOpacity: 0.55,
+    shadowOffset: { width: wp("-.5%"), height: hp(".5%") },
+    shadowRadius: 5,
+    shadowColor: colors.darkRed,
   },
   editValuesText: {
     textAlign: "center",
@@ -560,23 +576,33 @@ const styles = StyleSheet.create({
     marginLeft: wp("3%"),
     borderRadius: 10,
     backgroundColor: colors.darkRed,
+    shadowOpacity: 0.55,
+    shadowOffset: { width: wp(".5%"), height: hp(".5%") },
+    shadowRadius: 5,
+    shadowColor: colors.darkRed,
   },
   addAClubBtn: {
     justifyContent: "center",
     alignItems: "center",
     height: hp("5%"),
     width: wp("28%"),
-
     backgroundColor: colors.green,
     borderRadius: wp("2%"),
+    shadowOpacity: 0.55,
+    shadowOffset: { width: wp(".5%"), height: hp(".5%") },
+    shadowRadius: 5,
+    shadowColor: colors.darkRed,
   },
   backBtn: {
     justifyContent: "center",
     alignItems: "center",
     height: hp("5%"),
     width: wp("28%"),
-
     backgroundColor: colors.darkRed,
     borderRadius: wp("2%"),
+    shadowOpacity: 0.55,
+    shadowOffset: { width: wp(".5%"), height: hp(".5%") },
+    shadowRadius: 5,
+    shadowColor: colors.darkRed,
   },
 });
