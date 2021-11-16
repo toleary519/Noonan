@@ -111,7 +111,7 @@ function BagScreenFormat({ navigation }) {
     console.log("Document written with ID: ", docRef.id);
   };
 
-  //edit shots in the db, use editCheck fn to only pass non null key,values
+  //edit shots in the db, use editCheck fn to only pass non null key:value pairs
   const editShotDB = async (editDBclub, id) => {
     const docRef = doc(db, "shots", id);
     const payload = editCheck(editDBclub);
@@ -124,7 +124,7 @@ function BagScreenFormat({ navigation }) {
     console.log("delete document with ID: ", docRef.id);
   };
 
-  // if in a loading state at the begining checks for shots to populate and then
+  // if in a loading state at the beginning checks for shots to populate and then sets state
   const updateState = () => {
     shots[0] ? setEditValue({ ...shots[0] }) : null;
     console.log("update state runs: ********");
@@ -215,7 +215,6 @@ function BagScreenFormat({ navigation }) {
               <AntDesign
                 name="save"
                 onPress={() => {
-                  // firebase function, newDBclub stretched
                   addShotDB(newDBclub);
                   setEditValue(newDBclub);
                   addClearAll();
@@ -239,7 +238,7 @@ function BagScreenFormat({ navigation }) {
           </View>
         </KeyboardAwareScrollView>
       ) : null}
-      {/* // <ADD CLUB VIEW ENDS HERE *****************************************************************************> */}
+      {/* // <ADD CLUB VIEW ENDS HERE *********************************************************************> */}
       {/* <EDIT DISPLAY STARTS ****************************************************************************> */}
       {addDisplayOpen || shots.length === 0
         ? null
@@ -357,13 +356,13 @@ function BagScreenFormat({ navigation }) {
         </View>
       ) : null}
       {/* <LOADING CONDITIONAL RENDER SCREEN ************************************************> */}
-      {!editValue && (
+      {!editValue && shots.length !== 0 ? (
         <View style={styles.leftContainer}>
           <Text style={styles.emptyText}>Loading...</Text>
           {updateState()}
         </View>
-      )}
-      {/* <RIGHT SIDE STARTS HERE ******************************************************** **> */}
+      ) : null}
+      {/* <RIGHT SIDE STARTS HERE ***********************************************************> */}
       <ScrollView style={styles.rightContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>bag</Text>
@@ -383,7 +382,7 @@ function BagScreenFormat({ navigation }) {
             style={{ left: wp("1%") }}
           />
           {/* {console.log("shots at bottom:", shots)} */}
-          {console.log("shots[0]:", shots[0])}
+          {console.log("shots[0] - bag :", shots[0])}
           {console.log("editValue:", editValue)}
         </View>
         {shots
