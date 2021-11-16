@@ -23,18 +23,17 @@ function ShootScreenFormat({ navigation }) {
 
   const db = getFirestore();
 
-  useEffect(
-    () => {
-      onSnapshot(collection(db, "shots"), (snapshot) =>
-        setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      );
-    },
-    // <Need to set editValue here ******************************>
-    []
-  );
+  // get shots from data base to set shots data array
+  useEffect(() => {
+    onSnapshot(collection(db, "shots"), (snapshot) =>
+      setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    );
+  }, []);
 
   let actualDistance =
     Number(distance) + elevation + wind + (sand ? 3 : 0) + (rough ? 5 : 0);
+
+  // passing both the actual distance and shots array in state to calculator function in helpers
   let execute = getClub(actualDistance, shots);
 
   console.log("actual distance:", actualDistance);
