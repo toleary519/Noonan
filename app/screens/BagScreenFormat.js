@@ -11,7 +11,7 @@ import { colors } from "../assets/colors/colors";
 import { MaterialIcons, AntDesign, Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 // import { addShotDB, deleteShotDB } from "../api/firebaseFunct";
-import { doc, deleteDoc, setDoc } from "firebase/firestore";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { onSnapshot } from "@firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
@@ -78,6 +78,24 @@ function BagScreenFormat({ navigation }) {
     minPow: addClubPercent,
   };
 
+  let editDBclub = {
+    max: Number(editClubMax) || null,
+    min: Number(editClubMin) || null,
+    minPow: Number(editClubPercent) || null,
+  };
+
+  let editCheck = (editDBclub) => {
+    //convert to entries
+    const asArray = Object.entries(editDBclub);
+    // filter to only include changes
+    const filtered = asArray.filter(([key, value]) => value !== null);
+    //objectify
+    const payload = Object.fromEntries(filtered);
+
+    console.log("payload: ", payload);
+    return payload;
+  };
+
   const addClearAll = () => {
     setPickerValue(pickerClubs[0]);
     setAddClubMin(null);
@@ -97,6 +115,13 @@ function BagScreenFormat({ navigation }) {
     // Add a new document with a generated id.
     const docRef = await addDoc(collection(db, "shots"), { ...newDBclub });
     console.log("Document written with ID: ", docRef.id);
+  };
+
+  //edit shots in the db, use editCheck fn to only pass non null key,values
+  const editShotDB = async (editDBclub, id) => {
+    const docRef = doc(db, "shots", id);
+    const payload = editCheck(editDBclub);
+    await updateDoc(docRef, payload);
   };
 
   //deletes shots from the db after delete is clicked
@@ -301,7 +326,7 @@ function BagScreenFormat({ navigation }) {
                 <AntDesign
                   name="save"
                   onPress={() => {
-                    editClub(editValue);
+                    editShotDB(editDBclub, editValue.id);
                     editClearAll();
                   }}
                   size={60}
@@ -321,19 +346,20 @@ function BagScreenFormat({ navigation }) {
             </KeyboardAwareScrollView>
           )}
       {/* <EDIT DISPLAY ENDS HERE ***********************************************************> */}
-      {/* <EMPTY BAG DISPALY **************************************************> */}
+      {/* <EMPTY BAG DISPALY ****************************************************************> */}
       {shots.length === 0 && !addDisplayOpen ? (
         <View style={styles.leftContainer}>
           <Text style={styles.emptyText}>Your bag is empty</Text>
         </View>
       ) : null}
+      {/* <LOADING CONDITIONAL RENDER SCREEN ************************************************> */}
       {!editValue && (
         <View style={styles.leftContainer}>
           <Text style={styles.emptyText}>Loading...</Text>
           {updateState()}
         </View>
       )}
-      {/* <RIGHT SIDE STARTS HERE ****************************************************************> */}
+      {/* <RIGHT SIDE STARTS HERE ******************************************************** **> */}
       <ScrollView style={styles.rightContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>bag</Text>
