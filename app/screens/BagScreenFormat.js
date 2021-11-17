@@ -551,7 +551,7 @@ const styles = StyleSheet.create({
     fontSize: hp("1%"),
     marginRight: wp("2%"),
     marginLeft: wp("2%"),
-    color: colors.darkGold,
+    color: colors.darkBlack,
     fontFamily: "Roboto-regular",
   },
   pickerContainer: {
@@ -583,7 +583,7 @@ const styles = StyleSheet.create({
     height: hp("6%"),
     width: wp("38%"),
     marginTop: hp("2%"),
-    marginLeft: wp("3%"),
+    marginLeft: wp("4%"),
     borderRadius: 10,
     backgroundColor: colors.darkRed,
   },
@@ -621,7 +621,7 @@ const styles = StyleSheet.create({
   editText: {
     textAlign: "center",
     width: wp("16%"),
-    marginRight: wp("3%"),
+    marginLeft: wp("-1%"),
     fontSize: hp("3%"),
     color: colors.darkBlack,
     fontFamily: "Yellow-tail",
