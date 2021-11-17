@@ -346,7 +346,13 @@ function BagScreenFormat({ navigation }) {
                     }}
                     size={60}
                     color={colors.green}
-                    style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
+                    // style={[{ left: wp("4%") }, { padding: hp("0%") }]}
+                  />
+                  <AntDesign
+                    onPress={() => setEditButton(true)}
+                    name="closecircleo"
+                    size={45}
+                    color={colors.darkBlue}
                   />
                   <MaterialIcons
                     name="delete-outline"
@@ -510,10 +516,14 @@ const styles = StyleSheet.create({
     textShadowColor: colors.darkRed,
   },
   editExitBox: {
+    // borderWidth: 1,
+    // borderColor: colors.green,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+    marginLeft: wp("7%"),
     marginRight: wp("3%"),
+    marginTop: hp("2%"),
   },
   valuesElement: {
     flexDirection: "column",
@@ -590,8 +600,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: hp("6%"),
     width: wp("38%"),
-    marginTop: hp("2%"),
-    marginLeft: wp("4%"),
+    // marginTop: hp("2%"),
+    // marginLeft: wp("4%"),
+    marginLeft: wp("7%"),
+    marginRight: wp("8%"),
+    marginTop: hp("1%"),
     borderRadius: 10,
     backgroundColor: colors.darkRed,
   },
