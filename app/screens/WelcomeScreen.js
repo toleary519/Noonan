@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  StatusBar,
+} from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -11,9 +17,9 @@ import "firebase/compat/auth";
 export default function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={[styles.text, { justifyContent: "flex-start" }]}>
-        Noonan
-      </Text>
+      <StatusBar backgroundColor="colors.darkBlack" />
+
+      <Text style={[styles.text, { fontSize: hp("10%") }]}>Noonan</Text>
       <View>
         <TouchableOpacity
           onPress={() => navigation.navigate("Bag")}
@@ -29,15 +35,10 @@ export default function WelcomeScreen({ navigation }) {
           <Text style={styles.text}>Shoot</Text>
         </TouchableOpacity>
 
+        <Text style={[styles.text, { fontSize: hp("4%") }]}>Info</Text>
+
         <TouchableOpacity onPress={() => firebase.auth().signOut()}>
-          <Text
-            style={[
-              styles.text,
-              { marginBottom: hp("14%"), fontSize: hp("4%") },
-            ]}
-          >
-            Logout
-          </Text>
+          <Text style={[styles.text, { fontSize: hp("3%") }]}>Logout</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -46,17 +47,18 @@ export default function WelcomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 6,
+    flex: 1,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     backgroundColor: colors.darkBlack,
   },
   text: {
     textAlign: "center",
     margin: hp("3%"),
+    width: wp("100%"),
     fontSize: hp("8%"),
     color: colors.darkGold,
-    fontFamily: "Roboto-regular",
+    fontFamily: "Yellow-tail",
   },
   noonan: {
     margin: hp("3%"),
