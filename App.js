@@ -20,6 +20,7 @@ const getFonts = () =>
   Font.loadAsync({
     "Roboto-regular": require("./app/assets/fonts/Roboto-Regular.ttf"),
     "Roboto-bold": require("./app/assets/fonts/Roboto-Bold.ttf"),
+    "Yellow-tail": require("./app/assets/fonts/Yellowtail-Regular.ttf"),
   });
 
 // full app stack
