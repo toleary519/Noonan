@@ -81,7 +81,7 @@ function BagScreenFormat({ navigation }) {
   let editCheck = (editDBclub) => {
     //convert to entries
     const asArray = Object.entries(editDBclub);
-    // filter to only include changes
+    // filter to only include changed fields
     const filtered = asArray.filter(([key, value]) => value !== null);
     //objectify
     const payload = Object.fromEntries(filtered);
@@ -98,7 +98,7 @@ function BagScreenFormat({ navigation }) {
   };
 
   const editClearAll = () => {
-    setEditValue(shots[0]);
+    resetValue();
     setEditClubMin(null);
     setEditClubMax(null);
     setEditClubPercent(null);
@@ -128,6 +128,13 @@ function BagScreenFormat({ navigation }) {
   const updateState = () => {
     shots[0] ? setEditValue({ ...shots[0] }) : null;
     console.log("update state runs: ********");
+  };
+
+  // a function to reset the left side of the screen even if shots[0] is the club being edited
+  const resetValue = () => {
+    editValue === shots[0] && shots.length > 1
+      ? setEditValue(shots[1])
+      : setEditValue(shots[0]);
   };
 
   return (
@@ -271,6 +278,7 @@ function BagScreenFormat({ navigation }) {
                     style={styles.editValuesText}
                     onChangeText={(text) => setEditClubMax(text)}
                     value={editClubMax}
+                    editable={!editButton}
                     placeholder={String(editValue.max)}
                     keyboardType={"number-pad"}
                     textAlign={"center"}
@@ -290,6 +298,7 @@ function BagScreenFormat({ navigation }) {
                     style={styles.editValuesText}
                     onChangeText={(text) => setEditClubPercent(text)}
                     value={editClubPercent}
+                    editable={!editButton}
                     placeholder={String(editValue.minPow)}
                     keyboardType={"number-pad"}
                     textAlign={"center"}
@@ -310,6 +319,7 @@ function BagScreenFormat({ navigation }) {
                     style={styles.editValuesText}
                     onChangeText={(text) => setEditClubMin(text)}
                     value={editClubMin}
+                    editable={!editButton}
                     placeholder={String(editValue.min)}
                     keyboardType={"number-pad"}
                     textAlign={"center"}
@@ -333,7 +343,6 @@ function BagScreenFormat({ navigation }) {
                       editShotDB(editDBclub, editValue.id);
                       editClearAll();
                       setEditButton(true);
-                      setEditValue(shots[0]);
                     }}
                     size={60}
                     color={colors.green}
@@ -344,7 +353,6 @@ function BagScreenFormat({ navigation }) {
                     onPress={() => {
                       deleteShotDB(editValue.id);
                       setEditButton(true);
-                      setEditValue(shots[0]);
                     }}
                     size={60}
                     color={colors.darkRed}
