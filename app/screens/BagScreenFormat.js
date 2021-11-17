@@ -321,7 +321,7 @@ function BagScreenFormat({ navigation }) {
                 <View style={styles.editExitBox}>
                   <View style={styles.largeEditBtn}>
                     <TouchableOpacity onPress={() => setEditButton(false)}>
-                      <Text style={styles.emptyText}>edit</Text>
+                      <Text style={styles.editText}>edit</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -376,12 +376,12 @@ function BagScreenFormat({ navigation }) {
         <View style={styles.addExitBox}>
           <View style={styles.addAClubBtn}>
             <TouchableOpacity onPress={() => setAddDisplayOpen(true)}>
-              <Text style={styles.elementText}>add</Text>
+              <Text style={styles.addBackText}>add</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.backBtn}>
             <TouchableOpacity onPress={() => navigation.navigate("noonan")}>
-              <Text style={styles.elementText}>back</Text>
+              <Text style={styles.addBackText}>back</Text>
             </TouchableOpacity>
           </View>
 
@@ -438,9 +438,12 @@ const styles = StyleSheet.create({
     margin: wp("2%"),
   },
   titleText: {
+    // borderWidth: 1,
     textAlign: "center",
     fontSize: hp("4%"),
-    fontFamily: "Roboto-bold",
+    height: hp("8%"),
+    width: wp("25%"),
+    fontFamily: "Yellow-tail",
     color: colors.darkGold,
   },
   addExitBox: {
@@ -607,5 +610,20 @@ const styles = StyleSheet.create({
     shadowOffset: { width: wp(".5%"), height: hp(".5%") },
     shadowRadius: 2,
     shadowColor: colors.darkRed,
+  },
+  addBackText: {
+    textAlign: "center",
+    fontSize: hp("2.5%"),
+    width: wp("14%"),
+    color: colors.darkBlack,
+    fontFamily: "Yellow-tail",
+  },
+  editText: {
+    textAlign: "center",
+    width: wp("16%"),
+    marginRight: wp("3%"),
+    fontSize: hp("3%"),
+    color: colors.darkBlack,
+    fontFamily: "Yellow-tail",
   },
 });
