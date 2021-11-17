@@ -17,8 +17,6 @@ import "firebase/compat/auth";
 export default function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="colors.darkBlack" />
-
       <Text style={[styles.text, { fontSize: hp("10%") }]}>Noonan</Text>
       <View>
         <TouchableOpacity
