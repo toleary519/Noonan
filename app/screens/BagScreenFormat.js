@@ -174,9 +174,7 @@ function BagScreenFormat({ navigation }) {
 
             <View style={styles.editChunk}>
               <View style={styles.explinationElement}>
-                <Text style={[styles.explainText, { fontSize: hp("3%") }]}>
-                  MAX
-                </Text>
+                <Text style={styles.explainText}>Max</Text>
                 <FontAwesome
                   onPress={() =>
                     Alert.alert(
@@ -206,12 +204,13 @@ function BagScreenFormat({ navigation }) {
             </View>
             <View style={styles.editChunk}>
               <View style={styles.explinationElement}>
-                <Text style={styles.explainText}>-% Power-</Text>
+                <Text style={styles.explainText}>%</Text>
+                <Text style={styles.explainText}>Power</Text>
                 <FontAwesome
                   onPress={() =>
                     Alert.alert(
                       "% Power",
-                      `What is the minimum power you would swing ${pickerValue} before clubbing down?`,
+                      `What is the minimum % power you would swing ${pickerValue} before clubbing down?`,
                       [{ text: "Got It" }]
                     )
                   }
@@ -237,9 +236,7 @@ function BagScreenFormat({ navigation }) {
             </View>
             <View style={styles.editChunk}>
               <View style={styles.explinationElement}>
-                <Text style={[styles.explainText, { fontSize: hp("3%") }]}>
-                  MIN
-                </Text>
+                <Text style={styles.explainText}>Min</Text>
                 <FontAwesome
                   onPress={() =>
                     Alert.alert(
@@ -321,10 +318,22 @@ function BagScreenFormat({ navigation }) {
               </Text>
               <View style={styles.editChunk}>
                 <View style={styles.explinationElement}>
-                  <Text style={styles.explainText}>-MAX-</Text>
-                  <Text style={styles.explainText}>
+                  <Text style={styles.explainText}>Max</Text>
+                  <FontAwesome
+                    onPress={() =>
+                      Alert.alert(
+                        "Max Distance",
+                        `How far do you hit ${editValue.club} with a full swing?`,
+                        [{ text: "Got It" }]
+                      )
+                    }
+                    name="question"
+                    size={40}
+                    color={colors.darkBlack}
+                  />
+                  {/* <Text style={styles.explainText}>
                     How far do you hit {editValue.club} with a full swing?
-                  </Text>
+                  </Text> */}
                 </View>
                 <View style={styles.valuesElement}>
                   <TextInput
@@ -340,11 +349,24 @@ function BagScreenFormat({ navigation }) {
               </View>
               <View style={styles.editChunk}>
                 <View style={styles.explinationElement}>
-                  <Text style={styles.explainText}>-% Power-</Text>
-                  <Text style={styles.explainText}>
+                  <Text style={styles.explainText}>%</Text>
+                  <Text style={styles.explainText}>Power</Text>
+                  <FontAwesome
+                    onPress={() =>
+                      Alert.alert(
+                        "% Power",
+                        `What is the minimum % power you would swing ${editValue.club} before clubbing down?`,
+                        [{ text: "Got It" }]
+                      )
+                    }
+                    name="question"
+                    size={40}
+                    color={colors.darkBlack}
+                  />
+                  {/* <Text style={styles.explainText}>
                     What is the minimum power you would swing this club before
                     clubbing down?
-                  </Text>
+                  </Text> */}
                 </View>
                 <View style={styles.valuesElement}>
                   <TextInput
@@ -360,12 +382,27 @@ function BagScreenFormat({ navigation }) {
               </View>
               <View style={styles.editChunk}>
                 <View style={styles.explinationElement}>
-                  <Text style={styles.explainText}>-MIN-</Text>
-                  <Text style={styles.explainText}>
+                  <Text style={styles.explainText}>Min</Text>
+                  <FontAwesome
+                    onPress={() =>
+                      Alert.alert(
+                        "% Power",
+                        `How far do you hit ${editValue.club}` +
+                          (editValue.minPow
+                            ? ` with a ${editValue.minPow}% swing?`
+                            : ` on your most conservative swing?`),
+                        [{ text: "Got It" }]
+                      )
+                    }
+                    name="question"
+                    size={40}
+                    color={colors.darkBlack}
+                  />
+                  {/* <Text style={styles.explainText}>
                     How far do you hit {editValue.club} with a{" "}
                     {editClubPercent ? editClubPercent : editValue.minPow}%
                     swing?
-                  </Text>
+                  </Text> */}
                 </View>
                 <View style={styles.valuesElement}>
                   <TextInput
@@ -620,7 +657,7 @@ const styles = StyleSheet.create({
   },
   explainText: {
     textAlign: "center",
-    fontSize: hp("1%"),
+    fontSize: hp("3%"),
     marginRight: wp("2%"),
     marginLeft: wp("2%"),
     color: colors.darkBlack,
