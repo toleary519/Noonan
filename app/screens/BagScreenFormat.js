@@ -123,6 +123,31 @@ function BagScreenFormat({ navigation }) {
     console.log("Document written with ID: ", docRef.id);
   };
 
+  // function to check for empty fields in the add action as well as check for a full bag
+  const addErrorCheck = (newDBclub) => {
+    if (!addClubMax || !addClubMin || !addClubPercent) {
+      Alert.alert(
+        "Entry Error",
+        `All fields must have a value to add this club.`,
+        [{ text: "Got It" }]
+      );
+      return;
+    }
+    if (shots.length === 15) {
+      Alert.alert(
+        "Your bag is full!",
+        `Free up some space to add more clubs.`,
+        [{ text: "Got It" }]
+      );
+      return;
+    } else {
+      addShotDB(newDBclub);
+      setEditValue(newDBclub);
+      addClearAll();
+      setAddDisplayOpen(false);
+    }
+  };
+
   //edit shots in the db, use editCheck fn to only pass non null key:value pairs
   const editShotDB = async (editDBclub, id) => {
     const docRef = doc(db, "shots", id);
@@ -274,10 +299,7 @@ function BagScreenFormat({ navigation }) {
               <AntDesign
                 name="save"
                 onPress={() => {
-                  addShotDB(newDBclub);
-                  setEditValue(newDBclub);
-                  addClearAll();
-                  setAddDisplayOpen(false);
+                  addErrorCheck(newDBclub);
                 }}
                 size={60}
                 color={colors.green}
