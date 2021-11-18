@@ -188,12 +188,8 @@ function ShootScreenFormat({ navigation }) {
           <View style={styles.calcButton}>
             <CalcButton onPress={() => handleDistance("9")} text="9" />
           </View>
-          <View style={styles.calcButton}>
-            <CalcButton
-              onPress={() => setSand(sand ? false : true)}
-              special={sand}
-              text="S"
-            />
+          <View style={sand ? styles.specialButton : styles.calcButton}>
+            <CalcButton onPress={() => setSand(sand ? false : true)} text="S" />
           </View>
         </View>
         <View style={styles.calcButtonRow}>
@@ -206,10 +202,9 @@ function ShootScreenFormat({ navigation }) {
           <View style={styles.calcButton}>
             <CalcButton onPress={() => handleDistance("6")} text="6" />
           </View>
-          <View style={styles.calcButton}>
+          <View style={rough ? styles.specialButton : styles.calcButton}>
             <CalcButton
               onPress={() => setRough(rough ? false : true)}
-              special={rough}
               text="R"
             />
           </View>
@@ -384,6 +379,19 @@ const styles = StyleSheet.create({
   },
   calcButton: {
     backgroundColor: colors.darkBlue,
+    height: wp("17.6%"),
+    width: wp("17.6%"),
+    borderRadius: 10,
+    marginTop: hp("2.4%"), //20
+    marginLeft: wp("5.3%"), //20
+    marginRight: wp("5.3%"), //20
+    shadowOpacity: 0.7,
+    shadowOffset: { width: wp("-.5%"), height: hp(".5%") },
+    shadowRadius: 2,
+    shadowColor: colors.darkRed,
+  },
+  specialButton: {
+    backgroundColor: colors.darkRed,
     height: wp("17.6%"),
     width: wp("17.6%"),
     borderRadius: 10,
