@@ -446,10 +446,19 @@ function BagScreenFormat({ navigation }) {
                   />
                   <MaterialIcons
                     name="delete-outline"
-                    onPress={() => {
-                      deleteShotDB(editValue.id);
-                      setEditButton(true);
-                    }}
+                    onPress={() =>
+                      Alert.alert("Delete Club?", `Are you sure?`, [
+                        {
+                          text: "Delete",
+                          onPress: () => {
+                            deleteShotDB(editValue.id);
+                            setEditButton(true);
+                            resetValue();
+                          },
+                        },
+                        { text: "Back" },
+                      ])
+                    }
                     size={60}
                     color={colors.darkRed}
                   />
