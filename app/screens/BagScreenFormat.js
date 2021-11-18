@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-import { Text, View, StyleSheet, TextInput, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+  Alert,
+} from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
   widthPercentageToDP as wp,
@@ -8,7 +15,12 @@ import {
 } from "react-native-responsive-screen";
 import { Picker } from "@react-native-picker/picker";
 import { colors } from "../assets/colors/colors";
-import { MaterialIcons, AntDesign, Ionicons } from "@expo/vector-icons";
+import {
+  MaterialIcons,
+  AntDesign,
+  Ionicons,
+  FontAwesome,
+} from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 // import { addShotDB, deleteShotDB } from "../api/firebaseFunct";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
@@ -162,10 +174,24 @@ function BagScreenFormat({ navigation }) {
 
             <View style={styles.editChunk}>
               <View style={styles.explinationElement}>
-                <Text style={styles.explainText}>-MAX-</Text>
-                <Text style={styles.explainText}>
-                  How far do you hit {pickerValue} with a full swing?
+                <Text style={[styles.explainText, { fontSize: hp("3%") }]}>
+                  MAX
                 </Text>
+                <FontAwesome
+                  onPress={() =>
+                    Alert.alert(
+                      "Max Distance",
+                      `How far do you hit ${pickerValue} with a full swing?`,
+                      [{ text: "Got It" }]
+                    )
+                  }
+                  name="question"
+                  size={40}
+                  color={colors.darkBlack}
+                />
+                {/* <Text style={styles.explainText}>
+                  How far do you hit {pickerValue} with a full swing?
+                </Text> */}
               </View>
               <View style={styles.valuesElement}>
                 <TextInput
@@ -181,10 +207,22 @@ function BagScreenFormat({ navigation }) {
             <View style={styles.editChunk}>
               <View style={styles.explinationElement}>
                 <Text style={styles.explainText}>-% Power-</Text>
-                <Text style={styles.explainText}>
+                <FontAwesome
+                  onPress={() =>
+                    Alert.alert(
+                      "% Power",
+                      `What is the minimum power you would swing ${pickerValue} before clubbing down?`,
+                      [{ text: "Got It" }]
+                    )
+                  }
+                  name="question"
+                  size={40}
+                  color={colors.darkBlack}
+                />
+                {/* <Text style={styles.explainText}>
                   What is the minimum power you would swing this club before
                   clubbing down?
-                </Text>
+                </Text> */}
               </View>
               <View style={styles.valuesElement}>
                 <TextInput
@@ -198,16 +236,31 @@ function BagScreenFormat({ navigation }) {
               </View>
             </View>
             <View style={styles.editChunk}>
-              <View
-                style={[styles.explinationElement, { borderRightWidth: 0 }]}
-              >
-                <Text style={styles.explainText}>-MIN-</Text>
-                <Text style={styles.explainText}>
+              <View style={styles.explinationElement}>
+                <Text style={[styles.explainText, { fontSize: hp("3%") }]}>
+                  MIN
+                </Text>
+                <FontAwesome
+                  onPress={() =>
+                    Alert.alert(
+                      "% Power",
+                      `How far do you hit ${pickerValue}` +
+                        (addClubPercent
+                          ? ` with a ${addClubPercent}% swing?`
+                          : ` on your most conservative swing?`),
+                      [{ text: "Got It" }]
+                    )
+                  }
+                  name="question"
+                  size={40}
+                  color={colors.darkBlack}
+                />
+                {/* <Text style={styles.explainText}>
                   How far do you hit {pickerValue}{" "}
                   {addClubPercent
                     ? `with a ${addClubPercent} % swing?`
                     : `on your most conservative swing?`}
-                </Text>
+                </Text> */}
               </View>
               <View style={styles.valuesElement}>
                 <TextInput
@@ -547,6 +600,7 @@ const styles = StyleSheet.create({
   explinationElement: {
     flexDirection: "column",
     justifyContent: "center",
+    alignItems: "center",
     height: hp("16%"),
     width: wp("29%"),
     borderTopRightRadius: hp("2%"),
