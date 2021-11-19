@@ -209,7 +209,7 @@ function BagScreenFormat({ navigation }) {
                     )
                   }
                   name="question"
-                  size={40}
+                  size={25}
                   color={colors.darkBlack}
                 />
                 {/* <Text style={styles.explainText}>
@@ -240,7 +240,7 @@ function BagScreenFormat({ navigation }) {
                     )
                   }
                   name="question"
-                  size={40}
+                  size={25}
                   color={colors.darkBlack}
                 />
                 {/* <Text style={styles.explainText}>
@@ -274,7 +274,7 @@ function BagScreenFormat({ navigation }) {
                     )
                   }
                   name="question"
-                  size={40}
+                  size={25}
                   color={colors.darkBlack}
                 />
                 {/* <Text style={styles.explainText}>
@@ -305,14 +305,14 @@ function BagScreenFormat({ navigation }) {
                 color={colors.green}
                 style={[{ left: wp("4%") }, { padding: hp("-1%") }]}
               />
-              <Ionicons
-                name="remove-circle-outline"
+              <AntDesign
                 onPress={() => {
                   setAddDisplayOpen(false);
                   addClearAll();
                 }}
-                size={60}
-                color={colors.red}
+                name="closecircleo"
+                size={45}
+                color={colors.darkBlue}
                 style={[{ left: wp("4%") }, { padding: hp("1%") }]}
               />
             </View>
@@ -350,7 +350,7 @@ function BagScreenFormat({ navigation }) {
                       )
                     }
                     name="question"
-                    size={40}
+                    size={25}
                     color={colors.darkBlack}
                   />
                   {/* <Text style={styles.explainText}>
@@ -382,7 +382,7 @@ function BagScreenFormat({ navigation }) {
                       )
                     }
                     name="question"
-                    size={40}
+                    size={25}
                     color={colors.darkBlack}
                   />
                   {/* <Text style={styles.explainText}>
@@ -417,7 +417,7 @@ function BagScreenFormat({ navigation }) {
                       )
                     }
                     name="question"
-                    size={40}
+                    size={25}
                     color={colors.darkBlack}
                   />
                   {/* <Text style={styles.explainText}>
@@ -524,6 +524,7 @@ function BagScreenFormat({ navigation }) {
           {console.log("editValue:", editValue)}
         </View>
         {shots
+          // sort and map the bag display on the right into the club elements
           .sort((a, b) => b.max - a.max)
           .map((item) => (
             <View key={item.id} style={styles.clubElement}>
@@ -692,7 +693,7 @@ const styles = StyleSheet.create({
     marginRight: wp("2%"),
     marginLeft: wp("2%"),
     color: colors.darkBlack,
-    fontFamily: "Roboto-regular",
+    fontFamily: "Yellow-tail",
   },
   pickerContainer: {
     // borderWidth: 1,
