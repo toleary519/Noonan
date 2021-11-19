@@ -1,9 +1,9 @@
 const colors = {
   bg: "#F5F0E3",
-  green: "#5C795D",
-  // green: "#4BC6B9",
-  // green: "#97C39D",
-  // green: "#1EC9AE",
+  // green: "#5C795D",
+  // green: "#7F9F80",
+  // green: "#96B097",
+  green: "#8BA78C",
   blue: "#07A0C3",
   red: "#EE6055",
   brown: "#896C6E",
