@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -39,7 +39,7 @@ function ShootScreenFormat({ navigation }) {
   console.log("actual distance:", actualDistance);
 
   const handleDistance = (stringDigit) => {
-    setDistance(distance + stringDigit); // if this is broken put back to "dig"
+    distance.length === 3 ? null : setDistance(distance + stringDigit);
   };
   const handleEleUP = () => {
     setElevation(elevation + 1);
@@ -65,15 +65,25 @@ function ShootScreenFormat({ navigation }) {
     <View style={styles.shootScreenContainer}>
       <View style={styles.shotDisplayContainer}>
         <View style={styles.shotDisplayWindow}>
-          {distance > 5 ? (
+          {distance > 3 ? (
             <View style={{ flexDirection: "row" }}>
-              <Text style={styles.shotDisplayClubFont}>{execute.club}</Text>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={styles.shotDisplayPercentFont}>
-                  {execute.power}
+              {execute.message ? (
+                <Text
+                  style={[styles.shotDisplayClubFont, { fontSize: hp("4%") }]}
+                >
+                  {execute.message}
                 </Text>
-                <Text style={styles.shotDisplayPercentSymbol}>%</Text>
-              </View>
+              ) : (
+                <View>
+                  <Text style={styles.shotDisplayClubFont}>{execute.club}</Text>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={styles.shotDisplayPercentFont}>
+                      {execute.power}
+                    </Text>
+                    <Text style={styles.shotDisplayPercentSymbol}>%</Text>
+                  </View>
+                </View>
+              )}
             </View>
           ) : (
             <Text style={[styles.shotDisplayClubFont, { fontSize: hp("4%") }]}>
