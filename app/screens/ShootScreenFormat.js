@@ -84,15 +84,12 @@ function ShootScreenFormat({ navigation }) {
               {execute.iBOne ? (
                 <View style={styles.inBetweenDisplay}>
                   <Text
-                    style={[styles.enterDistanceFont, { fontSize: hp("3%") }]}
+                    style={[styles.inBetweenClubsFont, { fontSize: hp("3%") }]}
                   >
                     {execute.iBMessage}
                   </Text>
                   <Text
-                    style={[
-                      styles.enterDistanceFont,
-                      { fontSize: hp("3%"), marginTop: hp("1%") },
-                    ]}
+                    style={[styles.inBetweenClubsFont, { marginTop: hp("1%") }]}
                   >
                     Crush a {execute.iBOne} or hit a soft {execute.iBTwo}
                   </Text>
@@ -346,7 +343,7 @@ const styles = StyleSheet.create({
   },
   enterDistanceFont: {
     // textAlign: "center",
-    fontSize: hp("5%"),
+    fontSize: hp("4%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
@@ -504,6 +501,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  inBetweenClubsFont: {
+    fontSize: hp("2.5%"),
+    fontWeight: "bold",
+    fontFamily: "Roboto-regular",
+    color: colors.darkGold,
+    textShadowOffset: { width: wp("-.2%"), height: hp(".2%") },
+    textShadowRadius: 2,
+    textShadowColor: colors.darkRed,
+  },
   multiShotDisplay: {
     // borderWidth: 1,
     // borderColor: colors.darkGold,
@@ -514,11 +520,11 @@ const styles = StyleSheet.create({
     // borderColor: colors.red,
     marginRight: wp("6%"), //25
     height: hp("9%"),
-    fontSize: hp("8%"),
+    fontSize: hp("6%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
-    textShadowOffset: { width: wp("-.3%"), height: hp(".3%") },
+    textShadowOffset: { width: wp("-.2%"), height: hp(".2%") },
     textShadowRadius: 2,
     textShadowColor: colors.darkRed,
   },
@@ -529,11 +535,11 @@ const styles = StyleSheet.create({
     paddingLeft: wp("2.6"),
     paddingRight: wp("2.6"),
     height: hp("7%"),
-    fontSize: hp("6%"),
+    fontSize: hp("3%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
-    textShadowOffset: { width: wp("-.3%"), height: hp(".3%") },
+    textShadowOffset: { width: wp("-.2%"), height: hp(".2%") },
     textShadowRadius: 2,
     textShadowColor: colors.darkRed,
   },
