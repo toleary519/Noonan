@@ -98,7 +98,7 @@ function BagScreenFormat({ navigation }) {
     //objectify
     const payload = Object.fromEntries(filtered);
 
-    console.log("payload: ", payload);
+    // console.log("payload: ", payload);
     return payload;
   };
 
@@ -120,7 +120,7 @@ function BagScreenFormat({ navigation }) {
   const addShotDB = async (newDBclub) => {
     // Add a new document with a generated id.
     const docRef = await addDoc(collection(db, "shots"), { ...newDBclub });
-    console.log("Document written with ID: ", docRef.id);
+    // console.log("Document written with ID: ", docRef.id);
   };
 
   // function to check for empty fields in the add action as well as check for a full bag
@@ -158,13 +158,13 @@ function BagScreenFormat({ navigation }) {
   //deletes shots from the db after delete is clicked
   const deleteShotDB = async (id) => {
     const docRef = await deleteDoc(doc(db, "shots", id));
-    console.log("delete document with ID: ", docRef.id);
+    // console.log("delete document with ID: ", docRef.id);
   };
 
   // if in a loading state at the beginning checks for shots to populate and then sets state
   const updateState = () => {
     shots[0] ? setEditValue({ ...shots[0] }) : null;
-    console.log("update state runs: ********");
+    // console.log("update state runs: ********");
   };
 
   // a function to reset the left side of the screen even if shots[0] is the club being edited
@@ -520,8 +520,8 @@ function BagScreenFormat({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          {console.log("shots[0] - bag :", shots[0])}
-          {console.log("editValue:", editValue)}
+          {/* {console.log("shots[0] - bag :", shots[0])} */}
+          {/* {console.log("editValue:", editValue)} */}
         </View>
         {shots
           // sort and map the bag display on the right into the club elements
