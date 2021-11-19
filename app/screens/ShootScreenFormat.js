@@ -34,7 +34,7 @@ function ShootScreenFormat({ navigation }) {
     Number(distance) + elevation + wind + (sand ? 3 : 0) + (rough ? 5 : 0);
 
   // passing both the actual distance and shots array in state to calculator function in helpers
-  let execute = getClub(actualDistance, shots);
+  let execute = shots[0] ? getClub(actualDistance, shots) : null;
 
   console.log("actual distance:", actualDistance);
 
@@ -65,8 +65,27 @@ function ShootScreenFormat({ navigation }) {
     <View style={styles.shootScreenContainer}>
       <View style={styles.shotDisplayContainer}>
         <View style={styles.shotDisplayWindow}>
-          {distance > 3 ? (
+          {distance > 1 ? (
             <View style={{ flexDirection: "row" }}>
+              {/* <conditional render for in between clubs display> */}
+              {execute.iBOne ? (
+                <View style={styles.inBetweenDisplay}>
+                  <Text
+                    style={[styles.shotDisplayClubFont, { fontSize: hp("3%") }]}
+                  >
+                    {execute.iBMessage}
+                  </Text>
+                  <Text
+                    style={[
+                      styles.shotDisplayClubFont,
+                      { fontSize: hp("3%"), marginTop: hp("1%") },
+                    ]}
+                  >
+                    Crush a {execute.iBOne} or hit a soft {execute.iBTwo}
+                  </Text>
+                </View>
+              ) : null}
+              {/* <conditional render for outside of range under/over and standard display ****> */}
               {execute.message ? (
                 <Text
                   style={[styles.shotDisplayClubFont, { fontSize: hp("4%") }]}
@@ -74,14 +93,14 @@ function ShootScreenFormat({ navigation }) {
                   {execute.message}
                 </Text>
               ) : (
-                <View>
+                <View style={{ flexDirection: "row" }}>
                   <Text style={styles.shotDisplayClubFont}>{execute.club}</Text>
-                  <View style={{ flexDirection: "row" }}>
-                    <Text style={styles.shotDisplayPercentFont}>
-                      {execute.power}
-                    </Text>
+                  <Text style={styles.shotDisplayPercentFont}>
+                    {execute.power}
+                  </Text>
+                  {!execute.message && !execute.iBMessage ? (
                     <Text style={styles.shotDisplayPercentSymbol}>%</Text>
-                  </View>
+                  ) : null}
                 </View>
               )}
             </View>
@@ -419,5 +438,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
+  },
+  inBetweenDisplay: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
