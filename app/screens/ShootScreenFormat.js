@@ -6,7 +6,7 @@ import {
 } from "react-native-responsive-screen";
 import CalcButton from "../helpers/components/CalcButton";
 import { ClearButton } from "../helpers/components/FuncButtons";
-import { getClub } from "../helpers/calculator";
+import { getClub, getSwings } from "../helpers/calculator";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../assets/colors/colors";
 import { collection } from "firebase/firestore";
@@ -23,6 +23,7 @@ function ShootScreenFormat({ navigation }) {
 
   const db = getFirestore();
 
+  let shots = [];
   // get shots from data base to set shots data array
   useEffect(() => {
     onSnapshot(collection(db, "shots"), (snapshot) =>
@@ -33,15 +34,17 @@ function ShootScreenFormat({ navigation }) {
   }, []);
 
   // sort the shots that come in from firebase
-  let shots = unOrderedShots.sort((a, b) => a.min - b.min);
+  unOrderedShots[0]
+    ? (shots = unOrderedShots.sort((a, b) => a.min - b.min))
+    : null;
 
   let actualDistance =
     Number(distance) + elevation + wind + (sand ? 3 : 0) + (rough ? 5 : 0);
+  console.log("actual distance:", actualDistance);
 
   // passing both the actual distance and shots array in state to calculator function in helpers
   let execute = getClub(actualDistance, shots);
-
-  // console.log("actual distance:", actualDistance);
+  let swings = getSwings(actualDistance, shots);
 
   const handleDistance = (stringDigit) => {
     distance.length === 3 ? null : setDistance(distance + stringDigit);
@@ -69,20 +72,25 @@ function ShootScreenFormat({ navigation }) {
   return (
     <View style={styles.shootScreenContainer}>
       <View style={styles.shotDisplayContainer}>
-        <View style={styles.shotDisplayWindow}>
+        {swings.length && swings.length > 1 ? (
+          <Text style={[styles.enterDistanceFont, { fontSize: hp("3%") }]}>
+            Two options ...
+          </Text>
+        ) : null}
+        <View>
           {distance > 1 ? (
             <View style={{ flexDirection: "row" }}>
-              {/* <conditional render for in between clubs display> */}
+              {/* <conditional render for in between clubs display ********************************************************> */}
               {execute.iBOne ? (
                 <View style={styles.inBetweenDisplay}>
                   <Text
-                    style={[styles.shotDisplayClubFont, { fontSize: hp("3%") }]}
+                    style={[styles.enterDistanceFont, { fontSize: hp("3%") }]}
                   >
                     {execute.iBMessage}
                   </Text>
                   <Text
                     style={[
-                      styles.shotDisplayClubFont,
+                      styles.enterDistanceFont,
                       { fontSize: hp("3%"), marginTop: hp("1%") },
                     ]}
                   >
@@ -90,29 +98,56 @@ function ShootScreenFormat({ navigation }) {
                   </Text>
                 </View>
               ) : null}
-              {/* <conditional render for outside of range under/over and standard display ****> */}
+              {/* <conditional render for outside of range under/over **************************************************> */}
               {execute.message ? (
                 <Text
-                  style={[styles.shotDisplayClubFont, { fontSize: hp("4%") }]}
+                  style={[styles.enterDistanceFont, { fontSize: hp("4%") }]}
                 >
                   {execute.message}
                 </Text>
-              ) : (
-                <View style={{ flexDirection: "row" }}>
-                  <Text style={styles.shotDisplayClubFont}>{execute.club}</Text>
-                  <Text style={styles.shotDisplayPercentFont}>
-                    {execute.power}
-                  </Text>
-                  {!execute.message && !execute.iBMessage ? (
-                    <Text style={styles.shotDisplayPercentSymbol}>%</Text>
-                  ) : null}
+              ) : null}
+              {/* <SWING DISPLAY FOR 2 SHOTS ***************************************************************************> */}
+              {swings.length && swings.length > 1 ? (
+                <View style={styles.multiShotDisplay}>
+                  <View
+                    style={{ flexDirection: "row", alignItems: "baseline" }}
+                  >
+                    <Text style={styles.multiShotDisplayFont}>
+                      {swings[0].club}
+                    </Text>
+                    <Text style={styles.multiShotDisplayPercentFont}>
+                      {swings[0].power}
+                      <Text style={styles.shotDisplayPercentSymbol}>%</Text>
+                    </Text>
+                  </View>
+                  <View
+                    style={{ flexDirection: "row", alignItems: "baseline" }}
+                  >
+                    <Text style={styles.multiShotDisplayFont}>
+                      {swings[1].club}
+                    </Text>
+                    <Text style={styles.multiShotDisplayPercentFont}>
+                      {swings[1].power}
+                      <Text style={styles.shotDisplayPercentSymbol}>%</Text>
+                    </Text>
+                  </View>
                 </View>
-              )}
+              ) : swings.length ? (
+                // {/* <SWING DISPLAY FOR A SINGLE SHOT ***************************************************************************> */}
+                <View style={{ flexDirection: "row" }}>
+                  <Text style={styles.shotDisplayClubFont}>
+                    {swings[0].club}
+                  </Text>
+                  <Text style={styles.shotDisplayPercentFont}>
+                    {swings[0].power}
+                    <Text style={styles.shotDisplayPercentSymbol}>%</Text>
+                  </Text>
+                </View>
+              ) : null}
             </View>
           ) : (
-            <Text style={[styles.shotDisplayClubFont, { fontSize: hp("4%") }]}>
-              enter distance
-            </Text>
+            // <CONDITIONAL RENDER FOR THE STARTING SCREEN WITH NO DISTANCE *****************************************************************>
+            <Text style={styles.enterDistanceFont}>enter distance</Text>
           )}
         </View>
       </View>
@@ -259,6 +294,10 @@ function ShootScreenFormat({ navigation }) {
         </View>
       </View>
       {console.log("shots calc: ", shots)}
+      {console.log("swings calc *******:", swings)}
+      {console.log(
+        "render end **********************************************:"
+      )}
     </View>
   );
 }
@@ -268,7 +307,7 @@ export default ShootScreenFormat;
 const styles = StyleSheet.create({
   shootScreenContainer: {
     flex: 1,
-    paddingTop: hp("5%"),
+    paddingTop: hp("2%"),
     backgroundColor: colors.darkBlack,
   },
   shotDisplayContainer: {
@@ -276,26 +315,26 @@ const styles = StyleSheet.create({
     // borderColor: colors.green,
     justifyContent: "center",
     alignItems: "center",
-    width: wp("86%"),
-    height: hp("15%"),
-    left: wp("9%"),
-    marginBottom: hp("3.5%"),
+    // width: wp("86%"),
+    height: hp("24%"),
+    // left: wp("9%"),
+    // marginBottom: hp("3.5%"),
   },
-  shotDisplayWindow: {
-    // borderWidth: 1,
-    // borderColor: colors.green,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    width: wp("86%"),
-    height: hp("20%"),
-    borderRadius: 10,
-    marginTop: hp("1.5%"),
-    marginLeft: wp("9%"),
-    marginRight: wp("6%"),
-  },
+  // shotDisplayWindow: {
+  //   borderWidth: 1,
+  //   borderColor: colors.green,
+  //   flexDirection: "row",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   width: wp("86%"),
+  //   height: hp("20%"),
+  //   borderRadius: 10,
+  //   marginTop: hp("1.5%"),
+  //   marginLeft: wp("9%"),
+  //   marginRight: wp("6%"),
+  // },
   shotDisplayClubFont: {
-    textAlign: "center",
+    // textAlign: "center",
     marginRight: wp("6%"), //25
     fontSize: hp("10%"),
     fontWeight: "bold",
@@ -305,11 +344,21 @@ const styles = StyleSheet.create({
     textShadowRadius: 2,
     textShadowColor: colors.darkRed,
   },
+  enterDistanceFont: {
+    // textAlign: "center",
+    fontSize: hp("5%"),
+    fontWeight: "bold",
+    fontFamily: "Roboto-regular",
+    color: colors.darkGold,
+    textShadowOffset: { width: wp("-.3%"), height: hp(".3%") },
+    textShadowRadius: 2,
+    textShadowColor: colors.darkRed,
+  },
   shotDisplayPercentFont: {
     textAlign: "center",
-    paddingTop: hp("4.8%"),
-    paddingLeft: wp("2.6"),
-    paddingRight: wp("2.6"),
+    // paddingTop: hp("4.8%"),
+    // paddingLeft: wp("2.6"),
+    // paddingRight: wp("2.6"),
     fontSize: hp("6%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
@@ -354,13 +403,17 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
   },
-  dashboardDisplayBox: {
-    flexDirection: "column",
-    height: wp("15%"),
-    width: wp("26%"),
-    marginRight: wp("2%"),
-  },
+  // dashboardDisplayBox: {
+  //   borderWidth: 1,
+  //   borderColor: colors.darkRed,
+  //   flexDirection: "column",
+  //   height: wp("15%"),
+  //   width: wp("26%"),
+  //   marginRight: wp("2%"),
+  // },
   displayElement: {
+    // borderWidth: 1,
+    // borderColor: colors.darkRed,
     height: wp("14.6%"),
     width: wp("25.6%"),
     fontSize: hp("4%"),
@@ -450,5 +503,38 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+  },
+  multiShotDisplay: {
+    // borderWidth: 1,
+    // borderColor: colors.darkGold,
+    alignItems: "center",
+  },
+  multiShotDisplayFont: {
+    // borderWidth: 1,
+    // borderColor: colors.red,
+    marginRight: wp("6%"), //25
+    height: hp("9%"),
+    fontSize: hp("8%"),
+    fontWeight: "bold",
+    fontFamily: "Roboto-regular",
+    color: colors.darkGold,
+    textShadowOffset: { width: wp("-.3%"), height: hp(".3%") },
+    textShadowRadius: 2,
+    textShadowColor: colors.darkRed,
+  },
+  multiShotDisplayPercentFont: {
+    // borderWidth: 1,
+    // borderColor: colors.green,
+    textAlign: "center",
+    paddingLeft: wp("2.6"),
+    paddingRight: wp("2.6"),
+    height: hp("7%"),
+    fontSize: hp("6%"),
+    fontWeight: "bold",
+    fontFamily: "Roboto-regular",
+    color: colors.darkGold,
+    textShadowOffset: { width: wp("-.3%"), height: hp(".3%") },
+    textShadowRadius: 2,
+    textShadowColor: colors.darkRed,
   },
 });
