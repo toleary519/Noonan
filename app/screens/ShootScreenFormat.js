@@ -14,7 +14,7 @@ import { onSnapshot } from "@firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
 
 function ShootScreenFormat({ navigation }) {
-  const [shots, setShots] = useState([]);
+  const [unOrderedShots, setUnOrderedShots] = useState([]);
   const [distance, setDistance] = useState("");
   const [elevation, setElevation] = useState(0);
   const [wind, setWind] = useState(0);
@@ -26,17 +26,22 @@ function ShootScreenFormat({ navigation }) {
   // get shots from data base to set shots data array
   useEffect(() => {
     onSnapshot(collection(db, "shots"), (snapshot) =>
-      setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      setUnOrderedShots(
+        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      )
     );
   }, []);
+
+  // sort the shots that come in from firebase
+  let shots = unOrderedShots.sort((a, b) => a.min - b.min);
 
   let actualDistance =
     Number(distance) + elevation + wind + (sand ? 3 : 0) + (rough ? 5 : 0);
 
   // passing both the actual distance and shots array in state to calculator function in helpers
-  let execute = shots[0] ? getClub(actualDistance, shots) : null;
+  let execute = getClub(actualDistance, shots);
 
-  console.log("actual distance:", actualDistance);
+  // console.log("actual distance:", actualDistance);
 
   const handleDistance = (stringDigit) => {
     distance.length === 3 ? null : setDistance(distance + stringDigit);
@@ -440,6 +445,8 @@ const styles = StyleSheet.create({
     color: colors.darkGold,
   },
   inBetweenDisplay: {
+    // borderWidth: 1,
+    // borderColor: colors.green,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
