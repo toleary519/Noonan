@@ -1,8 +1,26 @@
 const getClub = (actualDistance, shots) => {
-  const execute = { message: "", club: "", power: "" };
+  // in between estimate - range message - shot club - percent power
+  let execute = {
+    iBMessage: "",
+    iBOne: "",
+    iBTwo: "",
+    message: "",
+    club: "",
+    power: "",
+  };
+  const reset = {
+    iBMessage: "",
+    iBOne: "",
+    iBTwo: "",
+    message: "",
+    club: "",
+    power: "",
+  };
+
   let bagMax = 0;
   let bagMin = shots[0].min;
 
+  // find the spread of users bag
   for (const shot of shots) {
     if (Number(shot.min) < bagMin) {
       bagMin = shot.min;
@@ -16,18 +34,16 @@ const getClub = (actualDistance, shots) => {
     // check for shots above or below players range
     if (actualDistance > bagMax) {
       execute.message = "Out of range";
-
-      return execute;
     }
     if (actualDistance < bagMin) {
-      execute.message = "You're in close.";
-      return execute;
+      execute.message = "You're in close";
     }
     if (
       actualDistance >= Number(shot.min) &&
       actualDistance <= Number(shot.max)
     ) {
-      // because inputs in bag are text refactored this with Number()
+      // because inputs in bag are strings refactored this with Number(), reset values if found
+      // execute = { ...reset };
       execute.club = shot.club;
       execute.power = Math.round(
         Number(shot.minPow) +
@@ -35,6 +51,17 @@ const getClub = (actualDistance, shots) => {
             (Number(shot.max) - Number(shot.min))) *
             (actualDistance - Number(shot.min))
       );
+    }
+  }
+
+  //check for inbetween club returns the same
+
+  for (let i = 0; i < shots.length - 1; i++) {
+    if (actualDistance < shots[i].max && actualDistance < shots[i + 1].min) {
+      // execute = { ...reset };
+      execute.iBOne = shots[i].club;
+      execute.iBTwo = shots[i + 1].club;
+      execute.iBMessage = "In Between Clubs";
     }
   }
 
