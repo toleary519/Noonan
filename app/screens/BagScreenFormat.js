@@ -32,6 +32,8 @@ const pickerClubs = [
   "Dr",
   "3w",
   "5w",
+  "hy3",
+  "hy5",
   "1i",
   "2i",
   "3i",
@@ -41,8 +43,8 @@ const pickerClubs = [
   "7i",
   "8i",
   "9i",
-  "PW",
-  "SW",
+  "Pw",
+  "Sw",
   "52°",
   "54°",
   "56°",
@@ -493,7 +495,7 @@ function BagScreenFormat({ navigation }) {
       {/* <EMPTY BAG DISPALY ****************************************************************> */}
       {shots.length === 0 && !addDisplayOpen ? (
         <View style={styles.leftContainer}>
-          <Text style={styles.emptyText}>Your bag is empty</Text>
+          <Text style={styles.emptyText}>Your bag is empty...</Text>
         </View>
       ) : null}
       {/* <LOADING CONDITIONAL RENDER SCREEN ************************************************> */}
@@ -713,8 +715,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   emptyText: {
-    fontSize: hp("4%"),
+    fontSize: hp("3%"),
+    marginTop: hp("10%"),
     fontFamily: "Roboto-regular",
+    color: colors.bg,
     textAlign: "center",
   },
   largeEditBtn: {
