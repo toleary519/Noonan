@@ -39,8 +39,11 @@ const getClub = (actualDistance, shots) => {
     if (actualDistance > bagMax) {
       execute.message = "Out of range";
     }
+    if (actualDistance > 450) {
+      execute.message = "Common...";
+    }
     if (actualDistance < bagMin) {
-      execute.message = "You're in close";
+      execute.message = "below lowest distance";
     }
   }
 
