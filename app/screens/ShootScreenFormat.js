@@ -10,7 +10,7 @@ import { getClub, getSwings } from "../helpers/calculator";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../assets/colors/colors";
 import { collection } from "firebase/firestore";
-import { onSnapshot } from "@firebase/firestore";
+import { onSnapshot, where } from "@firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
 
 function ShootScreenFormat({ navigation }) {
@@ -25,13 +25,17 @@ function ShootScreenFormat({ navigation }) {
 
   let shots = [];
   // get shots from data base to set shots data array
-  useEffect(() => {
-    onSnapshot(collection(db, "shots"), (snapshot) =>
-      setUnOrderedShots(
-        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      )
-    );
-  }, []);
+  useEffect(
+    () => {
+      onSnapshot(collection(db, "users/1234/shots"), (snapshot) =>
+        setUnOrderedShots(
+          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        )
+      );
+    },
+    // <Need to set editValue here ******************************>
+    []
+  );
 
   // sort the shots that come in from firebase
   unOrderedShots[0]
