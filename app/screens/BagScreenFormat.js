@@ -24,8 +24,8 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 // import { addShotDB, deleteShotDB } from "../api/firebaseFunct";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
-import { onSnapshot } from "@firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { onSnapshot, query, where } from "@firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
 
 const pickerClubs = [
@@ -60,7 +60,7 @@ function BagScreenFormat({ navigation }) {
   // also pulling out the doc id to use as key below
   useEffect(
     () => {
-      onSnapshot(collection(db, "shots"), (snapshot) =>
+      onSnapshot(collection(db, "users/1234/shots"), (snapshot) =>
         setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       );
     },
@@ -121,7 +121,9 @@ function BagScreenFormat({ navigation }) {
   //add shots to the db after form completed
   const addShotDB = async (newDBclub) => {
     // Add a new document with a generated id.
-    const docRef = await addDoc(collection(db, "shots"), { ...newDBclub });
+    const docRef = await addDoc(collection(db, "users/1234/shots"), {
+      ...newDBclub,
+    });
     // console.log("Document written with ID: ", docRef.id);
   };
 
@@ -152,14 +154,14 @@ function BagScreenFormat({ navigation }) {
 
   //edit shots in the db, use editCheck fn to only pass non null key:value pairs
   const editShotDB = async (editDBclub, id) => {
-    const docRef = doc(db, "shots", id);
+    const docRef = doc(db, "users/1234/shots", id);
     const payload = editCheck(editDBclub);
     await updateDoc(docRef, payload);
   };
 
   //deletes shots from the db after delete is clicked
   const deleteShotDB = async (id) => {
-    const docRef = await deleteDoc(doc(db, "shots", id));
+    const docRef = await deleteDoc(doc(db, "users/1234/shots", id));
     // console.log("delete document with ID: ", docRef.id);
   };
 
@@ -522,7 +524,7 @@ function BagScreenFormat({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          {/* {console.log("shots[0] - bag :", shots[0])} */}
+          {console.log("shots - bag :", shots)}
           {/* {console.log("editValue:", editValue)} */}
         </View>
         {shots
