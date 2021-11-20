@@ -151,7 +151,7 @@ function BagScreenFormat({ navigation }) {
       );
       return;
     }
-    if (addClubMax <= addClubMin) {
+    if (Number(addClubMax) <= Number(addClubMin)) {
       Alert.alert("Max - Min Issue", `Max must be higher than Min.`, [
         { text: "Got It" },
       ]);
@@ -237,6 +237,7 @@ function BagScreenFormat({ navigation }) {
                   style={styles.editValuesText}
                   onChangeText={(text) => setAddClubMax(text)}
                   value={addClubMax}
+                  maxLength={3}
                   placeholder={"yds"}
                   keyboardType={"number-pad"}
                   textAlign={"center"}
@@ -269,6 +270,7 @@ function BagScreenFormat({ navigation }) {
                   style={styles.editValuesText}
                   onChangeText={(text) => setAddClubPercent(text)}
                   value={addClubPercent}
+                  maxLength={2}
                   placeholder={"%"}
                   keyboardType={"number-pad"}
                   textAlign={"center"}
@@ -305,6 +307,7 @@ function BagScreenFormat({ navigation }) {
                   style={styles.editValuesText}
                   onChangeText={(text) => setAddClubMin(text)}
                   value={addClubMin}
+                  maxLength={3}
                   placeholder={"yds"}
                   keyboardType={"number-pad"}
                   textAlign={"center"}
@@ -378,6 +381,7 @@ function BagScreenFormat({ navigation }) {
                     style={styles.editValuesText}
                     onChangeText={(text) => setEditClubMax(text)}
                     value={editClubMax}
+                    maxLength={3}
                     editable={!editButton}
                     placeholder={String(editValue.max)}
                     keyboardType={"number-pad"}
@@ -411,6 +415,7 @@ function BagScreenFormat({ navigation }) {
                     style={styles.editValuesText}
                     onChangeText={(text) => setEditClubPercent(text)}
                     value={editClubPercent}
+                    maxLength={2}
                     editable={!editButton}
                     placeholder={String(editValue.minPow)}
                     keyboardType={"number-pad"}
@@ -447,6 +452,7 @@ function BagScreenFormat({ navigation }) {
                     style={styles.editValuesText}
                     onChangeText={(text) => setEditClubMin(text)}
                     value={editClubMin}
+                    maxLength={3}
                     editable={!editButton}
                     placeholder={String(editValue.min)}
                     keyboardType={"number-pad"}
