@@ -150,6 +150,12 @@ function BagScreenFormat({ navigation }) {
         [{ text: "Got It" }]
       );
       return;
+    }
+    if (addClubMax <= addClubMin) {
+      Alert.alert("Max - Min Issue", `Max must be higher than Min.`, [
+        { text: "Got It" },
+      ]);
+      return;
     } else {
       addShotDB(newDBclub);
       setEditValue(newDBclub);
