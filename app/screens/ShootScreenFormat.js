@@ -89,6 +89,10 @@ function ShootScreenFormat({ navigation }) {
         <View>
           {distance > 1 ? (
             <View style={{ flexDirection: "row" }}>
+              {/* <conditional render for empty bag ********************************************************> */}
+              {unOrderedShots.length === 0 ? (
+                <Text style={styles.enterDistanceFont}>Your bag is empty</Text>
+              ) : null}
               {/* <conditional render for in between clubs display ********************************************************> */}
               {execute.iBOne ? (
                 <View style={styles.inBetweenDisplay}>
