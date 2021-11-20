@@ -12,6 +12,7 @@ import { colors } from "../assets/colors/colors";
 import { collection } from "firebase/firestore";
 import { onSnapshot, where } from "@firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 function ShootScreenFormat({ navigation }) {
   const [unOrderedShots, setUnOrderedShots] = useState([]);
@@ -21,13 +22,17 @@ function ShootScreenFormat({ navigation }) {
   const [rough, setRough] = useState(false);
   const [sand, setSand] = useState(false);
 
+  // get user id
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const uID = user.uid;
   const db = getFirestore();
 
   let shots = [];
-  // get shots from data base to set shots data array
+  // get shots from database to set shots data array
   useEffect(
     () => {
-      onSnapshot(collection(db, "users/1234/shots"), (snapshot) =>
+      onSnapshot(collection(db, `users/${uID}/shots`), (snapshot) =>
         setUnOrderedShots(
           snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         )
