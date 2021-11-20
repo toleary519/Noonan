@@ -7,6 +7,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import { colors } from "../assets/colors/colors";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
@@ -48,6 +53,9 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <View style={styles.titleContainer}>
+        <TextInput style={styles.titleText}>Noonan</TextInput>
+      </View>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -84,14 +92,27 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    backgroundColor: colors.darkBlack,
+  },
+  titleContainer: {
+    // borderWidth: 1,
+    // borderColor: colors.green,
+    marginTop: hp("8%"),
+    height: hp("25%"),
+  },
+  titleText: {
+    textAlign: "center",
+    fontSize: hp("10%"),
+    fontFamily: "Yellow-tail",
+    color: colors.darkGold,
   },
   inputContainer: {
     width: "80%",
   },
   input: {
-    backgroundColor: "white",
+    alignItems: "center",
+    backgroundColor: colors.bg,
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 10,
@@ -104,25 +125,25 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: "#0782F9",
+    backgroundColor: colors.darkBlue,
     width: "100%",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
   },
   buttonOutline: {
-    backgroundColor: "white",
+    backgroundColor: colors.green,
     marginTop: 5,
-    borderColor: "#0782F9",
+    borderColor: colors.darkRed,
     borderWidth: 2,
   },
   buttonText: {
-    color: "white",
+    color: colors.darkBlack,
     fontWeight: "700",
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: "#0782F9",
+    color: colors.darkBlack,
     fontWeight: "700",
     fontSize: 16,
   },
