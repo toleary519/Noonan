@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -252,64 +252,53 @@ function ShootScreenFormat({ navigation }) {
         </View>
       </View>
       <View style={styles.clearContainer}>
-        <View style={styles.clearButton}>
-          <ClearButton onPress={handleClear} text="Clear" />
-        </View>
+        <ClearButton onPress={handleClear} text="Clear" />
       </View>
       <View style={styles.calcButtonContainer}>
         <View style={styles.calcButtonRow}>
-          <View style={styles.calcButton}>
-            <CalcButton onPress={() => handleDistance("7")} text="7" />
-          </View>
-          <View style={styles.calcButton}>
-            <CalcButton onPress={() => handleDistance("8")} text="8" />
-          </View>
-          <View style={styles.calcButton}>
-            <CalcButton onPress={() => handleDistance("9")} text="9" />
-          </View>
-          <View style={sand ? styles.specialButton : styles.calcButton}>
-            <CalcButton
-              onPress={() => {
-                setSand(sand ? false : true);
-                setRough(false);
-              }}
-              text="S"
-            />
-          </View>
+          <TouchableOpacity onPress={() => handleDistance("7")}>
+            <View style={styles.calcButton}>
+              <Text style={styles.keyText}>7</Text>
+            </View>
+          </TouchableOpacity>
+
+          <CalcButton onPress={() => handleDistance("8")} text="8" />
+
+          <CalcButton onPress={() => handleDistance("9")} text="9" />
+
+          <CalcButton
+            onPress={() => {
+              setSand(sand ? false : true);
+              setRough(false);
+            }}
+            text="S"
+            sand={sand}
+          />
         </View>
         <View style={styles.calcButtonRow}>
-          <View style={styles.calcButton}>
-            <CalcButton onPress={() => handleDistance("4")} text="4" />
-          </View>
-          <View style={styles.calcButton}>
-            <CalcButton onPress={() => handleDistance("5")} text="5" />
-          </View>
-          <View style={styles.calcButton}>
-            <CalcButton onPress={() => handleDistance("6")} text="6" />
-          </View>
-          <View style={rough ? styles.specialButton : styles.calcButton}>
-            <CalcButton
-              onPress={() => {
-                setRough(rough ? false : true);
-                setSand(false);
-              }}
-              text="R"
-            />
-          </View>
+          <CalcButton onPress={() => handleDistance("4")} text="4" />
+
+          <CalcButton onPress={() => handleDistance("5")} text="5" />
+
+          <CalcButton onPress={() => handleDistance("6")} text="6" />
+
+          <CalcButton
+            onPress={() => {
+              setRough(rough ? false : true);
+              setSand(false);
+            }}
+            text="R"
+            rough={rough}
+          />
         </View>
         <View style={styles.calcButtonRow}>
-          <View style={styles.calcButton}>
-            <CalcButton onPress={() => handleDistance("0")} text="0" />
-          </View>
-          <View style={styles.calcButton}>
-            <CalcButton onPress={() => handleDistance("1")} text="1" />
-          </View>
-          <View style={styles.calcButton}>
-            <CalcButton onPress={() => handleDistance("2")} text="2" />
-          </View>
-          <View style={styles.calcButton}>
-            <CalcButton onPress={() => handleDistance("3")} text="3" />
-          </View>
+          <CalcButton onPress={() => handleDistance("0")} text="0" />
+
+          <CalcButton onPress={() => handleDistance("1")} text="1" />
+
+          <CalcButton onPress={() => handleDistance("2")} text="2" />
+
+          <CalcButton onPress={() => handleDistance("3")} text="3" />
         </View>
       </View>
       {console.log("shots calc: ", shots)}
@@ -461,7 +450,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     height: hp("6%"),
-    marginTop: hp("2.5%"),
+    marginBottom: hp("2.5%"),
   },
   clearButton: {
     justifyContent: "center",
@@ -564,5 +553,12 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: wp("-.2%"), height: hp(".2%") },
     textShadowRadius: 2,
     textShadowColor: colors.darkRed,
+  },
+  keyText: {
+    textAlign: "center",
+    paddingTop: 4,
+    fontSize: 40,
+    fontWeight: "bold",
+    fontFamily: "Roboto-regular",
   },
 });
