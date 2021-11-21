@@ -268,7 +268,13 @@ function ShootScreenFormat({ navigation }) {
             <CalcButton onPress={() => handleDistance("9")} text="9" />
           </View>
           <View style={sand ? styles.specialButton : styles.calcButton}>
-            <CalcButton onPress={() => setSand(sand ? false : true)} text="S" />
+            <CalcButton
+              onPress={() => {
+                setSand(sand ? false : true);
+                setRough(false);
+              }}
+              text="S"
+            />
           </View>
         </View>
         <View style={styles.calcButtonRow}>
@@ -283,7 +289,10 @@ function ShootScreenFormat({ navigation }) {
           </View>
           <View style={rough ? styles.specialButton : styles.calcButton}>
             <CalcButton
-              onPress={() => setRough(rough ? false : true)}
+              onPress={() => {
+                setRough(rough ? false : true);
+                setSand(false);
+              }}
               text="R"
             />
           </View>
