@@ -43,7 +43,7 @@ const getClub = (actualDistance, shots) => {
       execute.message = "Common...";
     }
     if (actualDistance < bagMin) {
-      execute.message = "below lowest distance";
+      execute.message = "too short";
     }
   }
 
