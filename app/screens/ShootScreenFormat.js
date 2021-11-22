@@ -460,10 +460,6 @@ const styles = StyleSheet.create({
     left: wp("8%"),
     borderRadius: 10,
   },
-  test: {
-    borderWidth: 1,
-    borderColor: colors.bg,
-  },
   calcButtonContainer: {
     flexDirection: "column",
     justifyContent: "space-around",
