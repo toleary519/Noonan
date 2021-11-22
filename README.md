@@ -10,7 +10,7 @@ Noonan is currently being beta and field tested, and will be released in the App
 
 ### Bag Screen
 
-! [add-club](https://github.com/toleary519/noonan/blob/master/screenshots/openAndAdd.gif?raw=true)
+! ["add-club"](https://github.com/toleary519/noonan/blob/master/screenshots/openAndAdd.gif?raw=true)
 ! [enter-values](https://github.com/toleary519/noonan/blob/master/screenshots/enterValues.gif?raw=true)
 ! [get-info](https://github.com/toleary519/noonan/blob/master/screenshots/getInfo.gif?raw=true)
 
