@@ -10,11 +10,11 @@ Noonan is currently being beta and field tested, and will be released in the App
 
 ### Bag Screen
 
-![add-club](https://github.com/toleary519/noonan/blob/master/screenshots/openAndAdd.gif?raw=true){:height="25%" width="25%"}
-![enter-values](https://github.com/toleary519/noonan/blob/master/screenshots/enterValues.gif?raw=true){:height="25%" width="25%"}
-![get-info](https://github.com/toleary519/noonan/blob/master/screenshots/getInfo.gif?raw=true){:height="25%" width="25%"}
+<img src="./screenshots/openAndAdd.gif" alt="open-and-add" width="25%" height="25%" />
+![enter-values](https://github.com/toleary519/noonan/blob/master/screenshots/enterValues.gif?raw=true)
+![get-info](https://github.com/toleary519/noonan/blob/master/screenshots/getInfo.gif?raw=true)
 
 ### Shot Calculator
 
-![single-two](https://github.com/toleary519/noonan/blob/master/screenshots/singleAndTwo.gif?raw=true){:height="25%" width="25%"}
-![elevation](https://github.com/toleary519/noonan/blob/master/screenshots/elevation.gif?raw=true){:height="25%" width="25%"}
+![single-two](https://github.com/toleary519/noonan/blob/master/screenshots/singleAndTwo.gif?raw=true)
+![elevation](https://github.com/toleary519/noonan/blob/master/screenshots/elevation.gif?raw=true)
