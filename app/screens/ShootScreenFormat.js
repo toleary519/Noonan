@@ -82,7 +82,7 @@ function ShootScreenFormat({ navigation }) {
     <View style={styles.shootScreenContainer}>
       <View style={styles.shotDisplayContainer}>
         {swings.length && swings.length > 1 ? (
-          <Text style={[styles.enterDistanceFont, { fontSize: hp("3%") }]}>
+          <Text style={[styles.enterDistanceFont, { fontSize: hp("2.5%") }]}>
             Two options ...
           </Text>
         ) : null}
@@ -119,9 +119,7 @@ function ShootScreenFormat({ navigation }) {
               {/* <SWING DISPLAY FOR 2 SHOTS ***************************************************************************> */}
               {swings.length && swings.length > 1 ? (
                 <View style={styles.multiShotDisplay}>
-                  <View
-                    style={{ flexDirection: "row", alignItems: "baseline" }}
-                  >
+                  <View style={styles.eachMulti}>
                     <Text style={styles.multiShotDisplayFont}>
                       {swings[0].club}
                     </Text>
@@ -130,9 +128,7 @@ function ShootScreenFormat({ navigation }) {
                       <Text style={styles.shotDisplayPercentSymbol}>%</Text>
                     </Text>
                   </View>
-                  <View
-                    style={{ flexDirection: "row", alignItems: "baseline" }}
-                  >
+                  <View style={styles.eachMulti}>
                     <Text style={styles.multiShotDisplayFont}>
                       {swings[1].club}
                     </Text>
@@ -148,10 +144,12 @@ function ShootScreenFormat({ navigation }) {
                   <Text style={styles.shotDisplayClubFont}>
                     {swings[0].club}
                   </Text>
-                  <Text style={styles.shotDisplayPercentFont}>
-                    {swings[0].power}
-                    <Text style={styles.shotDisplayPercentSymbol}>%</Text>
-                  </Text>
+                  <View style={styles.test}>
+                    <Text style={styles.shotDisplayPercentFont}>
+                      {swings[0].power}
+                      <Text style={styles.shotDisplayPercentSymbol}>%</Text>
+                    </Text>
+                  </View>
                 </View>
               ) : null}
             </View>
@@ -364,7 +362,7 @@ const styles = StyleSheet.create({
   },
   shotDisplayPercentFont: {
     textAlign: "center",
-    // paddingTop: hp("4.8%"),
+    paddingTop: hp("2.8%"),
     // paddingLeft: wp("2.6"),
     // paddingRight: wp("2.6"),
     fontSize: hp("6%"),
@@ -377,8 +375,8 @@ const styles = StyleSheet.create({
   },
   shotDisplayPercentSymbol: {
     textAlign: "center",
-    paddingTop: hp("8.4%"),
-    paddingRight: wp("1.6"),
+    // paddingTop: hp("8.4%"),
+    // paddingRight: wp("1.6"),
     fontSize: hp("2%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
@@ -462,6 +460,10 @@ const styles = StyleSheet.create({
     left: wp("8%"),
     borderRadius: 10,
   },
+  test: {
+    borderWidth: 1,
+    borderColor: colors.bg,
+  },
   calcButtonContainer: {
     flexDirection: "column",
     justifyContent: "space-around",
@@ -526,6 +528,10 @@ const styles = StyleSheet.create({
     // borderColor: colors.darkGold,
     alignItems: "center",
   },
+  eachMulti: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   multiShotDisplayFont: {
     // borderWidth: 1,
     // borderColor: colors.red,
@@ -543,9 +549,6 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: colors.green,
     textAlign: "center",
-    paddingLeft: wp("2.6"),
-    paddingRight: wp("2.6"),
-    height: hp("7%"),
     fontSize: hp("3%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
