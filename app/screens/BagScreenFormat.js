@@ -33,8 +33,8 @@ const pickerClubs = [
   "Dr",
   "3w",
   "5w",
-  "hy3",
-  "hy5",
+  "h3",
+  "h5",
   "1i",
   "2i",
   "3i",
@@ -314,7 +314,7 @@ function BagScreenFormat({ navigation }) {
                 />
               </View>
             </View>
-            <View style={styles.editExitBox}>
+            <View style={styles.addEditExitBox}>
               <AntDesign
                 name="save"
                 onPress={() => {
@@ -613,7 +613,6 @@ const styles = StyleSheet.create({
     width: wp("34%"),
     marginBottom: hp("1%"),
   },
-
   clubElement: {
     // borderWidth: 1,
     flexDirection: "column",
@@ -666,6 +665,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     marginLeft: wp("7%"),
+    marginRight: wp("3%"),
+    marginTop: hp("2%"),
+  },
+  addEditExitBox: {
+    // borderWidth: 1,
+    // borderColor: colors.green,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    width: wp("45%"),
+    marginLeft: wp("8%"),
     marginRight: wp("3%"),
     marginTop: hp("2%"),
   },
@@ -722,6 +732,7 @@ const styles = StyleSheet.create({
     // borderColor: colors.green,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: hp("-1.5%"),
   },
   picker: {
     height: hp("20%"),
