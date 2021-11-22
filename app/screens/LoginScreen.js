@@ -54,7 +54,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.titleContainer}>
-        <TextInput style={styles.titleText}>Noonan</TextInput>
+        <Text style={styles.titleText}>Noonan</Text>
       </View>
       <View style={styles.inputContainer}>
         <TextInput
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: colors.green,
     marginTop: hp("8%"),
+    width: wp("100%"),
     height: hp("25%"),
   },
   titleText: {
@@ -113,8 +114,8 @@ const styles = StyleSheet.create({
   input: {
     alignItems: "center",
     backgroundColor: colors.bg,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingHorizontal: wp("2%"),
+    paddingVertical: hp("1%"),
     borderRadius: 10,
     marginTop: 5,
   },
@@ -122,12 +123,12 @@ const styles = StyleSheet.create({
     width: "60%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
+    marginTop: hp("3%"),
   },
   button: {
     backgroundColor: colors.darkBlue,
     width: "100%",
-    padding: 15,
+    padding: wp("3%"),
     borderRadius: 10,
     alignItems: "center",
   },
