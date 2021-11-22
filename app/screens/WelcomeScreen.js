@@ -30,7 +30,11 @@ export default function WelcomeScreen({ navigation }) {
     <View style={styles.container}>
       {!info && !qrCode ? (
         <View>
-          <Text style={[styles.text, { fontSize: hp("13%") }]}>Noonan</Text>
+          <Text
+            style={[styles.text, { fontSize: hp("11%"), marginTop: hp("4%") }]}
+          >
+            Noonan
+          </Text>
           <View>
             <TouchableOpacity
               onPress={() => navigation.navigate("Bag")}
@@ -48,9 +52,9 @@ export default function WelcomeScreen({ navigation }) {
             <TouchableOpacity onPress={() => setInfo(true)}>
               <Text style={[styles.text, { fontSize: hp("4%") }]}>Info</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setQrCode(true)}>
+            {/* <TouchableOpacity onPress={() => setQrCode(true)}>
               <Text style={[styles.text, { fontSize: hp("4%") }]}>qr</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <TouchableOpacity onPress={() => firebase.auth().signOut()}>
               <Text style={[styles.text, { fontSize: hp("3%") }]}>Logout</Text>
@@ -77,7 +81,7 @@ export default function WelcomeScreen({ navigation }) {
           <View style={styles.textBlock}>
             <Text style={styles.titleText}> What is Noonan?</Text>
             <Text style={styles.bodyText}>
-              Noonan is like a caddy. It is designed to allow you to unlock the
+              Noonan is your caddy. It is designed to allow you to unlock the
               full potential of your clubs. Noonan consists of two major
               screens. Your Bag and The Calculator.{" "}
             </Text>
@@ -108,26 +112,27 @@ export default function WelcomeScreen({ navigation }) {
               woods, but grows as you progress through your irons and wedges.
             </Text>
             <Text style={[styles.subtitleText, { fontSize: hp("2%") }]}>~</Text>
+            <Text style={styles.bodyText}>For example,</Text>
             <Text style={styles.bodyText}>
-              For example, let’s say you hit your 9 iron 130 yds but with a a
-              75% swing, “a soft 9,” it goes 110. Your input would be
+              Let’s say you hit your 9 iron 130 yds but with a 75% swing, “a
+              soft 9,” it goes 110. Your input would be
             </Text>
-            <Text style={[styles.bodyText, { fontSize: hp("2%") }]}>
-              (Max: 130, % Power: 75, Min: 110)
+            <Text style={[styles.bodyText, { fontSize: hp("1.8%") }]}>
+              Max: 130 - % Power : 75 - Min: 110
             </Text>
             <Text style={[styles.subtitleText, { fontSize: hp("2%") }]}>~</Text>
             <Text style={styles.bodyText}>
               For a 56 degree wedge you may hit it 60 yds with a full swing and
               10 yds on a 20% swing.
             </Text>
-            <Text style={[styles.bodyText, { fontSize: hp("2%") }]}>
-              (Max: 60, % Power: 20, Min: 10)
+            <Text style={[styles.bodyText, { fontSize: hp("1.8%") }]}>
+              Max: 60 - % Power: 20 - Min: 10
             </Text>
             <View style={styles.textBlock}>
               <Text style={styles.subtitleText}>Minimum</Text>
               <Text style={styles.bodyText}>
-                As above, your Min distance is the distance you hit the ball on
-                your most conservative swing with that club.
+                Like above, your Min distance is how far you hit that club with
+                your most conservative swing.
               </Text>
             </View>
             <View style={styles.textBlock}>
@@ -148,7 +153,8 @@ export default function WelcomeScreen({ navigation }) {
               </Text>
               <Text style={styles.bodyText}>
                 By doing this you will get a better sense of how dynamic your
-                clubs really are. Fill out your bag and then you can use …
+                clubs really are. You can have a running tally of your ranges
+                and play your game more effectively.
               </Text>
             </View>
             <View style={styles.textBlock}>
@@ -170,8 +176,8 @@ export default function WelcomeScreen({ navigation }) {
               <Text style={[styles.subtitleText, { fontSize: hp("2%") }]}>
                 ~
               </Text>
-              <Text style={styles.bodyText}>It's about having fun!</Text>
-              <Text style={styles.bodyText}> So give it a whirl.</Text>
+
+              <Text style={styles.bodyText}> Give it a whirl.</Text>
             </View>
             <AntDesign
               onPress={() => setInfo(false)}
@@ -213,19 +219,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.darkBlack,
   },
-  textBlock: {
-    flex: 1,
-    // borderWidth: 1,
-    // borderColor: colors.green,
-    // borderRadius: 6,
-    // elevation: 3,
-    // shadowOffset: { width: 1, height: 1 },
-    // shadowColor: colors.bg,
-    // shadowOpacity: 0.3,
-    // marginHorizontal: 4,
-    // marginVertical: 6,
-    justifyContent: "flex-start",
-  },
+  textBlock: {},
   titleText: {
     textAlign: "center",
     fontSize: hp("5%"),
@@ -251,6 +245,7 @@ const styles = StyleSheet.create({
     fontSize: hp("2.3%"),
     color: colors.bg,
     margin: hp("2%"),
-    fontFamily: "Roboto-regular",
+    fontFamily: "Nunito-reg",
+    // fontFamily: "Roboto-regular",
   },
 });
