@@ -11,6 +11,7 @@ const colors = {
   darkBlack: "#0D1F2D",
   darkBlue: "#94C5CC",
   darkRed: "#EF6F6C",
+  input: "#EEFBF9",
 };
 
 export { colors };
