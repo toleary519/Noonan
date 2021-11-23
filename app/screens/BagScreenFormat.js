@@ -370,7 +370,7 @@ function BagScreenFormat({ navigation }) {
                         [{ text: "Got It" }]
                       )
                     }
-                    name="question"
+                    name="question-circle-o"
                     size={25}
                     color={colors.darkBlack}
                   />
@@ -403,7 +403,7 @@ function BagScreenFormat({ navigation }) {
                         [{ text: "Got It" }]
                       )
                     }
-                    name="question"
+                    name="question-circle-o"
                     size={25}
                     color={colors.darkBlack}
                   />
@@ -439,7 +439,7 @@ function BagScreenFormat({ navigation }) {
                         [{ text: "Got It" }]
                       )
                     }
-                    name="question"
+                    name="question-circle-o"
                     size={25}
                     color={colors.darkBlack}
                   />
@@ -724,8 +724,8 @@ const styles = StyleSheet.create({
   explainText: {
     textAlign: "center",
     fontSize: hp("3%"),
-    marginRight: wp("2%"),
-    marginLeft: wp("2%"),
+    paddingRight: wp("2.5%"),
+    paddingLeft: wp("2.5%"),
     color: colors.darkBlack,
     fontFamily: "Yellow-tail",
   },
