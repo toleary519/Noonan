@@ -89,9 +89,9 @@ export default function WelcomeScreen({ navigation }) {
           <View style={styles.textBlock}>
             <Text style={styles.subtitleText}>Your Bag</Text>
             <Text style={styles.bodyText}>
-              Start out with your bag. You can add, edit and delete clubs from
-              your bag as you see fit. When adding clubs you will be asked to
-              fill out three values.
+              Start out with your bag. You can add, edit and delete clubs as you
+              see fit. When adding clubs you will be asked to fill out three
+              values.
             </Text>
           </View>
           <View style={styles.textBlock}>
@@ -170,9 +170,15 @@ export default function WelcomeScreen({ navigation }) {
               </Text>
               <Text style={styles.bodyText}>
                 You can also adjust your estimated elevation and wind. Elevation
-                up and down is in yds and wind (arrow down = head wind, arrow up
-                is tail wind) in mph.
+                up and down is in yds and wind is in mph.
               </Text>
+              <Text style={[styles.bodyText, { fontSize: hp("1.8%") }]}>
+                arrow down is head wind
+              </Text>
+              <Text style={[styles.bodyText, { fontSize: hp("1.8%") }]}>
+                arrow up is tail wind
+              </Text>
+
               <Text style={[styles.subtitleText, { fontSize: hp("2%") }]}>
                 ~
               </Text>
