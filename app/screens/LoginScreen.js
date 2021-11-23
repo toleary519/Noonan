@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  StatusBar,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -53,6 +54,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <StatusBar barStyle="light-content" />
       <View style={styles.titleContainer}>
         <Text style={styles.titleText}>Noonan</Text>
       </View>
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
   },
   input: {
     alignItems: "center",
-    backgroundColor: colors.bg,
+    backgroundColor: colors.input,
     paddingHorizontal: wp("2%"),
     paddingVertical: hp("1%"),
     borderRadius: 10,
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
   buttonOutline: {
     backgroundColor: colors.green,
     marginTop: 5,
-    borderColor: colors.darkRed,
+
     borderWidth: 2,
   },
   buttonText: {
