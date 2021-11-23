@@ -8,6 +8,7 @@ import * as Font from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { AsyncStorage } from "@react-native-async-storage/async-storage";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { getFirestore } from "@firebase/firestore";
@@ -21,6 +22,7 @@ const getFonts = () =>
     "Roboto-regular": require("./app/assets/fonts/Roboto-Regular.ttf"),
     "Roboto-bold": require("./app/assets/fonts/Roboto-Bold.ttf"),
     "Yellow-tail": require("./app/assets/fonts/Yellowtail-Regular.ttf"),
+    "Nunito-reg": require("./app/assets/fonts/Nunito-Regular.ttf"),
   });
 
 // full app stack
@@ -29,7 +31,10 @@ function MyStack() {
     <Stack.Navigator
       initialRouteName={"noonan"}
       backBehavior={"order"}
-      screenOptions={{ tabBarShowLabel: false }}
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarStyle: { backgroundColor: "#0D1F2D" },
+      }}
     >
       <Stack.Screen name="Bag" component={BagScreenFormat} options={[]} />
       <Stack.Screen name="noonan" component={WelcomeScreen} options={[]} />
@@ -100,7 +105,12 @@ export default function App() {
   } else {
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            tabBarShowLabel: false,
+            tabBarStyle: { backgroundColor: "#0D1F2D" },
+          }}
+        >
           <Stack.Screen name="Login" component={LoginScreen} />
         </Stack.Navigator>
       </NavigationContainer>
