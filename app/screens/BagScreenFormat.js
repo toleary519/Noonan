@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
+  StatusBar,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
@@ -193,6 +194,7 @@ function BagScreenFormat({ navigation }) {
   return (
     // <ADD CLUB VIEW BEGINS HERE *****************************************************************************>
     <View style={styles.bagContainer}>
+      <StatusBar barStyle="light-content" />
       {addDisplayOpen ? (
         <KeyboardAwareScrollView
           style={styles.leftContainer}
