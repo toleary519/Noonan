@@ -8,7 +8,6 @@ import * as Font from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { AsyncStorage } from "@react-native-async-storage/async-storage";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { getFirestore } from "@firebase/firestore";
