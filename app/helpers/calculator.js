@@ -61,6 +61,7 @@ const getClub = (actualDistance, shots) => {
   return execute;
 };
 
+// array of multiple swings
 const getSwings = (actualDistance, shots) => {
   let swings = [];
   let shotObj = { club: "", power: "" };
