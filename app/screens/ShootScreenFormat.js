@@ -91,7 +91,7 @@ function ShootScreenFormat({ navigation }) {
             <View style={{ flexDirection: "row" }}>
               {/* <conditional render for empty bag ********************************************************> */}
               {unOrderedShots.length === 0 ? (
-                <Text style={styles.enterDistanceFont}>Your bag is empty</Text>
+                <Text style={styles.emptyBagFont}>Your bag is empty</Text>
               ) : null}
               {/* <conditional render for in between clubs display ********************************************************> */}
               {execute.iBOne ? (
@@ -559,5 +559,14 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
+  },
+  emptyBagFont: {
+    fontSize: hp("3%"),
+    fontWeight: "bold",
+    fontFamily: "Roboto-regular",
+    color: colors.darkGold,
+    textShadowOffset: { width: wp("-.3%"), height: hp(".3%") },
+    textShadowRadius: 2,
+    textShadowColor: colors.darkRed,
   },
 });
