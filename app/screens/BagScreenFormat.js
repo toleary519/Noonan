@@ -517,7 +517,10 @@ function BagScreenFormat({ navigation }) {
       {/* <EMPTY BAG DISPALY ****************************************************************> */}
       {shots.length === 0 && !addDisplayOpen ? (
         <View style={styles.leftContainer}>
-          <Text style={styles.emptyText}>Your bag is empty...</Text>
+          <View style={styles.emptyTextContainer}>
+            <Text style={styles.emptyText}>Your bag </Text>
+            <Text style={styles.emptyText}>is empty...</Text>
+          </View>
         </View>
       ) : null}
       {/* <LOADING CONDITIONAL RENDER SCREEN ************************************************> */}
@@ -605,6 +608,9 @@ const styles = StyleSheet.create({
     width: wp("25%"),
     fontFamily: "Yellow-tail",
     color: colors.darkGold,
+    textShadowOffset: { width: wp("-.2%"), height: hp(".2%") },
+    textShadowRadius: 2,
+    textShadowColor: colors.darkRed,
   },
   addExitBox: {
     // borderWidth: 1,
@@ -747,11 +753,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  emptyTextContainer: {
+    marginTop: hp("7.5%"),
+    justifyContent: "center",
+    alignItems: "center",
+  },
   emptyText: {
-    fontSize: hp("3%"),
-    marginTop: hp("10%"),
-    fontFamily: "Roboto-regular",
-    color: colors.bg,
+    // borderWidth: 1,
+    // borderColor: "white",
+    fontSize: hp("4%"),
+    fontFamily: "Yellow-tail",
+    color: colors.darkGold,
+    textShadowOffset: { width: wp("-.2%"), height: hp(".2%") },
+    textShadowRadius: 2,
+    textShadowColor: colors.darkRed,
     textAlign: "center",
   },
   largeEditBtn: {
