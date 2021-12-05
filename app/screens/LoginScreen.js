@@ -52,6 +52,8 @@ const LoginScreen = ({ navigation }) => {
       .catch((error) => alert(error.message));
   };
 
+  //return to google auth package here
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <StatusBar barStyle="light-content" />
