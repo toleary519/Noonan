@@ -13,15 +13,22 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { colors } from "../assets/colors/colors";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signInWithRedirect,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const auth = getAuth();
 
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         navigation.navigate("WelcomeScreen");
       }
@@ -31,28 +38,49 @@ const LoginScreen = ({ navigation }) => {
   }, []);
 
   const handleSignUp = () => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
         console.log("Registered with:", user.email);
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const handleLogin = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
         console.log("Logged in with:", user.email);
       })
       .catch((error) => alert(error.message));
   };
 
-  //return to google auth package here
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -85,6 +113,9 @@ const LoginScreen = ({ navigation }) => {
           style={[styles.button, styles.buttonOutline]}
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={signInWithGoogle}>
+          <Text style={styles.button}>Google</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
