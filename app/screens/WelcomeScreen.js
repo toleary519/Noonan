@@ -19,12 +19,22 @@ import {
   FontAwesome,
 } from "@expo/vector-icons";
 import { colors } from "../assets/colors/colors";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import { getAuth, signOut } from "firebase/auth";
 
 export default function WelcomeScreen({ navigation }) {
   const [info, setInfo] = useState(false);
   const [qrCode, setQrCode] = useState(false);
+
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -56,7 +66,7 @@ export default function WelcomeScreen({ navigation }) {
               <Text style={[styles.text, { fontSize: hp("4%") }]}>qr</Text>
             </TouchableOpacity> */}
 
-            <TouchableOpacity onPress={() => firebase.auth().signOut()}>
+            <TouchableOpacity onPress={() => handleSignOut()}>
               <Text style={[styles.text, { fontSize: hp("3%") }]}>Logout</Text>
             </TouchableOpacity>
           </View>
