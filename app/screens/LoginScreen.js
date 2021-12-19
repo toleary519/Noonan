@@ -21,6 +21,8 @@ import {
   signInWithRedirect,
   GoogleAuthProvider,
 } from "firebase/auth";
+// import firebase from "firebase/compat/app";
+// import "firebase/compat/auth";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -61,6 +63,7 @@ const LoginScreen = ({ navigation }) => {
 
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
+
     signInWithRedirect(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
