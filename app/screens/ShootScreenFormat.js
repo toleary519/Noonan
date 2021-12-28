@@ -543,7 +543,7 @@ const styles = StyleSheet.create({
   },
   multiShotDisplayPercentFont: {
     // borderWidth: 1,
-    // borderColor: colors.green,
+
     textAlign: "center",
     fontSize: hp("3%"),
     fontWeight: "bold",
