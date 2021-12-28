@@ -125,7 +125,7 @@ function BagScreenFormat({ navigation }) {
     setEditClubPercent(null);
   };
 
-  //add shots to the db after form completed
+  //add shots to the db after form
   const addShotDB = async (newDBclub) => {
     // Add a new document with a generated id.
     const docRef = await addDoc(collection(db, `users/${uID}/shots`), {
