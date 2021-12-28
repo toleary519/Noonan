@@ -668,7 +668,7 @@ const styles = StyleSheet.create({
   },
   editExitBox: {
     // borderWidth: 1,
-    // borderColor: colors.green,
+
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
