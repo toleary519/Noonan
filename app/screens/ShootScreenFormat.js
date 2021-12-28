@@ -542,8 +542,6 @@ const styles = StyleSheet.create({
     textShadowColor: colors.darkRed,
   },
   multiShotDisplayPercentFont: {
-    // borderWidth: 1,
-
     textAlign: "center",
     fontSize: hp("3%"),
     fontWeight: "bold",
