@@ -69,7 +69,7 @@ const LoginScreen = ({ navigation }) => {
         // This gives you a Google Access Token.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        // The signed-in user info.
+        //user info.
         const user = result.user;
         // ...
       })
