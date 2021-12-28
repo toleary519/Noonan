@@ -262,6 +262,5 @@ const styles = StyleSheet.create({
     color: colors.bg,
     margin: hp("2%"),
     fontFamily: "Nunito-reg",
-    // fontFamily: "Roboto-regular",
   },
 });
