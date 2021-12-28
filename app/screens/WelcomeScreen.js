@@ -32,7 +32,7 @@ export default function WelcomeScreen({ navigation }) {
         // Sign-out successful.
       })
       .catch((error) => {
-        // An error happened.
+        console.log(error);
       });
   };
 
