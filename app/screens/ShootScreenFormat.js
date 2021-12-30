@@ -529,7 +529,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   multiShotDisplayFont: {
-    // borderWidth: 1,
     // borderColor: colors.red,
     marginRight: wp("6%"), //25
     height: hp("9%"),
