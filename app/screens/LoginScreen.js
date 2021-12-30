@@ -66,7 +66,7 @@ const LoginScreen = ({ navigation }) => {
 
     signInWithRedirect(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token.
+        //Google Access Token.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         //user info.
