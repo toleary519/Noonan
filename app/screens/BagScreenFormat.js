@@ -667,7 +667,7 @@ const styles = StyleSheet.create({
     textShadowColor: colors.darkRed,
   },
   editExitBox: {
-    // borderWidth: 1,
+    
 
     flexDirection: "row",
     justifyContent: "space-around",
