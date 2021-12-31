@@ -667,8 +667,6 @@ const styles = StyleSheet.create({
     textShadowColor: colors.darkRed,
   },
   editExitBox: {
-    
-
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
@@ -677,7 +675,6 @@ const styles = StyleSheet.create({
     marginTop: hp("2%"),
   },
   addEditExitBox: {
-    // borderWidth: 1,
     // borderColor: colors.green,
     flexDirection: "row",
     justifyContent: "space-around",
