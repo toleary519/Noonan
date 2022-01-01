@@ -521,7 +521,7 @@ const styles = StyleSheet.create({
   },
   multiShotDisplay: {
     // borderWidth: 1,
-    // borderColor: colors.darkGold,
+
     alignItems: "center",
   },
   eachMulti: {
