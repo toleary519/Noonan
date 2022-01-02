@@ -520,8 +520,6 @@ const styles = StyleSheet.create({
     textShadowColor: colors.darkRed,
   },
   multiShotDisplay: {
-    // borderWidth: 1,
-
     alignItems: "center",
   },
   eachMulti: {
