@@ -477,7 +477,6 @@ function BagScreenFormat({ navigation }) {
                     }}
                     size={60}
                     color={colors.green}
-                    // style={[{ left: wp("4%") }, { padding: hp("0%") }]}
                   />
                   <AntDesign
                     onPress={() => setEditButton(true)}
