@@ -527,7 +527,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   multiShotDisplayFont: {
-    marginRight: wp("6%"), //25
+    marginRight: wp("6%"),
     height: hp("9%"),
     fontSize: hp("6%"),
     fontWeight: "bold",
