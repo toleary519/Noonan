@@ -22,7 +22,6 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 // import firebase from "firebase/compat/app";
-// import "firebase/compat/auth";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
