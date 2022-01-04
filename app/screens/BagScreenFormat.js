@@ -766,7 +766,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: hp("6%"),
     width: wp("38%"),
-    // marginTop: hp("2%"),
 
     marginLeft: wp("7%"),
     marginRight: wp("8%"),
