@@ -91,8 +91,8 @@ export default function WelcomeScreen({ navigation }) {
           <View style={styles.textBlock}>
             <Text style={styles.titleText}> What is Noonan?</Text>
             <Text style={styles.bodyText}>
-              Noonan is your caddy. It is designed to allow you to unlock the
-              full potential of your clubs. Noonan consists of two major
+              Newnan is your new caddy. It is designed to allow you to unlock
+              the full potential of your clubs. Newnan consists of two major
               screens. Your Bag and The Calculator.{" "}
             </Text>
           </View>
@@ -163,8 +163,8 @@ export default function WelcomeScreen({ navigation }) {
               </Text>
               <Text style={styles.bodyText}>
                 By doing this you will get a better sense of how dynamic your
-                clubs really are. You can have a running tally of your ranges
-                and play your game more effectively.
+                clubs can be. You can have a running tally of your ranges and
+                play your game more effectively.
               </Text>
             </View>
             <View style={styles.textBlock}>
