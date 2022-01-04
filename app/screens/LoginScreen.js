@@ -60,29 +60,29 @@ const LoginScreen = ({ navigation }) => {
       .catch((error) => alert(error.message));
   };
 
-  const signInWithGoogle = () => {
-    const provider = new GoogleAuthProvider();
+  // const signInWithGoogle = () => {
+  //   const provider = new GoogleAuthProvider();
 
-    signInWithRedirect(auth, provider)
-      .then((result) => {
-        //Google Access Token.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        //user info.
-        const user = result.user;
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-  };
+  //   signInWithRedirect(auth, provider)
+  //     .then((result) => {
+  //       //Google Access Token.
+  //       const credential = GoogleAuthProvider.credentialFromResult(result);
+  //       const token = credential.accessToken;
+  //       //user info.
+  //       const user = result.user;
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       // Handle Errors.
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       // The email of the user's account used.
+  //       const email = error.email;
+  //       // The AuthCredential type that was used.
+  //       const credential = GoogleAuthProvider.credentialFromError(error);
+  //       // ...
+  //     });
+  // };
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -116,9 +116,9 @@ const LoginScreen = ({ navigation }) => {
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={signInWithGoogle}>
+        {/* <TouchableOpacity onPress={signInWithGoogle}>
           <Text style={styles.button}>Google</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </KeyboardAvoidingView>
   );
