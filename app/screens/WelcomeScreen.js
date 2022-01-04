@@ -91,8 +91,8 @@ export default function WelcomeScreen({ navigation }) {
           <View style={styles.textBlock}>
             <Text style={styles.titleText}> What is Noonan?</Text>
             <Text style={styles.bodyText}>
-              Newnan is your new caddy. It is designed to allow you to unlock
-              the full potential of your clubs. Newnan consists of two major
+              Noonan is your new caddy. It is designed to allow you to unlock
+              the full potential of your clubs. Noonan consists of two major
               screens. Your Bag and The Calculator.{" "}
             </Text>
           </View>
