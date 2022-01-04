@@ -505,7 +505,7 @@ const styles = StyleSheet.create({
   },
   inBetweenDisplay: {
     // borderWidth: 1,
-    // borderColor: colors.green,
+
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
