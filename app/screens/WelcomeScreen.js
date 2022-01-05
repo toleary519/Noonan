@@ -62,9 +62,6 @@ export default function WelcomeScreen({ navigation }) {
             <TouchableOpacity onPress={() => setInfo(true)}>
               <Text style={[styles.text, { fontSize: hp("4%") }]}>Info</Text>
             </TouchableOpacity>
-            {/* <TouchableOpaity onPress={() => setQrCode(true)}>
-              <Text style={[styles.text, { fontSize: hp("4%") }]}>qr</Text>
-            </TouchableOpacity> */}
 
             <TouchableOpacity onPress={() => handleSignOut()}>
               <Text style={[styles.text, { fontSize: hp("3%") }]}>Logout</Text>
