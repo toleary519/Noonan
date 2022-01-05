@@ -751,7 +751,7 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     // borderWidth: 1,
-    // borderColor: "white",
+
     fontSize: hp("4%"),
     fontFamily: "Yellow-tail",
     color: colors.darkGold,
