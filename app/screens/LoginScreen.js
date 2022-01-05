@@ -21,7 +21,6 @@ import {
   signInWithRedirect,
   GoogleAuthProvider,
 } from "firebase/auth";
-// import firebase from "firebase/compat/app";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
