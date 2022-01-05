@@ -504,8 +504,6 @@ const styles = StyleSheet.create({
     color: colors.darkGold,
   },
   inBetweenDisplay: {
-    // borderWidth: 1,
-
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
