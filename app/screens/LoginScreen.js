@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.darkBlack,
   },
   titleContainer: {
+    // borderWidth: 1,
     marginTop: hp("8%"),
     width: wp("100%"),
     height: hp("25%"),
