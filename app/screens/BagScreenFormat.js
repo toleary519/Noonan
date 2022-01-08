@@ -761,7 +761,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   largeEditBtn: {
-    // borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
     height: hp("6%"),
