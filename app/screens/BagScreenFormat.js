@@ -750,8 +750,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   emptyText: {
-    // borderWidth: 1,
-
     fontSize: hp("4%"),
     fontFamily: "Yellow-tail",
     color: colors.darkGold,
