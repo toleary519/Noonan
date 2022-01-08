@@ -115,9 +115,6 @@ const LoginScreen = ({ navigation }) => {
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
-        {/* <TouchableOpacity onPress={signInWithGoogle}>
-          <Text style={styles.button}>Google</Text>
-        </TouchableOpacity> */}
       </View>
     </KeyboardAvoidingView>
   );
