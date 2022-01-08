@@ -497,7 +497,7 @@ const styles = StyleSheet.create({
     shadowColor: colors.darkRed,
   },
   font: {
-    fontSize: hp("2.3%"), //19
+    fontSize: hp("2.3%"),
     textAlign: "center",
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
