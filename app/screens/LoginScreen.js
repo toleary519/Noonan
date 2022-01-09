@@ -60,27 +60,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   // const signInWithGoogle = () => {
-  //   const provider = new GoogleAuthProvider();
 
-  //   signInWithRedirect(auth, provider)
-  //     .then((result) => {
-  //       //Google Access Token.
-  //       const credential = GoogleAuthProvider.credentialFromResult(result);
-  //       const token = credential.accessToken;
-  //       //user info.
-  //       const user = result.user;
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors.
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       // The email of the user's account used.
-  //       const email = error.email;
-  //       // The AuthCredential type that was used.
-  //       const credential = GoogleAuthProvider.credentialFromError(error);
-  //       // ...
-  //     });
   // };
 
   return (
