@@ -728,7 +728,7 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     // borderWidth: 1,
-    // borderColor: colors.green,
+
     justifyContent: "center",
     alignItems: "center",
     marginBottom: hp("-1.5%"),
