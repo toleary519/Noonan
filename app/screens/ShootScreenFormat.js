@@ -476,7 +476,7 @@ const styles = StyleSheet.create({
     width: wp("17.6%"),
     borderRadius: 10,
     marginTop: hp("2.4%"),
-    marginLeft: wp("5.3%"), //20
+    marginLeft: wp("5.3%"),
     marginRight: wp("5.3%"), //20
     shadowOpacity: 0.7,
     shadowOffset: { width: wp("-.5%"), height: hp(".5%") },
