@@ -226,7 +226,7 @@ function BagScreenFormat({ navigation }) {
                       [{ text: "Got It" }]
                     )
                   }
-                  name="question"
+                  name="question-circle-o"
                   size={25}
                   color={colors.darkBlack}
                 />
@@ -258,7 +258,7 @@ function BagScreenFormat({ navigation }) {
                       [{ text: "Got It" }]
                     )
                   }
-                  name="question"
+                  name="question-circle-o"
                   size={25}
                   color={colors.darkBlack}
                 />
@@ -293,7 +293,7 @@ function BagScreenFormat({ navigation }) {
                       [{ text: "Got It" }]
                     )
                   }
-                  name="question"
+                  name="question-circle-o"
                   size={25}
                   color={colors.darkBlack}
                 />
