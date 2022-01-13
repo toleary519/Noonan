@@ -208,7 +208,6 @@ export default function WelcomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    // borderWidth: 1,
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
