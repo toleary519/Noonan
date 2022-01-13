@@ -26,7 +26,6 @@ const getClub = (actualDistance, shots) => {
     }
     if (Number(shot.min) < bagMin) {
       bagMin = shot.min;
-      // console.log("bag min - ", bagMin);
     }
     if (Number(shot.max) > bagMax) {
       bagMax = shot.max;
