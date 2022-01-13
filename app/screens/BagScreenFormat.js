@@ -297,12 +297,6 @@ function BagScreenFormat({ navigation }) {
                   size={25}
                   color={colors.darkBlack}
                 />
-                {/* <Text style={styles.explainText}>
-                  How far do you hit {pickerValue}{" "}
-                  {addClubPercent
-                    ? `with a ${addClubPercent} % swing?`
-                    : `on your most conservative swing?`}
-                </Text> */}
               </View>
               <View style={styles.valuesElement}>
                 <TextInput
