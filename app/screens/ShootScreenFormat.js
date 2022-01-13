@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     // marginBottom: hp("3.5%"),
   },
   // shotDisplayWindow: {
-  //   borderWidth: 1,
+
   //   borderColor: colors.green,
   //   flexDirection: "row",
   //   justifyContent: "center",
