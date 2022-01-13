@@ -60,7 +60,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   // const signInWithGoogle = () => {
-
+  // use an external library here
   // };
 
   return (
