@@ -52,7 +52,7 @@ const LoginScreen = ({ navigation }) => {
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
+        // Sign in
         const user = userCredential.user;
         console.log("Logged in with:", user.email);
       })
