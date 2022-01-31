@@ -34,7 +34,7 @@ const getClub = (actualDistance, shots) => {
   }
 
   for (const shot of shots) {
-    // check for shots above or below players range
+    // check for shots above or below player range
     if (actualDistance > bagMax) {
       execute.message = "Out of range";
     }
