@@ -29,7 +29,7 @@ export default function WelcomeScreen({ navigation }) {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
-        // success.
+        // successful.
       })
       .catch((error) => {
         console.log(error);
