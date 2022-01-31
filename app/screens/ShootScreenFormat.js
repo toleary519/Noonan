@@ -328,7 +328,6 @@ const styles = StyleSheet.create({
   },
   // shotDisplayWindow: {
 
-  //   borderColor: colors.green,
   //   flexDirection: "row",
   //   justifyContent: "center",
   //   alignItems: "center",
