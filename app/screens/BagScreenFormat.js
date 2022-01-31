@@ -368,9 +368,6 @@ function BagScreenFormat({ navigation }) {
                     size={25}
                     color={colors.darkBlack}
                   />
-                  {/* <Text style={styles.explainText}>
-                    How far do you hit {editValue.club} with a full swing?
-                  </Text> */}
                 </View>
                 <View style={styles.valuesElement}>
                   <TextInput
