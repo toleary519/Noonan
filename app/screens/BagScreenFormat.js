@@ -184,7 +184,7 @@ function BagScreenFormat({ navigation }) {
     // console.log("update state runs: ********");
   };
 
-  // a function to reset the left side of the screen even if shots[0] is the club being edited
+  // a function to reset the left side of the screen even if shots[0] is club being edited
   const resetValue = () => {
     editValue === shots[0] && shots.length > 1
       ? setEditValue(shots[1])
