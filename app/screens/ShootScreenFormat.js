@@ -328,7 +328,6 @@ const styles = StyleSheet.create({
   },
   // shotDisplayWindow: {
 
-  //   flexDirection: "row",
   //   justifyContent: "center",
   //   alignItems: "center",
   //   width: wp("86%"),
