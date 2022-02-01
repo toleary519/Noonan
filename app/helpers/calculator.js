@@ -70,7 +70,7 @@ const getSwings = (actualDistance, shots) => {
       actualDistance >= Number(shot.min) &&
       actualDistance <= Number(shot.max)
     ) {
-      // because inputs in bag are strings refactored this with Number(), reset values if found
+      // because inputs in bag are strings refactored this with Number, reset values if found
 
       shotObj.club = shot.club;
       shotObj.power = Math.round(
