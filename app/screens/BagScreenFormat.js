@@ -172,7 +172,7 @@ function BagScreenFormat({ navigation }) {
     await updateDoc(docRef, payload);
   };
 
-  //deletes shots from the db after delete is clicked
+  //deletes shots from the db after delete is click
   const deleteShotDB = async (id) => {
     const docRef = await deleteDoc(doc(db, `users/${uID}/shots`, id));
     // console.log("delete document with ID: ", docRef.id);
