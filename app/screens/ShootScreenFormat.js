@@ -328,7 +328,6 @@ const styles = StyleSheet.create({
   },
   // shotDisplayWindow: {
 
-  //   height: hp("20%"),
   //   borderRadius: 10,
   //   marginTop: hp("1.5%"),
   //   marginLeft: wp("9%"),
