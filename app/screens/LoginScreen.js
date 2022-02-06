@@ -40,7 +40,7 @@ const LoginScreen = ({ navigation }) => {
   const handleSignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Sign in
+        // Signed in
         const user = userCredential.user;
         console.log("Registered with:", user.email);
       })
