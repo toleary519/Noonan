@@ -46,7 +46,7 @@ const getClub = (actualDistance, shots) => {
     }
   }
 
-  //check for inbetween club returns the same
+  //check for inbetween club returns the same thing.
   for (let i = 0; i < shots.length - 1; i++) {
     if (actualDistance > shots[i].max && actualDistance < shots[i + 1].min) {
       // execute = { ...reset };
