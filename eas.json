@@ -6,6 +6,9 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
+      "android": {
+        "gradleCommand": ":app:assembleDebug"
+      },
       "ios": {
         "buildConfiguration": "Debug"
       }
@@ -13,9 +16,7 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {
-      "ios": {}
-    }
+    "production": {}
   },
   "submit": {
     "production": {}

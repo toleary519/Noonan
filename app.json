@@ -18,7 +18,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.thomas.noonan"
+      "bundleIdentifier": "com.thomas.noonan",
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {
