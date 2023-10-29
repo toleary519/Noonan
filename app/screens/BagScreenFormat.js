@@ -23,10 +23,9 @@ import {
   FontAwesome,
 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-// import { addShotDB, deleteShotDB } from "../api/firebaseFunct";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import { onSnapshot, query, where } from "@firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
+import { onSnapshot } from "@firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
 import { getAuth } from "firebase/auth";
 
@@ -65,15 +64,11 @@ function BagScreenFormat({ navigation }) {
 
   // get the entire shots collection from firestore and map them to shots state,
   // also pulling out the doc id to use as key below
-  useEffect(
-    () => {
-      onSnapshot(collection(db, `users/${uID}/shots`), (snapshot) =>
-        setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      );
-    },
-    // <Need to set editValue here ******************************>
-    []
-  );
+  useEffect(() => {
+    onSnapshot(collection(db, `users/${uID}/shots`), (snapshot) =>
+      setShots(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    );
+  }, []);
 
   const [addDisplayOpen, setAddDisplayOpen] = useState(false);
   const [pickerValue, setPickerValue] = useState(pickerClubs[0]);
@@ -107,7 +102,6 @@ function BagScreenFormat({ navigation }) {
     //objectify
     const payload = Object.fromEntries(filtered);
 
-    // console.log("payload: ", payload);
     return payload;
   };
 
@@ -131,7 +125,6 @@ function BagScreenFormat({ navigation }) {
     const docRef = await addDoc(collection(db, `users/${uID}/shots`), {
       ...newDBclub,
     });
-    // console.log("Document written with ID: ", docRef.id);
   };
 
   // function to check for empty fields in the add action as well as check for a full bag
@@ -175,13 +168,11 @@ function BagScreenFormat({ navigation }) {
   //deletes shots from the db after delete is click.
   const deleteShotDB = async (id) => {
     const docRef = await deleteDoc(doc(db, `users/${uID}/shots`, id));
-    // console.log("delete document with ID: ", docRef.id);
   };
 
   // if in a loading state at the beginning checks for shots to populate and then sets state
   const updateState = () => {
     shots[0] ? setEditValue({ ...shots[0] }) : null;
-    // console.log("update state runs: ********");
   };
 
   // a function to reset the left side of the screen even if shots[0] is the club being edited
@@ -230,9 +221,6 @@ function BagScreenFormat({ navigation }) {
                   size={25}
                   color={colors.darkBlack}
                 />
-                {/* <Text style={styles.explainText}>
-                  How far do you hit {pickerValue} with a full swing?
-                </Text> */}
               </View>
               <View style={styles.valuesElement}>
                 <TextInput
@@ -262,10 +250,6 @@ function BagScreenFormat({ navigation }) {
                   size={25}
                   color={colors.darkBlack}
                 />
-                {/* <Text style={styles.explainText}>
-                  What is the minimum power you would swing this club before
-                  clubbing down?
-                </Text> */}
               </View>
               <View style={styles.valuesElement}>
                 <TextInput
@@ -344,7 +328,6 @@ function BagScreenFormat({ navigation }) {
               extraHeight={hp("15%")}
             >
               <Text
-                style={styles.editClubText}
                 style={
                   editValue.club === "Pw" || "60°" || "56" || "52"
                     ? [styles.editClubText, { fontSize: hp("13.5%") }]
@@ -398,10 +381,6 @@ function BagScreenFormat({ navigation }) {
                     size={25}
                     color={colors.darkBlack}
                   />
-                  {/* <Text style={styles.explainText}>
-                    What is the minimum power you would swing this club before
-                    clubbing down?
-                  </Text> */}
                 </View>
                 <View style={styles.valuesElement}>
                   <TextInput
@@ -533,7 +512,6 @@ function BagScreenFormat({ navigation }) {
           </View>
 
           {console.log("shots - bag :", shots)}
-          {/* {console.log("editValue:", editValue)} */}
         </View>
         {shots
           // sort and map the bag display on the right into the club elements
@@ -576,8 +554,6 @@ const styles = StyleSheet.create({
     marginTop: hp("2%"),
   },
   titleContainer: {
-    // borderWidth: 1,
-    // borderColor: colors.green,
     justifyContent: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -586,7 +562,6 @@ const styles = StyleSheet.create({
     margin: wp("2%"),
   },
   titleText: {
-    // borderWidth: 1,
     textAlign: "center",
     fontSize: hp("4%"),
     height: hp("8%"),
@@ -598,7 +573,6 @@ const styles = StyleSheet.create({
     textShadowColor: colors.darkRed,
   },
   addExitBox: {
-    // borderWidth: 1,
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
@@ -607,7 +581,6 @@ const styles = StyleSheet.create({
     marginBottom: hp("1%"),
   },
   clubElement: {
-    // borderWidth: 1,
     flexDirection: "column",
     height: hp("7%"),
     width: wp("26.33"),
@@ -660,7 +633,6 @@ const styles = StyleSheet.create({
     marginTop: hp("2%"),
   },
   addEditExitBox: {
-    // borderColor: colors.green,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
@@ -718,7 +690,6 @@ const styles = StyleSheet.create({
     fontFamily: "Yellow-tail",
   },
   pickerContainer: {
-    // borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: hp("-1.5%"),

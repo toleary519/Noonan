@@ -30,17 +30,13 @@ function ShootScreenFormat({ navigation }) {
 
   let shots = [];
   // get shots from database to set shots data array
-  useEffect(
-    () => {
-      onSnapshot(collection(db, `users/${uID}/shots`), (snapshot) =>
-        setUnOrderedShots(
-          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        )
-      );
-    },
-    // <Need to set editValue here ******************************>
-    []
-  );
+  useEffect(() => {
+    onSnapshot(collection(db, `users/${uID}/shots`), (snapshot) =>
+      setUnOrderedShots(
+        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      )
+    );
+  }, []);
 
   // sort the shots that come in from firebase
   unOrderedShots[0]
@@ -317,25 +313,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.darkBlack,
   },
   shotDisplayContainer: {
-    // borderWidth: 1,
-    // borderColor: colors.green,
     justifyContent: "center",
     alignItems: "center",
-    // width: wp("86%"),
     height: hp("24%"),
-    // left: wp("9%"),
-    // marginBottom: hp("3.5%"),
   },
-  // shotDisplayWindow: {
-
-  //   borderRadius: 10,
-  //   marginTop: hp("1.5%"),
-  //   marginLeft: wp("9%"),
-  //   marginRight: wp("6%"),
-  // },
   shotDisplayClubFont: {
-    // textAlign: "center",
-    marginRight: wp("6%"), //25
+    marginRight: wp("6%"),
     fontSize: hp("10%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
@@ -345,7 +328,6 @@ const styles = StyleSheet.create({
     textShadowColor: colors.darkRed,
   },
   enterDistanceFont: {
-    // textAlign: "center",
     fontSize: hp("4%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
@@ -357,8 +339,6 @@ const styles = StyleSheet.create({
   shotDisplayPercentFont: {
     textAlign: "center",
     paddingTop: hp("2.8%"),
-    // paddingLeft: wp("2.6"),
-    // paddingRight: wp("2.6"),
     fontSize: hp("6%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
@@ -369,8 +349,6 @@ const styles = StyleSheet.create({
   },
   shotDisplayPercentSymbol: {
     textAlign: "center",
-    // paddingTop: hp("8.4%"),
-    // paddingRight: wp("1.6"),
     fontSize: hp("2%"),
     fontWeight: "bold",
     fontFamily: "Roboto-regular",
@@ -380,8 +358,6 @@ const styles = StyleSheet.create({
     textShadowColor: colors.darkRed,
   },
   dashboardContainer: {
-    // borderWidth: 1,
-    // borderColor: colors.green,
     flexDirection: "row",
     justifyContent: "space-between",
     width: wp("86%"),
@@ -403,17 +379,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-regular",
     color: colors.darkGold,
   },
-  // dashboardDisplayBox: {
-  //   borderWidth: 1,
-  //   borderColor: colors.darkRed,
-  //   flexDirection: "column",
-  //   height: wp("15%"),
-  //   width: wp("26%"),
-  //   marginRight: wp("2%"),
-  // },
   displayElement: {
-    // borderWidth: 1,
-    // borderColor: colors.darkRed,
     height: wp("14.6%"),
     width: wp("25.6%"),
     fontSize: hp("4%"),
@@ -432,7 +398,6 @@ const styles = StyleSheet.create({
   elevationElement: {
     height: wp("14.6%"),
     width: wp("19.3%"),
-    // marginTop: hp("1%"),
   },
   windElement: {
     height: wp("14.6%"),
@@ -483,8 +448,8 @@ const styles = StyleSheet.create({
     width: wp("17.6%"),
     borderRadius: 10,
     marginTop: hp("2.4%"),
-    marginLeft: wp("5.3%"), //20
-    marginRight: wp("5.3%"), //20
+    marginLeft: wp("5.3%"),
+    marginRight: wp("5.3%"),
     shadowOpacity: 0.7,
     shadowOffset: { width: wp("-.5%"), height: hp(".5%") },
     shadowRadius: 2,

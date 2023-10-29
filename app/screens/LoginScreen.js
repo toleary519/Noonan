@@ -18,8 +18,6 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  signInWithRedirect,
-  GoogleAuthProvider,
 } from "firebase/auth";
 
 const LoginScreen = ({ navigation }) => {
@@ -58,10 +56,6 @@ const LoginScreen = ({ navigation }) => {
       })
       .catch((error) => alert(error.message));
   };
-
-  // const signInWithGoogle = () => {
-  // use an external library here.
-  // };
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">

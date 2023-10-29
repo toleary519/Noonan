@@ -6,18 +6,12 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  StatusBar,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import {
-  MaterialIcons,
-  AntDesign,
-  Ionicons,
-  FontAwesome,
-} from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { colors } from "../assets/colors/colors";
 import { getAuth, signOut } from "firebase/auth";
 
